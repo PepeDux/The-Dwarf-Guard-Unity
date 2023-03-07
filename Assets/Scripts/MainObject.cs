@@ -13,45 +13,45 @@ public class MainObject : MonoBehaviour
     #region Characteristic
 
     private int freeCharacteristicLevel = 0;
-    public int CharacteristicLevel = 0;
-    public int maxCharacteristicLevel = 10;
+    private int CharacteristicLevel = 0;
+    private int maxCharacteristicLevel = 10;
 
     //Здоровье
-    public float HP;
+    public float HP = 100;
     public float maxHP = 100;
-    public int HPCharac = 1;
+    private int HPCharac = 1;
     public int maxHPCharac = 10;
 
     //Энергия
-    public float energy = 0;
+    public float energy = 30;
     public float maxEnergy = 30;
-    public float energyWaste = 10;
-    public int energyCharac = 1;
-    public int maxEnergyCharac = 10;
+    private float energyWaste = 10;
+    private int energyCharac = 1;
+    private int maxEnergyCharac = 10;
 
     //Скорость востановления энергии
-    public float energyRegeneration = 0;
-    public float maxEnergyRegeneration = 30;
-    public int energyCharacRegeneration = 1;
-    public int maxEnergyCharacRegeneration = 10;
+    private float energyRegeneration = 0;
+    private float maxEnergyRegeneration = 30;
+    private int energyCharacRegeneration = 1;
+    private int maxEnergyCharacRegeneration = 10;
 
     //Броня
-    public float armor = 0;
-    public float maxArmor = 100;
-    public int armorCharac = 1;
-    public int maxArmorCharac = 10;
+    private float armor = 0;
+    private float maxArmor = 100;
+    private int armorCharac = 1;
+    private int maxArmorCharac = 10;
 
     //Урон
-    public int damage = 0;
-    public int maxDamage = 100;
+    private int damage = 0;
+    private int maxDamage = 100;
 
     //Опыт
-    public float XP = 0;
-    public float maxXP = 100;
+    private float XP = 0;
+    private float maxXP = 100;
 
     //Уровень
-    public int level = 0;
-    public int maxLevel = 10;
+    private int level = 0;
+    private int maxLevel = 10;
 
     //Деньги
     public int money = 0;
@@ -62,119 +62,119 @@ public class MainObject : MonoBehaviour
 
 
     //Сила
-    public int strength = 0;
-    public int maxStrength = 10;
-    public int strengthCharac = 0;
-    public int maxStrengthCharac = 10;
+    private int strength = 0;
+    private int maxStrength = 10;
+    private int strengthCharac = 0;
+    private int maxStrengthCharac = 10;
 
     //Ловкость
-    public int agility = 0;
-    public int maxAgility = 10;
-    public int agilityCharac = 0;
-    public int maxAgilityhCharac = 10;
+    private int agility = 0;
+    private int maxAgility = 10;
+    private int agilityCharac = 0;
+    private int maxAgilityhCharac = 10;
 
     //Интеллект
-    public int intel = 0;
-    public int maxIntel = 10;
-    public int intelCharac = 0;
-    public int maxIntelCharac = 10;
+    private int intel = 0;
+    private int maxIntel = 10;
+    private int intelCharac = 0;
+    private int maxIntelCharac = 10;
 
     //Телосложение
-    public int constitution = 0;
-    public int maxConstitution = 10;
-    public int constitutionCharac = 0;
-    public int maxConstitutionCharac = 10;
+    private int constitution = 0;
+    private int maxConstitution = 10;
+    private int constitutionCharac = 0;
+    private int maxConstitutionCharac = 10;
 
     //Мудрость
-    public int wisdom = 0;
-    public int maxWisdom = 10;
-    public int wisdomCharac = 0;
-    public int maxWisdomCharac = 10;
+    private int wisdom = 0;
+    private int maxWisdom = 10;
+    private int wisdomCharac = 0;
+    private int maxWisdomCharac = 10;
 
 
 
 
 
     //Уклонение
-    public int dodge = 0;
-    public int maxDodge = 10;
-    public int dodgeCharac = 0;
-    public int maxDodgeCharac = 10;
+    private int dodge = 0;
+    private int maxDodge = 10;
+    private int dodgeCharac = 0;
+    private int maxDodgeCharac = 10;
 
     //Переносимый вес
-    public int carryingCapacity = 0;
-    public int maxCarryingCapacity = 10;
-    public int carryingCapacityCharac = 1;
-    public int maxCarryingCapacityCharac = 10;
+    private int carryingCapacity = 0;
+    private int maxCarryingCapacity = 10;
+    private int carryingCapacityCharac = 1;
+    private int maxCarryingCapacityCharac = 10;
 
     //Скорость
-    public float speed = 2f;
-    public float maxSpeed = 10f;
-    public int speedCharac = 1;
-    public int maxSpeecCharac = 10;
+    private float speed = 2f;
+    private float maxSpeed = 10f;
+    private int speedCharac = 1;
+    private int maxSpeecCharac = 10;
 
     //Скорость атаки
-    public float attackSpeed = 0;
-    public float maxAttackSpeed = 10;
-    public float attackSpeedCharac = 0;
-    public float maxAttackSpeedCharac = 10;
+    private float attackSpeed = 0;
+    private float maxAttackSpeed = 10;
+    private float attackSpeedCharac = 0;
+    private float maxAttackSpeedCharac = 10;
 
     //Критический урон
-    public float criticalDamage = 0;
-    public float maxCriticalDamage = 10;
-    public float criticalDamageCharac = 0;
-    public float maxCriticalDamageCharac = 10;
+    private float criticalDamage = 0;
+    private float maxCriticalDamage = 10;
+    private float criticalDamageCharac = 0;
+    private float maxCriticalDamageCharac = 10;
 
     //Точность
-    public float precision = 0;
-    public float maxPrecisionDamage = 10;
-    public float precisionCharac = 0;
-    public float maxPrecisionDamageCharac = 10;
+    private float precision = 0;
+    private float maxPrecisionDamage = 10;
+    private float precisionCharac = 0;
+    private float maxPrecisionDamageCharac = 10;
 
 
 
 
 
     //Сытость
-    public int satiety = 0;
-    public int maxSatiety = 10;
+    private int satiety = 0;
+    private int maxSatiety = 10;
 
     //Опьянение
-    public int drunkenness = 0;
-    public int maxDrunkenness = 10;
+    private int drunkenness = 0;
+    private int maxDrunkenness = 10;
 
 
 
 
     //Сопротивление огню
-    public float fireResist = 0;
-    public int maxFireResist = 10;
-    public int fireResistCharac = 0;
-    public int maxFireResistCharac = 10;
+    private float fireResist = 0;
+    private int maxFireResist = 10;
+    private int fireResistCharac = 0;
+    private int maxFireResistCharac = 10;
 
     //Сопротивление ядам
-    public float poisonResist = 0;
-    public int maxPoisonResist = 100;
-    public int poisonResistCharac = 0;
-    public int maxPoisonResistCharac = 10;
+    private float poisonResist = 0;
+    private int maxPoisonResist = 100;
+    private int poisonResistCharac = 0;
+    private int maxPoisonResistCharac = 10;
 
     //Сопростивление морозу
-    public float frostResist = 0;
-    public int maxFrostResist = 10;
-    public int frostResistCharac = 0;
-    public int maxFrostResistCharac = 10;
+    private float frostResist = 0;
+    private int maxFrostResist = 10;
+    private int frostResistCharac = 0;
+    private int maxFrostResistCharac = 10;
 
     //Сопротивление проклятию
-    public float curseResist = 0;
-    public int maxCurseResist = 10;
-    public int curseResistCharac = 0;
-    public int maxCurseResistCharac = 10;
+    private float curseResist = 0;
+    private int maxCurseResist = 10;
+    private int curseResistCharac = 0;
+    private int maxCurseResistCharac = 10;
 
     //Сопротивление рунной магии
-    public float runesResist = 0;
-    public int maxRunesResist = 10;
-    public int runesResistCharac = 0;
-    public int maxRunesResistCharac = 10;
+    private float runesResist = 0;
+    private int maxRunesResist = 10;
+    private int runesResistCharac = 0;
+    private int maxRunesResistCharac = 10;
 
     #endregion
 
@@ -186,11 +186,7 @@ public class MainObject : MonoBehaviour
 
     #endregion
 
-    public bool statusPoison = false;
-    public bool statusFire = false;
-    public bool statusCurse = false;
-    public bool statusFrost = false;
-    public bool statusDrunkenness = false;
+
 
 
 
@@ -202,7 +198,7 @@ public class MainObject : MonoBehaviour
         if (damage > 0)
         {
             HP -= damage;
-            anim.SetTrigger("TakeDamage");
+            //anim.SetTrigger("TakeDamage");
         }
 
         if (HP <= 0)
@@ -219,8 +215,303 @@ public class MainObject : MonoBehaviour
 
 
 
-        Instantiate(loot[randomEnemy], transform.position, transform.rotation);
+        //Instantiate(loot[randomEnemy], transform.position, transform.rotation);
 
         this.enabled = false;
     }
+
+
+
+
+    public GameObject effectPoison;
+    public GameObject effectFire;
+    public GameObject effectCurse;
+    public GameObject effectFrost;
+    public GameObject effectDrunkenness;
+
+    public bool statusPoison = false;
+    public bool statusFire = false;
+    public bool statusCurse = false;
+    public bool statusFrost = false;
+    public bool statusDrunkenness = false;
+
+    private int timePoison;
+    private float damagePoison;
+    private int intervalPoison;
+
+    private int timeFire;
+    private float damageFire;
+    private int intervalFire;
+
+    private int timeCurse;
+    private float damageCurse;
+    private int intervalCurse;
+
+    private int timeFrost;
+    private float damageFrost;
+    private int intervalFrost;
+
+    private int timeDrunkenness;
+    private float damageDrunkenness;
+    private int intervalDrunkenness;
+
+
+
+    public void takeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
+    {
+        if (typeInfo == "Poison")
+        {
+            if (statusPoison)
+            {
+                if (timePoison < timeInfo)
+                {
+                    timePoison = timeInfo;
+                }
+
+                if (damagePoison < timePoison)
+                {
+                    damagePoison = damageInfo;
+                }
+
+                if (intervalPoison > intervalInfo)
+                {
+                    intervalPoison = intervalInfo;
+                }
+            }
+
+            if (!statusPoison)
+            {
+                timePoison = timeInfo;
+                damagePoison = damageInfo;
+                intervalPoison = intervalInfo;
+
+                statusPoison = true;
+
+                StartCoroutine("Poison");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        if (typeInfo == "Fire")
+        {
+            if (statusFire)
+            {
+                if (timeFire < timeInfo)
+                {
+                    timeFire = timeInfo;
+                }
+
+                if (damageFire < timeFire)
+                {
+                    damageFire = damageInfo;
+                }
+
+                if (intervalFire > intervalInfo)
+                {
+                    intervalFire = intervalInfo;
+                }
+            }
+
+            if (!statusFire)
+            {
+                timeFire = timeInfo;
+                damageFire = damageInfo;
+                intervalFire = intervalInfo;
+
+                statusFire = true;
+
+                StartCoroutine("Fire");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        if (typeInfo == "Curse")
+        {
+            if (statusCurse)
+            {
+                if (timeCurse < timeInfo)
+                {
+                    timeCurse = timeInfo;
+                }
+
+                if (damageCurse < timeCurse)
+                {
+                    damageCurse = damageInfo;
+                }
+
+                if (intervalCurse > intervalInfo)
+                {
+                    intervalCurse = intervalInfo;
+                }
+            }
+
+            if (!statusCurse)
+            {
+                timeCurse = timeInfo;
+                damageCurse = damageInfo;
+                intervalCurse = intervalInfo;
+
+                statusCurse = true;
+
+                StartCoroutine("Curse");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        if (typeInfo == "Frost")
+        {
+            if (statusFrost)
+            {
+                if (timeFrost < timeInfo)
+                {
+                    timeFrost = timeInfo;
+                }
+
+                if (damageFrost < timeFire)
+                {
+                    damageFrost = damageInfo;
+                }
+
+                if (intervalFrost > intervalInfo)
+                {
+                    intervalFrost = intervalInfo;
+                }
+            }
+
+            if (!statusFrost)
+            {
+                timeFrost = timeInfo;
+                damageFrost = damageInfo;
+                intervalFrost = intervalInfo;
+
+                statusFrost = true;
+
+                StartCoroutine("Frost");
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////
+
+        if (typeInfo == "Drunkenness")
+        {
+            if (statusDrunkenness)
+            {
+                if (timeDrunkenness < timeInfo)
+                {
+                    timeDrunkenness = timeInfo;
+                }
+
+                if (damageDrunkenness < timeFire)
+                {
+                    damageDrunkenness = damageInfo;
+                }
+
+                if (intervalDrunkenness > intervalInfo)
+                {
+                    intervalDrunkenness = intervalInfo;
+                }
+            }
+
+            if (!statusDrunkenness)
+            {
+                timeDrunkenness = timeInfo;
+                damageDrunkenness = damageInfo;
+                intervalDrunkenness = intervalInfo;
+
+                statusDrunkenness = true;
+
+                StartCoroutine("Drunkenness");
+            }
+        }
+
+    }
+    IEnumerator Poison()
+    {
+        Player.speed -= 1f;
+
+        for (int i = 0; i < (timePoison / intervalPoison); timePoison -= intervalPoison)
+        {
+            yield return new WaitForSeconds(intervalPoison);
+
+            Instantiate(effectPoison, this.transform.position, transform.rotation);
+
+            TakeDamage(damagePoison * (1 - Player.poisonResist / 100));
+        }
+
+        Player.speed += 1f;
+
+        statusPoison = false;
+        Debug.Log("Я закончил");
+    }
+
+    IEnumerator Fire()
+    {
+        for (int i = 0; i < (timeFire / intervalFire); timeFire -= intervalFire)
+        {
+            yield return new WaitForSeconds(intervalFire);
+
+            Instantiate(effectFire, this.transform.position, transform.rotation);
+                
+            TakeDamage(damageFire * (1 - Player.fireResist / 100));
+        }
+
+        statusFire = false;
+        Debug.Log("Я закончил");
+    }
+
+    IEnumerator Curse()
+    {
+        for (int i = 0; i < (timeCurse / intervalCurse); timeCurse -= intervalCurse)
+        {
+            yield return new WaitForSeconds(intervalCurse);
+
+            Instantiate(effectCurse, this.transform.position, transform.rotation);
+
+            TakeDamage(damageCurse * (1 - Player.curseResist / 100));
+        }
+
+        statusCurse = false;
+        Debug.Log("Я закончил");
+    }
+
+    IEnumerator Frost()
+    {
+        for (int i = 0; i < (timeFrost / intervalFrost); timeFrost -= intervalFrost)
+        {
+            yield return new WaitForSeconds(intervalFrost);
+
+            Instantiate(effectFrost, this.transform.position, transform.rotation);
+
+            TakeDamage(damageFrost * (1 - Player.frostResist / 100));
+        }
+
+        statusFrost = false;
+        Debug.Log("Я закончил");
+    }
+
+    IEnumerator Drunkenness()
+    {
+        for (int i = 0; i < (timeDrunkenness / intervalDrunkenness); timeFire -= intervalDrunkenness)
+        {
+            yield return new WaitForSeconds(intervalDrunkenness);
+
+            Instantiate(effectDrunkenness, this.transform.position, transform.rotation);
+
+            //player.GetComponent<Player>().TakeDamage(damageDrunkenness * (1 - Player.drunkennessResist / 100));
+        }
+
+        statusDrunkenness = false;
+        Debug.Log("Я закончил");
+    }
+
 }
+
+
+
+
+
+
+

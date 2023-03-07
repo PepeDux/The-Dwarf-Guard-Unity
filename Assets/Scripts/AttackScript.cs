@@ -14,11 +14,15 @@ public class AttackScript : MonoBehaviour
 
     public bool CanAttack = true;
 
-    public int AttackDamage = 5; 
+    public int AttackDamage;
 
-    void FixedUpdate()
+    private void Start()
     {
         anim = GetComponent<Animator>();
+    }
+    void FixedUpdate()
+    {
+        
         Attack();     
     }
 

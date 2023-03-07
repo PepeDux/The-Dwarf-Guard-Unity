@@ -6,7 +6,7 @@ public class Food : MonoBehaviour
 {
     [SerializeField] public GameObject gam;
 
-    private PereodicDamage pereodicDamage;
+    //private PereodicDamage pereodicDamage;
 
     public int HP;
     public int energy;
@@ -17,34 +17,14 @@ public class Food : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        pereodicDamage = gam.GetComponent<PereodicDamage>();
-
         if (other.gameObject.tag == "Player")
         {
-            Player.HP += HP;
-            Player.energy += energy;
-
-            pereodicDamage.takeInfo(time, damage, interval, type);
+            other.GetComponent<MainObject>().HP += HP;
+            other.GetComponent<MainObject>().energy += energy;
             
+            other.GetComponent<MainObject>().takeInfo(time, damage, interval, type);
 
             Destroy(this.gameObject);
         }
     }
-
-    //public void Poison(int time, int damage, int interval)
-    //{
-    //    while(realyTime <= time)
-    //    {
-    //        realyTime += Time.deltaTime;
-
-    //        if(realyTime % interval == 0) 
-    //        {
-    //            Player.HP -= damage;
-    //            Debug.Log(Player.HP);
-    //        }
-    //    }
-      
-    //}
-
-   
 }

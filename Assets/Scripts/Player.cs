@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Player : MainObject
 {
-    public static new float HP;
+    public static new float HP = 100;
     public static new float maxHP = 100;
     public static new int HPCharac = 1;
     public static new int maxHPCharac = 10;
