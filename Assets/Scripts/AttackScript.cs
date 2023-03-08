@@ -12,6 +12,8 @@ public class AttackScript : MonoBehaviour
     public float AttackRange = 10f;
     public LayerMask EnemyLayers;
 
+    public float bufSpeed;
+
     public bool CanAttack = true;
 
     public int AttackDamage;
@@ -20,33 +22,32 @@ public class AttackScript : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    void FixedUpdate()
-    {
-        
+    void Update()
+    {     
         Attack();     
     }
 
     void Attack()
     {
-        if (Player.energy >= Player.energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
-        {
-           
-            anim.SetTrigger("Attack");
-            Player.speed = 0;
-            Player.energy -= 10;
+        if (GetComponent<MainObject>().energy >= Player.energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
+        {     
+            bufSpeed = GetComponent<MainObject>().speed;    //Записываем изначальную скорость персонажа в буфер
+            GetComponent<MainObject> ().speed = 0f;         //Останавлиаем персонажа
+
+            anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
+            GetComponent<MainObject>().energy -= GetComponent<MainObject>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
             CanAttack = false;
-            NextAnimator.SetTrigger("OnAnimationEnded");
+            NextAnimator.SetTrigger("OnAnimationEnded"); //Вызываем метод AttackToogle()
 
             Collider2D[] HitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
 
             foreach(Collider2D enemy in HitEnemies)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
+               // enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
             }
 
             Invoke("AttackReload", 1);
         }
-
     }
 
     void AttackReload()
@@ -57,7 +58,7 @@ public class AttackScript : MonoBehaviour
     public void AttackToogle()
     {
         Debug.Log("WORK");
-        Player.speed = 2;   
+        GetComponent<MainObject>().speed = bufSpeed;   //Востанавливаем скорость персонажа
     }
 
     private void OnDrawGizmosSelected()

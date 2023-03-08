@@ -10,7 +10,7 @@ public class Coins : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Player.money += money;
+            other.GetComponent<MainObject>().money += money;
 
             Destroy(this.gameObject);
         }

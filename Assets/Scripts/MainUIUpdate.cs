@@ -14,19 +14,10 @@ public class MainUIUpdate : MonoBehaviour
         CheckStatus();
     }
 
-
     private void FixedUpdate()
     {
         CheckStatus();
     }
-
-    //public void CheckStatus()
-    //{
-    //    HPBar.fillAmount = Player.HP / Player.maxHP * 1f;
-    //    EnergyBar.fillAmount = Player.energy / Player.maxEnergy * 1f;
-    //    Money.text = Player.money.ToString();
-
-    //}
 
     public void CheckStatus()
     {
@@ -34,18 +25,5 @@ public class MainUIUpdate : MonoBehaviour
         EnergyBar.fillAmount = GetComponent<MainObject>().energy / GetComponent<MainObject>().maxEnergy * 1f;
         Money.text = GetComponent<MainObject>().money.ToString();
     }
-
-    public void MinusHPE()
-    {
-        Player.HP--;
-        Player.energy--;
-    }
-
-    public void PlusHPE()
-    {
-        Player.HP++;
-        Player.energy++;
-    }
-
 
 }

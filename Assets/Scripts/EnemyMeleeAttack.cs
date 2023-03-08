@@ -18,7 +18,6 @@ public class EnemyMeleeAttack : MonoBehaviour
     void Update()
     {
         anim = GetComponent<Animator>();
-        //Attack();
     }
 
     void Attack()
@@ -34,7 +33,7 @@ public class EnemyMeleeAttack : MonoBehaviour
 
             foreach (Collider2D player in HitPlayer)
             {
-                player.GetComponent<Player>().TakeDamage(AttackDamage);
+               // player.GetComponent<Player>().TakeDamage(AttackDamage);
             }
 
             Invoke("AttackReload", 1);
@@ -54,12 +53,6 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         CanAttack = true;
     }
-
-    public void AttackToogle()
-    {
-        Debug.Log(Player.HP);
-    }
-
 
     private void OnDrawGizmosSelected()
     {

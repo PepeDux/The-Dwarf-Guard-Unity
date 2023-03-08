@@ -6,8 +6,6 @@ public class Food : MonoBehaviour
 {
     [SerializeField] public GameObject gam;
 
-    //private PereodicDamage pereodicDamage;
-
     public int HP;
     public int energy;
     public int time;

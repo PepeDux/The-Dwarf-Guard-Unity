@@ -25,7 +25,7 @@ public class MainObject : MonoBehaviour
     //Энергия
     public float energy = 30;
     public float maxEnergy = 30;
-    private float energyWaste = 10;
+    public float energyWaste = 10;
     private int energyCharac = 1;
     private int maxEnergyCharac = 10;
 
@@ -108,7 +108,7 @@ public class MainObject : MonoBehaviour
     private int maxCarryingCapacityCharac = 10;
 
     //Скорость
-    private float speed = 2f;
+    public float speed = 2f;
     private float maxSpeed = 10f;
     private int speedCharac = 1;
     private int maxSpeecCharac = 10;
@@ -189,16 +189,32 @@ public class MainObject : MonoBehaviour
 
 
 
+    //Скрипт TakeDamage обрабатывает типы урона поступаемые объектам
+    //Он учитывает сопроивления к урону в объекте и выдает  итоге дамаг после вычислений
+    //
+    //
+    //
+    //К скрипту можно обратиться так - TakeDamage(Damage:15, Damage:43); минуя не нужные типы урона
 
-
-    public void TakeDamage(float damage)
+    public void TakeDamage
+        (
+        float prickDamage = 0, 
+        float slashDamage = 0, 
+        float crushDamage = 0, 
+        float impactDamage = 0,
+        float poisonDamage = 0, 
+        float fireDamage = 0, 
+        float frostDamage = 0,        
+        float electricalDamage = 0,
+        float runeDamage = 0,
+        float holyDamage = 0,
+        float curseDamage = 0
+        )
     {
-        HP -= damage;
-
         if (damage > 0)
         {
             HP -= damage;
-            //anim.SetTrigger("TakeDamage");
+            anim.SetTrigger("TakeDamage");
         }
 
         if (HP <= 0)
@@ -213,15 +229,12 @@ public class MainObject : MonoBehaviour
 
         //loot = UnityEngine.Random.Range(0, loot.Length);
 
-
-
         //Instantiate(loot[randomEnemy], transform.position, transform.rotation);
 
-        this.enabled = false;
+        gameObject.SetActive(false);
     }
 
-
-
+    #region Pereodic Damage
 
     public GameObject effectPoison;
     public GameObject effectFire;
@@ -438,7 +451,7 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectPoison, this.transform.position, transform.rotation);
 
-            TakeDamage(damagePoison * (1 - Player.poisonResist / 100));
+            //TakeDamage(damagePoison * (1 - Player.poisonResist / 100));
         }
 
         Player.speed += 1f;
@@ -455,7 +468,7 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectFire, this.transform.position, transform.rotation);
                 
-            TakeDamage(damageFire * (1 - Player.fireResist / 100));
+            //TakeDamage(damageFire * (1 - Player.fireResist / 100));
         }
 
         statusFire = false;
@@ -470,7 +483,7 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectCurse, this.transform.position, transform.rotation);
 
-            TakeDamage(damageCurse * (1 - Player.curseResist / 100));
+            //TakeDamage(damageCurse * (1 - Player.curseResist / 100));
         }
 
         statusCurse = false;
@@ -485,7 +498,7 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectFrost, this.transform.position, transform.rotation);
 
-            TakeDamage(damageFrost * (1 - Player.frostResist / 100));
+            //TakeDamage(damageFrost * (1 - Player.frostResist / 100));
         }
 
         statusFrost = false;
@@ -507,6 +520,9 @@ public class MainObject : MonoBehaviour
         Debug.Log("Я закончил");
     }
 
+
+
+    #endregion
 }
 
 
