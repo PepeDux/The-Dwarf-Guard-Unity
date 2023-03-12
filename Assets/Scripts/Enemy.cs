@@ -8,7 +8,6 @@ using UnityEngine.AI;
 public class Enemy : MainObject
 {
     public Transform player;
-    public GameObject enemy;
     private NavMeshAgent agent;
 
     private Vector3 enemyLastPosition; 

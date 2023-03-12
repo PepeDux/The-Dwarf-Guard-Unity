@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,44 +16,49 @@ public class MainObject : MonoBehaviour
     private int CharacteristicLevel = 0;
     private int maxCharacteristicLevel = 10;
 
-    //Çäîðîâüå
+    //Ð—Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ
     public float HP = 100;
     public float maxHP = 100;
-    private int HPCharac = 1;
-    public int maxHPCharac = 10;
 
-    //Ýíåðãèÿ
+    //Ð­Ð½ÐµÑ€Ð³Ð¸Ñ
     public float energy = 30;
     public float maxEnergy = 30;
     public float energyWaste = 10;
-    private int energyCharac = 1;
-    private int maxEnergyCharac = 10;
 
-    //Ñêîðîñòü âîñòàíîâëåíèÿ ýíåðãèè
+    //Ð¡ÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ Ð²Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ ÑÐ½ÐµÑ€Ð³Ð¸Ð¸
     private float energyRegeneration = 0;
     private float maxEnergyRegeneration = 30;
-    private int energyCharacRegeneration = 1;
-    private int maxEnergyCharacRegeneration = 10;
 
-    //Áðîíÿ
-    private float armor = 0;
-    private float maxArmor = 100;
-    private int armorCharac = 1;
-    private int maxArmorCharac = 10;
+    //Ð¤Ð¸Ð·Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð±Ñ€Ð¾Ð½Ñ
+    private float physicalArmor;
+    private float maxPhysicalArmor;
 
-    //Óðîí
-    private int damage = 0;
-    private int maxDamage = 100;
+    //ÐœÐ°Ð³Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð±Ñ€Ð¾Ð½Ñ
+    private float magicArmor;
+    private float maxMagicArmor;
 
-    //Îïûò
+    //Ð£Ñ€Ð¾Ð½ Ð½Ð°Ð½Ð¾ÑÐ¸Ð¼Ñ‹Ð¹ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð¼
+    public float prickDamage = 0;
+    public float slashDamage = 0;
+    public float crushDamage = 0;
+    public float poisonDamage = 0;
+    public float fireDamage = 0;
+    public float frostDamage = 0;
+    public float electricalDamage = 0;
+    public float runeDamage = 0;
+    public float holyDamage = 0;
+    public float curseDamage = 0;
+    public float drunkennessDamage = 0;
+
+    //ÐžÐ¿Ñ‹Ñ‚
     private float XP = 0;
     private float maxXP = 100;
 
-    //Óðîâåíü
+    //Ð£Ñ€Ð¾Ð²ÐµÐ½ÑŒ
     private int level = 0;
     private int maxLevel = 10;
 
-    //Äåíüãè
+    //Ð”ÐµÐ½ÑŒÐ³Ð¸
     public int money = 0;
 
 
@@ -61,31 +66,31 @@ public class MainObject : MonoBehaviour
 
 
 
-    //Ñèëà
+    //Ð¡Ð¸Ð»Ð°
     private int strength = 0;
     private int maxStrength = 10;
     private int strengthCharac = 0;
     private int maxStrengthCharac = 10;
 
-    //Ëîâêîñòü
+    //Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ
     private int agility = 0;
     private int maxAgility = 10;
     private int agilityCharac = 0;
     private int maxAgilityhCharac = 10;
 
-    //Èíòåëëåêò
+    //Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚
     private int intel = 0;
     private int maxIntel = 10;
     private int intelCharac = 0;
     private int maxIntelCharac = 10;
 
-    //Òåëîñëîæåíèå
+    //Ð¢ÐµÐ»Ð¾ÑÐ»Ð¾Ð¶ÐµÐ½Ð¸Ðµ
     private int constitution = 0;
     private int maxConstitution = 10;
     private int constitutionCharac = 0;
     private int maxConstitutionCharac = 10;
 
-    //Ìóäðîñòü
+    //ÐœÑƒÐ´Ñ€Ð¾ÑÑ‚ÑŒ
     private int wisdom = 0;
     private int maxWisdom = 10;
     private int wisdomCharac = 0;
@@ -95,86 +100,103 @@ public class MainObject : MonoBehaviour
 
 
 
-    //Óêëîíåíèå
+    //Ð£ÐºÐ»Ð¾Ð½ÐµÐ½Ð¸Ðµ
     private int dodge = 0;
     private int maxDodge = 10;
-    private int dodgeCharac = 0;
-    private int maxDodgeCharac = 10;
 
-    //Ïåðåíîñèìûé âåñ
+    //ÐŸÐµÑ€ÐµÐ½Ð¾ÑÐ¸Ð¼Ñ‹Ð¹ Ð²ÐµÑ
     private int carryingCapacity = 0;
     private int maxCarryingCapacity = 10;
-    private int carryingCapacityCharac = 1;
-    private int maxCarryingCapacityCharac = 10;
 
-    //Ñêîðîñòü
+    //Ð¡ÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ
     public float speed = 2f;
     private float maxSpeed = 10f;
-    private int speedCharac = 1;
-    private int maxSpeecCharac = 10;
 
-    //Ñêîðîñòü àòàêè
+    //Ð¡ÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ Ð°Ñ‚Ð°ÐºÐ¸
     private float attackSpeed = 0;
     private float maxAttackSpeed = 10;
-    private float attackSpeedCharac = 0;
-    private float maxAttackSpeedCharac = 10;
 
-    //Êðèòè÷åñêèé óðîí
+    //ÐšÑ€Ð¸Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ ÑƒÑ€Ð¾Ð½
     private float criticalDamage = 0;
     private float maxCriticalDamage = 10;
-    private float criticalDamageCharac = 0;
-    private float maxCriticalDamageCharac = 10;
 
-    //Òî÷íîñòü
+    //Ð¢Ð¾Ñ‡Ð½Ð¾ÑÑ‚ÑŒ
     private float precision = 0;
     private float maxPrecisionDamage = 10;
-    private float precisionCharac = 0;
-    private float maxPrecisionDamageCharac = 10;
 
 
 
 
 
-    //Ñûòîñòü
+    //Ð¡Ñ‹Ñ‚Ð¾ÑÑ‚ÑŒ
     private int satiety = 0;
-    private int maxSatiety = 10;
+    private int maxSatiety = 100;
 
-    //Îïüÿíåíèå
+    //ÐžÐ¿ÑŒÑÐ½ÐµÐ½Ð¸Ðµ
     private int drunkenness = 0;
-    private int maxDrunkenness = 10;
+    private int maxDrunkenness = 100;
 
 
 
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð»ÑŽÑ‰ÐµÐ¼ÑƒðŸ“Œ
+    private float prickResist = 0;
+    private int maxPrickResist = 100;
+    private int minPrickResist = 100;
 
-    //Ñîïðîòèâëåíèå îãíþ
-    private float fireResist = 0;
-    private int maxFireResist = 10;
-    private int fireResistCharac = 0;
-    private int maxFireResistCharac = 10;
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€ÐµÐ¶ÑƒÑ‰ÐµÐ¼ÑƒðŸ”ª
+    private float slashResist = 0;
+    private int maxSlashResist = 100;
+    private int minSlashResist = 100;
 
-    //Ñîïðîòèâëåíèå ÿäàì
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ð´Ñ€Ð¾Ð±ÑÑ‰ÐµÐ¼ÑƒðŸ”¨
+    private float crushResist = 0;
+    private int maxCrushResist = 100;
+    private int minCrushResist = 100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÑƒÐ´Ð°Ñ€Ð½Ð¾Ð¼ÑƒðŸ‘Š
+    private float impactResist = 0;
+    private int maxImpactResist = 100;
+    private int minImpactResist = 100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ²ÑÑ‚Ð¾Ð¼Ñƒâ›ª
+    private float holyResist = 0;
+    private int maxHolyResist = 100;
+    private int minHolyResist = -100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ´Ð°Ð¼ðŸ„
     private float poisonResist = 0;
     private int maxPoisonResist = 100;
-    private int poisonResistCharac = 0;
-    private int maxPoisonResistCharac = 10;
+    private int minPoisonResist = -100;
 
-    //Ñîïðîñòèâëåíèå ìîðîçó
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¾Ð³Ð½ÑŽðŸ”¥
+    private float fireResist = 0;
+    private int maxFireResist = 100;
+    private int minFireResist = -100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾ÑÑ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ñ€Ð¾Ð·Ñƒâ„ 
     private float frostResist = 0;
-    private int maxFrostResist = 10;
-    private int frostResistCharac = 0;
-    private int maxFrostResistCharac = 10;
+    private int maxFrostResist = 100;
+    private int minFrostResist = -100;
 
-    //Ñîïðîòèâëåíèå ïðîêëÿòèþ
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¾ÐºÐ»ÑÑ‚Ð¸ÑŽâ˜ 
     private float curseResist = 0;
-    private int maxCurseResist = 10;
-    private int curseResistCharac = 0;
-    private int maxCurseResistCharac = 10;
+    private int maxCurseResist = 100;
+    private int minCurseResist = 100;
 
-    //Ñîïðîòèâëåíèå ðóííîé ìàãèè
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€ÑƒÐ½Ð½Ð¾Ð¹ Ð¼Ð°Ð³Ð¸Ð¸ðŸˆ¶
     private float runesResist = 0;
-    private int maxRunesResist = 10;
-    private int runesResistCharac = 0;
-    private int maxRunesResistCharac = 10;
+    private int maxRunesResist = 100;
+    private int minRunesResist = -100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐºÑ‚Ñ€Ð¸Ñ‡ÐµÑÑ‚Ð²Ñƒâ›ˆ
+    private float electricalResist = 0;
+    private int maxElectricalResist = 100;
+    private int minElectricalResist = -100;
+
+    //Ð¡Ð¾Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð»ÐµÐ½Ð¸Ðµ ÐÐ»ÐšÐ¾Ð“Ð¾Ð›ÑŽðŸº
+    private float drunkennessResist = 0;
+    private int maxDrunkennessResist = 100;
+    private int minDrunkennessResist = -100;
 
     #endregion
 
@@ -189,39 +211,49 @@ public class MainObject : MonoBehaviour
 
 
 
-    //Ñêðèïò TakeDamage îáðàáàòûâàåò òèïû óðîíà ïîñòóïàåìûå îáúåêòàì
-    //Îí ó÷èòûâàåò ñîïðîèâëåíèÿ ê óðîíó â îáúåêòå è âûäàåò  èòîãå äàìàã ïîñëå âû÷èñëåíèé
+    //Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ TakeDamage Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ Ñ‚Ð¸Ð¿Ñ‹ ÑƒÑ€Ð¾Ð½Ð° Ð¿Ð¾ÑÑ‚ÑƒÐ¿Ð°ÐµÐ¼Ñ‹Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°Ð¼
+    //ÐžÐ½ ÑƒÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ ÑÐ¾Ð¿Ñ€Ð¾Ð¸Ð²Ð»ÐµÐ½Ð¸Ñ Ðº ÑƒÑ€Ð¾Ð½Ñƒ Ð² Ð¾Ð±ÑŠÐµÐºÑ‚Ðµ Ð¸ Ð²Ñ‹Ð´Ð°ÐµÑ‚  Ð¸Ñ‚Ð¾Ð³Ðµ Ð´Ð°Ð¼Ð°Ð³ Ð¿Ð¾ÑÐ»Ðµ Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ð¹
     //
     //
     //
-    //Ê ñêðèïòó ìîæíî îáðàòèòüñÿ òàê - TakeDamage(Damage:15, Damage:43); ìèíóÿ íå íóæíûå òèïû óðîíà
+    //Ðš ÑÐºÑ€Ð¸Ð¿Ñ‚Ñƒ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¾Ð±Ñ€Ð°Ñ‚Ð¸Ñ‚ÑŒÑÑ Ñ‚Ð°Ðº - TakeDamage(Damage:15, Damage:43); Ð¼Ð¸Ð½ÑƒÑ Ð½Ðµ Ð½ÑƒÐ¶Ð½Ñ‹Ðµ Ñ‚Ð¸Ð¿Ñ‹ ÑƒÑ€Ð¾Ð½Ð°
 
     public void TakeDamage
         (
         float prickDamage = 0, 
         float slashDamage = 0, 
         float crushDamage = 0, 
-        float impactDamage = 0,
         float poisonDamage = 0, 
         float fireDamage = 0, 
         float frostDamage = 0,        
         float electricalDamage = 0,
         float runeDamage = 0,
         float holyDamage = 0,
-        float curseDamage = 0
+        float curseDamage = 0,
+        float drunkennessDamage = 0
         )
     {
-        if (damage > 0)
-        {
-            HP -= damage;
-            anim.SetTrigger("TakeDamage");
-        }
+        HP -= prickDamage * (1 - prickResist / 100);
+        HP -= slashDamage * (1 - slashResist / 100);
+        HP -= crushDamage * (1 - crushResist / 100);
+        HP -= poisonDamage * (1 - poisonResist / 100);
+        HP -= fireDamage * (1 - fireResist / 100);
+        HP -= frostDamage * (1 - frostResist / 100);
+        HP -= electricalDamage * (1 - electricalResist / 100);
+        HP -= holyDamage * (1 - holyResist / 100);
+        HP -= curseDamage * (1 - curseResist / 100);
+        HP -= drunkennessDamage * (1 - curseResist / 100);
+
+        //physicalArmor -= 
 
         if (HP <= 0)
         {
             Die();
         }
     }
+
+
+    
 
     public void Die()
     {
@@ -236,11 +268,15 @@ public class MainObject : MonoBehaviour
 
     #region Pereodic Damage
 
+    //Ð¡ÑÑ‹Ð»Ð°ÐµÐ¼ÑÑ Ð½Ð° ÑÑ„Ñ„ÐµÐºÑ‚Ñ‹ Ð¸Ð· Ð¿Ñ€ÐµÑ„Ð°Ð±Ð¾Ð²
+
     public GameObject effectPoison;
     public GameObject effectFire;
     public GameObject effectCurse;
     public GameObject effectFrost;
     public GameObject effectDrunkenness;
+
+    //Ð¡Ñ‚Ð°Ñ‚ÑƒÑ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚Ð¸ Ñ‚Ð¾Ð³Ð¾ Ð¸Ð» Ð¸Ð½Ð¾Ð³Ð¾ ÑÑ‚Ð°Ñ‚ÑƒÑÐ°
 
     public bool statusPoison = false;
     public bool statusFire = false;
@@ -248,29 +284,34 @@ public class MainObject : MonoBehaviour
     public bool statusFrost = false;
     public bool statusDrunkenness = false;
 
+    //Ð¡Ñ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ð° ÐºÐ¾Ð´Ð° Ð½Ð¸Ð¶Ðµ:
+    //Ð’Ñ€ÐµÐ¼Ñ Ð´Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ ÑÑ„Ñ„ÐµÐºÑ‚Ð°
+    //Ð£Ñ€Ð¾Ð½ Ð¾Ñ‚ ÑÑ„Ñ„ÐµÐºÑ‚Ð° ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÐ¼Ñ‹Ð¹ Ð¾Ñ‚ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð°
+    //Ð’Ñ€ÐµÐ¼Ñ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ ÑƒÑ€Ð¾Ð½Ð°
+
     private int timePoison;
-    private float damagePoison;
+    private float pereodicPoisonDamage;
     private int intervalPoison;
 
     private int timeFire;
-    private float damageFire;
+    private float pereodicFireDamage;
     private int intervalFire;
 
     private int timeCurse;
-    private float damageCurse;
+    private float pereodiCcurseDamage;
     private int intervalCurse;
 
     private int timeFrost;
-    private float damageFrost;
+    private float pereodicFrostDamage;
     private int intervalFrost;
 
     private int timeDrunkenness;
-    private float damageDrunkenness;
+    private float pereodicDrunkennessDamage;
     private int intervalDrunkenness;
 
 
 
-    public void takeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
+    public void TakeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
     {
         if (typeInfo == "Poison")
         {
@@ -281,9 +322,9 @@ public class MainObject : MonoBehaviour
                     timePoison = timeInfo;
                 }
 
-                if (damagePoison < timePoison)
+                if (pereodicPoisonDamage < timePoison)
                 {
-                    damagePoison = damageInfo;
+                    pereodicPoisonDamage = damageInfo;
                 }
 
                 if (intervalPoison > intervalInfo)
@@ -295,7 +336,7 @@ public class MainObject : MonoBehaviour
             if (!statusPoison)
             {
                 timePoison = timeInfo;
-                damagePoison = damageInfo;
+                pereodicPoisonDamage = damageInfo;
                 intervalPoison = intervalInfo;
 
                 statusPoison = true;
@@ -305,7 +346,6 @@ public class MainObject : MonoBehaviour
         }
 
         ///////////////////////////////////////////////////////////////////
-
         if (typeInfo == "Fire")
         {
             if (statusFire)
@@ -315,9 +355,9 @@ public class MainObject : MonoBehaviour
                     timeFire = timeInfo;
                 }
 
-                if (damageFire < timeFire)
+                if (pereodicFireDamage < timeFire)
                 {
-                    damageFire = damageInfo;
+                    pereodicFireDamage = damageInfo;
                 }
 
                 if (intervalFire > intervalInfo)
@@ -329,7 +369,7 @@ public class MainObject : MonoBehaviour
             if (!statusFire)
             {
                 timeFire = timeInfo;
-                damageFire = damageInfo;
+                pereodicFireDamage = damageInfo;
                 intervalFire = intervalInfo;
 
                 statusFire = true;
@@ -349,9 +389,9 @@ public class MainObject : MonoBehaviour
                     timeCurse = timeInfo;
                 }
 
-                if (damageCurse < timeCurse)
+                if (pereodiCcurseDamage < timeCurse)
                 {
-                    damageCurse = damageInfo;
+                    pereodiCcurseDamage = damageInfo;
                 }
 
                 if (intervalCurse > intervalInfo)
@@ -363,7 +403,7 @@ public class MainObject : MonoBehaviour
             if (!statusCurse)
             {
                 timeCurse = timeInfo;
-                damageCurse = damageInfo;
+                pereodiCcurseDamage = damageInfo;
                 intervalCurse = intervalInfo;
 
                 statusCurse = true;
@@ -383,9 +423,9 @@ public class MainObject : MonoBehaviour
                     timeFrost = timeInfo;
                 }
 
-                if (damageFrost < timeFire)
+                if (pereodicFrostDamage < timeFire)
                 {
-                    damageFrost = damageInfo;
+                    pereodicFrostDamage = damageInfo;
                 }
 
                 if (intervalFrost > intervalInfo)
@@ -397,7 +437,7 @@ public class MainObject : MonoBehaviour
             if (!statusFrost)
             {
                 timeFrost = timeInfo;
-                damageFrost = damageInfo;
+                pereodicFrostDamage = damageInfo;
                 intervalFrost = intervalInfo;
 
                 statusFrost = true;
@@ -409,6 +449,7 @@ public class MainObject : MonoBehaviour
         ///////////////////////////////////////////////////////////////////
 
         if (typeInfo == "Drunkenness")
+
         {
             if (statusDrunkenness)
             {
@@ -417,9 +458,9 @@ public class MainObject : MonoBehaviour
                     timeDrunkenness = timeInfo;
                 }
 
-                if (damageDrunkenness < timeFire)
+                if (pereodicDrunkennessDamage < timeFire)
                 {
-                    damageDrunkenness = damageInfo;
+                    pereodicDrunkennessDamage = damageInfo;
                 }
 
                 if (intervalDrunkenness > intervalInfo)
@@ -431,7 +472,7 @@ public class MainObject : MonoBehaviour
             if (!statusDrunkenness)
             {
                 timeDrunkenness = timeInfo;
-                damageDrunkenness = damageInfo;
+                pereodicDrunkennessDamage = damageInfo;
                 intervalDrunkenness = intervalInfo;
 
                 statusDrunkenness = true;
@@ -451,13 +492,13 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectPoison, this.transform.position, transform.rotation);
 
-            //TakeDamage(damagePoison * (1 - Player.poisonResist / 100));
+            TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
         Player.speed += 1f;
 
         statusPoison = false;
-        Debug.Log("ß çàêîí÷èë");
+        Debug.Log("Ð¯ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»");
     }
 
     IEnumerator Fire()
@@ -468,11 +509,11 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectFire, this.transform.position, transform.rotation);
                 
-            //TakeDamage(damageFire * (1 - Player.fireResist / 100));
+            TakeDamage(fireDamage: pereodicFireDamage);
         }
 
         statusFire = false;
-        Debug.Log("ß çàêîí÷èë");
+        Debug.Log("Ð¯ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»");
     }
 
     IEnumerator Curse()
@@ -483,11 +524,11 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectCurse, this.transform.position, transform.rotation);
 
-            //TakeDamage(damageCurse * (1 - Player.curseResist / 100));
+            TakeDamage(curseDamage: pereodiCcurseDamage);
         }
 
         statusCurse = false;
-        Debug.Log("ß çàêîí÷èë");
+        Debug.Log("Ð¯ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»");
     }
 
     IEnumerator Frost()
@@ -498,11 +539,11 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectFrost, this.transform.position, transform.rotation);
 
-            //TakeDamage(damageFrost * (1 - Player.frostResist / 100));
+            TakeDamage(frostDamage: pereodicFrostDamage);
         }
 
         statusFrost = false;
-        Debug.Log("ß çàêîí÷èë");
+        Debug.Log("Ð¯ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»");
     }
 
     IEnumerator Drunkenness()
@@ -513,11 +554,11 @@ public class MainObject : MonoBehaviour
 
             Instantiate(effectDrunkenness, this.transform.position, transform.rotation);
 
-            //player.GetComponent<Player>().TakeDamage(damageDrunkenness * (1 - Player.drunkennessResist / 100));
+            TakeDamage(drunkennessDamage: pereodicDrunkennessDamage);
         }
 
         statusDrunkenness = false;
-        Debug.Log("ß çàêîí÷èë");
+        Debug.Log("Ð¯ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»");
     }
 
 

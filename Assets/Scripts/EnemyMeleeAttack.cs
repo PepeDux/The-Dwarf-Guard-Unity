@@ -33,7 +33,20 @@ public class EnemyMeleeAttack : MonoBehaviour
 
             foreach (Collider2D player in HitPlayer)
             {
-               // player.GetComponent<Player>().TakeDamage(AttackDamage);
+               //player.GetComponent<Player>().TakeDamage(AttackDamage);
+               //player.GetComponent<Player>().TakeDamage(
+               //    prickDamage: prickDamage,
+               //    slashDamage: slashDamage,
+               //    crushDamage: crushDamage,
+               //    poisonDamage: poisonDamage,
+               //    fireDamage: fireDamage,
+               //    frostDamage: frostDamage,
+               //    electricalDamage: electricalDamage,
+               //    runeDamage: runeDamage,
+               //    holyDamage: holyDamage,
+               //    curseDamage: curseDamage,
+               //    drunkennessDamage : drunkennessDamage
+               //    );
             }
 
             Invoke("AttackReload", 1);
