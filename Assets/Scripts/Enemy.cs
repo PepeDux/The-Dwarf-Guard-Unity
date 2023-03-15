@@ -25,7 +25,7 @@ public class Enemy : MainObject
         
     }
 
-    void FixedUpdate() 
+    public void FixedUpdate() 
     {
         agent.SetDestination(player.position);      
 

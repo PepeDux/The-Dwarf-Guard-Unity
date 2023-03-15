@@ -18,6 +18,8 @@ public class AttackScript : MonoBehaviour
 
     public int AttackDamage;
 
+
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -29,13 +31,13 @@ public class AttackScript : MonoBehaviour
 
     void Attack()
     {
-        if (GetComponent<MainObject>().energy >= Player.energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
+        if (Player.energy >= Player.energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
         {     
-            bufSpeed = GetComponent<MainObject>().speed;    //Записываем изначальную скорость персонажа в буфер
-            GetComponent<MainObject> ().speed = 0f;         //Останавлиаем персонажа
+            bufSpeed = Player.speed;    //Записываем изначальную скорость персонажа в буфер
+            Player.speed = 0f;         //Останавлиаем персонажа
 
             anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
-            GetComponent<MainObject>().energy -= GetComponent<MainObject>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
+            Player.energy -= Player.energyWaste; // Отнимаем расход энергии от энергии персонажа 
             CanAttack = false;
             NextAnimator.SetTrigger("OnAnimationEnded"); //Вызываем метод AttackToogle()
 
@@ -43,7 +45,7 @@ public class AttackScript : MonoBehaviour
 
             foreach(Collider2D enemy in HitEnemies)
             {
-               // enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
+               enemy.GetComponent<Enemy>().TakeDamage(fireDamage: 10);
             }
 
             Invoke("AttackReload", 1);
@@ -58,7 +60,7 @@ public class AttackScript : MonoBehaviour
     public void AttackToogle()
     {
         Debug.Log("WORK");
-        GetComponent<MainObject>().speed = bufSpeed;   //Востанавливаем скорость персонажа
+        Player.speed = bufSpeed;   //Востанавливаем скорость персонажа
     }
 
     private void OnDrawGizmosSelected()

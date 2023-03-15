@@ -8,20 +8,10 @@ using UnityEngine.SocialPlatforms;
 
 public class Player : MainObject
 {
-    //public static new float HP = 100;
-    //public static new float maxHP = 100;
-    public static new int HPCharac = 1;
-    public static new int maxHPCharac = 10;
-
-
-    //Энергия
-    //public static new float energy = 0;
-    //public static new float maxEnergy = 30;
-    public static new float energyWaste = 10;
-    public static new int energyCharac = 1;
-    public static new int maxEnergyCharac = 10;
-
     public static new float speed = 2f;
+
+    public static new float energy;
+    public static new float energyWaste;
 
     public static new int money;
 
@@ -30,8 +20,6 @@ public class Player : MainObject
 
    
     private bool isFacingRight = true;
-    private Animator anim;
-
 
     void Start()
     {
@@ -42,8 +30,10 @@ public class Player : MainObject
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
+        CheckCharac();
+        CheckTalents();
         MoveOrientation(); //Отвечает за передвижение персонажа и его направление
        // Check();           //Отвечает за обновление всех характеристик персонажа
 
@@ -52,15 +42,7 @@ public class Player : MainObject
 
     private void Update()
     {
-        if(HP >= maxHP)
-        {
-            HP = maxHP;
-        }
-
-        if(energy >= maxEnergy)
-        {
-            energy = maxEnergy;
-        }
+        
 
         if(energy <= 0)
         {

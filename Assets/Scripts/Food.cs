@@ -8,10 +8,12 @@ public class Food : MonoBehaviour
 
     public int HP;
     public int energy;
+
     public int time;
     public int interval;
     public int damage;
     public string type;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

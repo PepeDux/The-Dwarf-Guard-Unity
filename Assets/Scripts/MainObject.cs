@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using System.Security.Cryptography;
 
 public class MainObject : MonoBehaviour
 {
@@ -66,35 +68,26 @@ public class MainObject : MonoBehaviour
 
 
 
+
     //Сила
     private int strength = 0;
     private int maxStrength = 10;
-    private int strengthCharac = 0;
-    private int maxStrengthCharac = 10;
 
     //Ловкость
     private int agility = 0;
     private int maxAgility = 10;
-    private int agilityCharac = 0;
-    private int maxAgilityhCharac = 10;
 
     //Интеллект
     private int intel = 0;
     private int maxIntel = 10;
-    private int intelCharac = 0;
-    private int maxIntelCharac = 10;
 
     //Телосложение
     private int constitution = 0;
     private int maxConstitution = 10;
-    private int constitutionCharac = 0;
-    private int maxConstitutionCharac = 10;
 
     //Мудрость
     private int wisdom = 0;
     private int maxWisdom = 10;
-    private int wisdomCharac = 0;
-    private int maxWisdomCharac = 10;
 
 
 
@@ -102,111 +95,320 @@ public class MainObject : MonoBehaviour
 
     //Уклонение
     private int dodge = 0;
-    private int maxDodge = 10;
+    private const int maxDodge = 10;
 
     //Переносимый вес
     private int carryingCapacity = 0;
-    private int maxCarryingCapacity = 10;
+    private const int maxCarryingCapacity = 10;
 
     //Скорость
     public float speed = 2f;
-    private float maxSpeed = 10f;
+    private const float maxSpeed = 10f;
 
     //Скорость атаки
     private float attackSpeed = 0;
-    private float maxAttackSpeed = 10;
+    private const float maxAttackSpeed = 10;
 
     //Критический урон
     private float criticalDamage = 0;
-    private float maxCriticalDamage = 10;
+    private const float maxCriticalDamage = 10;
 
     //Точность
     private float precision = 0;
-    private float maxPrecisionDamage = 10;
+    private const float maxPrecision = 10;
 
 
-
-
-
-    //Сытость
-    private int satiety = 0;
-    private int maxSatiety = 100;
 
     //Опьянение
     private int drunkenness = 0;
-    private int maxDrunkenness = 100;
+    private const int maxDrunkenness = 100;
 
 
 
     //Сопротивление колющему📌
-    private float prickResist = 0;
-    private int maxPrickResist = 100;
-    private int minPrickResist = 100;
+    private float prickResist = 50;
+    private const int maxPrickResist = 100;
+    private const int minPrickResist = -100;
 
     //Сопротивление режущему🔪
     private float slashResist = 0;
-    private int maxSlashResist = 100;
-    private int minSlashResist = 100;
+    private const int maxSlashResist = 100;
+    private const int minSlashResist = -100;
 
     //Сопротивление дробящему🔨
     private float crushResist = 0;
-    private int maxCrushResist = 100;
-    private int minCrushResist = 100;
+    private const int maxCrushResist = 100;
+    private const int minCrushResist = -100;
 
     //Сопротивление ударному👊
     private float impactResist = 0;
-    private int maxImpactResist = 100;
-    private int minImpactResist = 100;
-
-    //Сопротивление святому⛪
-    private float holyResist = 0;
-    private int maxHolyResist = 100;
-    private int minHolyResist = -100;
+    private const int maxImpactResist = 100;
+    private const int minImpactResist = -100;
 
     //Сопротивление ядам🍄
     private float poisonResist = 0;
-    private int maxPoisonResist = 100;
-    private int minPoisonResist = -100;
+    private const int maxPoisonResist = 100;
+    private const int minPoisonResist = -100;
 
     //Сопротивление огню🔥
     private float fireResist = 0;
-    private int maxFireResist = 100;
-    private int minFireResist = -100;
+    private const int maxFireResist = 100;
+    private const int minFireResist = -100;
 
     //Сопростивление морозу❄ 
     private float frostResist = 0;
-    private int maxFrostResist = 100;
-    private int minFrostResist = -100;
+    private const int maxFrostResist = 100;
+    private const int minFrostResist = -100;
 
     //Сопротивление проклятию☠
     private float curseResist = 0;
-    private int maxCurseResist = 100;
-    private int minCurseResist = 100;
-
-    //Сопротивление рунной магии🈶
-    private float runesResist = 0;
-    private int maxRunesResist = 100;
-    private int minRunesResist = -100;
+    private const int maxCurseResist = 100;
+    private const int minCurseResist = -100;
 
     //Сопротивление электричеству⛈
     private float electricalResist = 0;
-    private int maxElectricalResist = 100;
-    private int minElectricalResist = -100;
+    private const int maxElectricalResist = 100;
+    private const int minElectricalResist = -100;
 
     //Сопротивление АлКоГоЛю🍺
     private float drunkennessResist = 0;
-    private int maxDrunkennessResist = 100;
-    private int minDrunkennessResist = -100;
+    private const int maxDrunkennessResist = 100;
+    private const int minDrunkennessResist = -100;
+
+
+
+    public void CheckCharac()
+    {
+        //Хепешки
+        if (HP >= maxHP)
+        {
+            HP = maxHP;
+        }
+
+        //Энергия
+        if (energy >= maxEnergy)
+        {
+            energy = maxEnergy;
+        }
+
+        //Опыт
+        if (XP >= maxXP) 
+        {
+            XP = 0;
+            //переход на следующий лвл
+        }
+
+        //Левел
+        if (level >= maxLevel) 
+        {
+            level = maxLevel;
+        }
+
+        //Сила
+        if (strength >= maxStrength) 
+        {
+            strength = maxStrength;
+        }
+
+        //Ловкость
+        if (agility >= maxAgility) 
+        {
+            agility = maxAgility;
+        }
+
+        //Интеллект
+        if (intel >= maxIntel) 
+        {
+            intel = maxIntel;
+        }
+
+        //Телосложение
+        if (constitution >= maxConstitution) 
+        { 
+            constitution = maxConstitution; 
+        }
+
+        //Мудрость
+        if (wisdom >= maxWisdom) 
+        {
+            wisdom = maxWisdom;
+        }
+
+        //Уклонение
+        if (dodge >= maxDodge) 
+        {
+            dodge = maxDodge;
+        }
+
+        //Переносимый вес
+        if (carryingCapacity >= maxCarryingCapacity) 
+        {
+            carryingCapacity = maxCarryingCapacity;
+        }
+
+        //Скорость
+        if (speed >= maxSpeed) 
+        { 
+            speed = maxSpeed; 
+        }
+
+        //Скорость атаки
+        if (attackSpeed >= maxAttackSpeed) 
+        {
+            attackSpeed = maxAttackSpeed;
+        }
+
+        //Крит урон
+        if (criticalDamage >= maxCriticalDamage)
+        {
+            criticalDamage = maxCriticalDamage;
+        }
+
+        //Точность
+        if (precision >= maxPrecision) 
+        {
+            precision = maxPrecision;
+        }
+
+        //Опьянение
+        if (drunkenness >= maxDrunkenness)
+        {
+            drunkenness = maxDrunkenness;
+        }
+
+        //Сопротивление колющему урону
+        if (prickResist >= maxPrickResist) 
+        {
+            prickResist = maxPrickResist;
+        }
+        else if (prickResist <= minPrickResist)
+        {
+            prickResist = minPrickResist;
+        }
+
+        //Сопротивление режущему
+        if (slashResist >= maxSlashResist) 
+        {
+            slashResist = maxSlashResist;
+        }
+        else if (slashResist <= minSlashResist)
+        {
+            slashResist = minSlashResist;
+        }
+
+        //Сопротивление дробящему
+        if (crushResist >= maxCrushResist) 
+        {
+            crushResist = maxCrushResist;
+        }
+        else if (crushResist <= minCrushResist)
+        {
+            crushResist = minCrushResist;
+        }
+
+        //Сопротивление ядам
+        if (poisonResist >= maxPoisonResist) 
+        {
+            poisonResist = maxPoisonResist;
+        }
+        else if (poisonResist <= minPoisonResist)
+        {
+            poisonResist = minPoisonResist;
+        }
+
+        //Сопротивление огню
+        if (fireResist >= maxFireResist)
+        {
+            fireResist = maxFireResist;
+        }
+        else if (fireResist <= minFireResist) 
+        {
+            fireResist = minFireResist;
+        }
+
+        //Сопротивление морозу
+        if (frostResist >= maxFrostResist)
+        {
+            frostResist = maxFrostResist;
+        }
+        else if (frostResist <= minFrostResist)
+        {
+            frostResist = minFrostResist;
+        }
+
+        //Сопротивление проклятию
+        if (curseResist >= maxCurseResist)
+        {
+            curseResist = maxCurseResist;
+        }
+        else if (curseResist <= minCurseResist)
+        {
+            curseResist = minCurseResist;
+        }
+
+        //Сопротивление электтричеству
+        if (electricalResist >= maxElectricalResist)
+        {
+            electricalResist = maxElectricalResist;
+        }
+        else if (electricalResist <= minElectricalResist)
+        {
+            electricalResist = minElectricalResist;
+        }
+
+        //Сопротивление опьянению
+        if (drunkennessResist >= maxDrunknessResist)
+        {
+            drunkennessResist = maxDrunkennessResist;
+        }
+        if (drunkennessResist <= minDrunkennessResist)
+        {
+            drunkenness = minDrunkennessResist;
+        }
+
+    }
+
 
     #endregion
 
 
     #region Talents
 
+    //1 переменная отвечает за активность статуса
+    //2 переменная отвечает за свободность статуса
+    //Чтобы при запуске метода повторно не сработал кусок кода свзанный с этим эффектом и нужна 2 переменные
+    //Типо буфер
+
+    public bool wound = false;
+    public bool checkWound = true;
+    
+
+    public void RandomWound()
+    {
+        int random = Random.Range(10, 50);        
+    }
+    public void CheckTalents()
+    {
+        if(wound && checkWound)
+        {
+            maxHP -= 10;
+
+            checkWound = false;
+        }
+        else if(!wound && !checkWound)
+        {
+            maxHP += 10;
+
+            checkWound = true;
+        }       
+    }
 
 
 
-    #endregion
+
+
+
+#endregion
 
 
 
@@ -227,8 +429,6 @@ public class MainObject : MonoBehaviour
         float fireDamage = 0, 
         float frostDamage = 0,        
         float electricalDamage = 0,
-        float runeDamage = 0,
-        float holyDamage = 0,
         float curseDamage = 0,
         float drunkennessDamage = 0
         )
@@ -240,11 +440,10 @@ public class MainObject : MonoBehaviour
         HP -= fireDamage * (1 - fireResist / 100);
         HP -= frostDamage * (1 - frostResist / 100);
         HP -= electricalDamage * (1 - electricalResist / 100);
-        HP -= holyDamage * (1 - holyResist / 100);
         HP -= curseDamage * (1 - curseResist / 100);
         HP -= drunkennessDamage * (1 - curseResist / 100);
 
-        //physicalArmor -= 
+        wound = true;
 
         if (HP <= 0)
         {
@@ -265,6 +464,11 @@ public class MainObject : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+
+    public void Kill()
+    {
+        HP = -1000;
+    }//Метод для отладки
 
     #region Pereodic Damage
 
@@ -480,7 +684,6 @@ public class MainObject : MonoBehaviour
                 StartCoroutine("Drunkenness");
             }
         }
-
     }
     IEnumerator Poison()
     {
@@ -561,11 +764,11 @@ public class MainObject : MonoBehaviour
         Debug.Log("Я закончил");
     }
 
-
-
     #endregion
-}
 
+ 
+
+}
 
 
 
