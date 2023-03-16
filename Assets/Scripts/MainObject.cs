@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System.Security.Cryptography;
+using UnityEngine.Rendering.PostProcessing;
+using NaughtyAttributes;
+using System;
 
 public class MainObject : MonoBehaviour
 {
+    [Header("Плюшки")]
+    public Rigidbody2D rb;
     public Animator anim;
 
-    public GameObject[] loot;
-    public static int randomEnemy;
+    public static int random;
 
+    public GameObject corpse;
+    public GameObject[] loot;
 
     #region Characteristic
 
@@ -18,6 +24,7 @@ public class MainObject : MonoBehaviour
     private int CharacteristicLevel = 0;
     private int maxCharacteristicLevel = 10;
 
+    [Header("Первичные характеристики")]
     //Здоровье
     public float HP = 100;
     public float maxHP = 100;
@@ -31,6 +38,9 @@ public class MainObject : MonoBehaviour
     private float energyRegeneration = 0;
     private float maxEnergyRegeneration = 30;
 
+    //Монетки
+    public int money = 0;
+
     //Физическая броня
     private float physicalArmor;
     private float maxPhysicalArmor;
@@ -39,6 +49,9 @@ public class MainObject : MonoBehaviour
     private float magicArmor;
     private float maxMagicArmor;
 
+
+
+    [Header("Уроны")]
     //Урон наносимый объектом
     public float prickDamage = 0;
     public float slashDamage = 0;
@@ -47,58 +60,56 @@ public class MainObject : MonoBehaviour
     public float fireDamage = 0;
     public float frostDamage = 0;
     public float electricalDamage = 0;
-    public float runeDamage = 0;
-    public float holyDamage = 0;
     public float curseDamage = 0;
     public float drunkennessDamage = 0;
 
+
+    [Header("Уровень и опыт")]
     //Опыт
-    private float XP = 0;
+    public float XP = 0;
     private float maxXP = 100;
 
     //Уровень
-    private int level = 0;
+    public int level = 0;
     private int maxLevel = 10;
 
-    //Деньги
-    public int money = 0;
 
 
 
 
 
 
-
+    [Header("Основнык характеристики")]
     //Сила
-    private int strength = 0;
-    private int maxStrength = 10;
+    public int strength = 10;
+    private int maxStrength = 100;
 
     //Ловкость
-    private int agility = 0;
-    private int maxAgility = 10;
+    public int agility = 10;
+    private int maxAgility = 100;
 
     //Интеллект
-    private int intel = 0;
-    private int maxIntel = 10;
+    public int intel = 10;
+    private int maxIntel = 100;
 
     //Телосложение
-    private int constitution = 0;
-    private int maxConstitution = 10;
+    public int constitution = 10;
+    private int maxConstitution = 100;
 
     //Мудрость
-    private int wisdom = 0;
-    private int maxWisdom = 10;
+    public int wisdom = 10;
+    private int maxWisdom = 100;
 
 
 
 
-
+    [Header("Вторичные характеристики")]
     //Уклонение
-    private int dodge = 0;
-    private const int maxDodge = 10;
+    public int dodge = 0;
+    private const int maxDodge = 100;
 
     //Переносимый вес
-    private int carryingCapacity = 0;
+    public int carryingCapacity = 0;
     private const int maxCarryingCapacity = 10;
 
     //Скорость
@@ -106,72 +117,71 @@ public class MainObject : MonoBehaviour
     private const float maxSpeed = 10f;
 
     //Скорость атаки
-    private float attackSpeed = 0;
+    public float attackSpeed = 0;
     private const float maxAttackSpeed = 10;
 
     //Критический урон
-    private float criticalDamage = 0;
-    private const float maxCriticalDamage = 10;
+    public float criticalDamage = 0;
+    private const float maxCriticalDamage = 100;
 
     //Точность
-    private float precision = 0;
-    private const float maxPrecision = 10;
-
-
+    public float precision = 0;
+    private const float maxPrecision = 100;
 
     //Опьянение
-    private int drunkenness = 0;
+    public int drunkenness = 0;
     private const int maxDrunkenness = 100;
 
 
 
+    //[Header("Сопротивления к урону")]
     //Сопротивление колющему📌
-    private float prickResist = 50;
+    public float prickResist = 20;
     private const int maxPrickResist = 100;
     private const int minPrickResist = -100;
 
     //Сопротивление режущему🔪
-    private float slashResist = 0;
+    public float slashResist = 0;
     private const int maxSlashResist = 100;
     private const int minSlashResist = -100;
 
     //Сопротивление дробящему🔨
-    private float crushResist = 0;
+    public float crushResist = 0;
     private const int maxCrushResist = 100;
     private const int minCrushResist = -100;
 
     //Сопротивление ударному👊
-    private float impactResist = 0;
+    public float impactResist = 0;
     private const int maxImpactResist = 100;
     private const int minImpactResist = -100;
 
     //Сопротивление ядам🍄
-    private float poisonResist = 0;
+    public float poisonResist = 0;
     private const int maxPoisonResist = 100;
     private const int minPoisonResist = -100;
 
     //Сопротивление огню🔥
-    private float fireResist = 0;
+    public float fireResist = 0;
     private const int maxFireResist = 100;
     private const int minFireResist = -100;
 
     //Сопростивление морозу❄ 
-    private float frostResist = 0;
+    public float frostResist = 0;
     private const int maxFrostResist = 100;
     private const int minFrostResist = -100;
 
     //Сопротивление проклятию☠
-    private float curseResist = 0;
+    public float curseResist = 0;
     private const int maxCurseResist = 100;
     private const int minCurseResist = -100;
 
     //Сопротивление электричеству⛈
-    private float electricalResist = 0;
+    public float electricalResist = 0;
     private const int maxElectricalResist = 100;
     private const int minElectricalResist = -100;
 
     //Сопротивление АлКоГоЛю🍺
-    private float drunkennessResist = 0;
+    public float drunkennessResist = 0;
     private const int maxDrunkennessResist = 100;
     private const int minDrunkennessResist = -100;
 
@@ -357,7 +367,7 @@ public class MainObject : MonoBehaviour
         }
 
         //Сопротивление опьянению
-        if (drunkennessResist >= maxDrunknessResist)
+        if (drunkennessResist >= maxDrunkennessResist)
         {
             drunkennessResist = maxDrunkennessResist;
         }
@@ -371,16 +381,15 @@ public class MainObject : MonoBehaviour
 
     #endregion
 
-
-    #region Talents
+    #region Таланты/Перки
 
     //1 переменная отвечает за активность статуса
     //2 переменная отвечает за свободность статуса
     //Чтобы при запуске метода повторно не сработал кусок кода свзанный с этим эффектом и нужна 2 переменные
     //Типо буфер
 
-    public bool wound = false;
-    public bool checkWound = true;
+    private bool wound = false;
+    private bool checkWound = true;
     
 
     public void RandomWound()
@@ -408,10 +417,9 @@ public class MainObject : MonoBehaviour
 
 
 
-#endregion
+    #endregion
 
-
-
+    #region Смэрт и получение урона
 
     //Скрипт TakeDamage обрабатывает типы урона поступаемые объектам
     //Он учитывает сопроивления к урону в объекте и выдает  итоге дамаг после вычислений
@@ -443,6 +451,8 @@ public class MainObject : MonoBehaviour
         HP -= curseDamage * (1 - curseResist / 100);
         HP -= drunkennessDamage * (1 - curseResist / 100);
 
+        anim.SetTrigger("TakeDamage");
+
         wound = true;
 
         if (HP <= 0)
@@ -456,11 +466,15 @@ public class MainObject : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("I die");
+        Debug.Log($"Я {this.name} умер");
 
         //loot = UnityEngine.Random.Range(0, loot.Length);
 
-        //Instantiate(loot[randomEnemy], transform.position, transform.rotation);
+        //Instantiate(loot[random], transform.position, transform.rotation);
+
+        //Instantiate(corpse, transform.position, transform.rotation);
+
+        anim.SetTrigger("Die");
 
         gameObject.SetActive(false);
     }
@@ -470,28 +484,30 @@ public class MainObject : MonoBehaviour
         HP = -1000;
     }//Метод для отладки
 
+    #endregion
+
     #region Pereodic Damage
 
+    [Header("Эффекты")]
     //Ссылаемся на эффекты из префабов
-
     public GameObject effectPoison;
     public GameObject effectFire;
     public GameObject effectCurse;
     public GameObject effectFrost;
     public GameObject effectDrunkenness;
 
+    [Header("Активность эффектов")]
     //Статус активности того ил иного статуса
-
     public bool statusPoison = false;
     public bool statusFire = false;
     public bool statusCurse = false;
     public bool statusFrost = false;
     public bool statusDrunkenness = false;
 
-    //Структура кода ниже:
-    //Время длительности эффекта
-    //Урон от эффекта срабатываемый от интервала
-    //Время ожидания получения урона
+    //Структура переменных кода ниже:
+    //time - Время длительности эффекта
+    //pereodic - Урон от эффекта срабатываемый от интервала
+    //interval - Время ожидания получения урона
 
     private int timePoison;
     private float pereodicPoisonDamage;
@@ -687,7 +703,7 @@ public class MainObject : MonoBehaviour
     }
     IEnumerator Poison()
     {
-        Player.speed -= 1f;
+        speed -= 1f;
 
         for (int i = 0; i < (timePoison / intervalPoison); timePoison -= intervalPoison)
         {
@@ -698,7 +714,7 @@ public class MainObject : MonoBehaviour
             TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
-        Player.speed += 1f;
+        speed += 1f;
 
         statusPoison = false;
         Debug.Log("Я закончил");
@@ -766,12 +782,12 @@ public class MainObject : MonoBehaviour
 
     #endregion
 
- 
+    public void Updater()
+    {
+        CheckCharac();
+        CheckTalents();
+
+        rb.WakeUp();
+    }
 
 }
-
-
-
-
-
-

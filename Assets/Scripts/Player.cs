@@ -7,18 +7,9 @@ using UnityEngine.AI;
 using UnityEngine.SocialPlatforms;
 
 public class Player : MainObject
-{
-    public static new float speed = 2f;
-
-    public static new float energy;
-    public static new float energyWaste;
-
-    public static new int money;
-
-    public Rigidbody2D rb;   
+{    
     private Vector2 moveVolecity;
-
-   
+ 
     private bool isFacingRight = true;
 
     void Start()
@@ -28,28 +19,15 @@ public class Player : MainObject
 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        prickResist = 2000;
+        Debug.Log(prickResist);
     }
 
     public void FixedUpdate()
     {
-        CheckCharac();
-        CheckTalents();
+        Updater();
         MoveOrientation(); //Отвечает за передвижение персонажа и его направление
-       // Check();           //Отвечает за обновление всех характеристик персонажа
-
-       // Debug.Log(Player.maxHP + "   " + Player.HP);
-    }
-
-    private void Update()
-    {
-        
-
-        if(energy <= 0)
-        {
-            print("Енергии нема");
-            energy = 0;
-        }
-
     }
 
     void MoveOrientation()

@@ -18,45 +18,48 @@ public class Enemy : MainObject
         agent = GetComponent<NavMeshAgent>();
 
         agent.updateUpAxis = false;
-        agent.updateRotation = false;
-
-        HP = maxHP;
-
-        
+        agent.updateRotation = false; 
     }
 
     public void FixedUpdate() 
     {
-        agent.SetDestination(player.position);      
+        CheckCharac();
+        CheckTalents();
+        MoveOrientation();
+    }
 
-        if(transform.position != enemyLastPosition)
+    void MoveOrientation()
+    {
+
+        agent.SetDestination(player.position);
+
+        if (transform.position != enemyLastPosition)
         {
             anim.SetBool("Walk", true);
             anim.SetBool("Idle", false);
-            
+
         }
         else
         {
             anim.SetBool("Walk", false);
             anim.SetBool("Idle", true);
-            
+
         }
 
         enemyLastPosition = transform.position;
 
-        if(player.position.x < transform.position.x)
+        if (player.position.x < transform.position.x)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
-        else if(player.position.x > transform.position.x)
+        else if (player.position.x > transform.position.x)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
     }
 
-    
 
 
 }
