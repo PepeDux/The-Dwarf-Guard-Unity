@@ -20,8 +20,7 @@ public class Player : MainObject
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        prickResist = 2000;
-        Debug.Log(prickResist);
+        Debug.Log(prickDamageWeapon);
     }
 
     public void FixedUpdate()

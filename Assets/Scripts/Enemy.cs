@@ -23,8 +23,7 @@ public class Enemy : MainObject
 
     public void FixedUpdate() 
     {
-        CheckCharac();
-        CheckTalents();
+        Updater();
         MoveOrientation();
     }
 

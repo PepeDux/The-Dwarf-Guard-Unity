@@ -32,13 +32,13 @@ public class AttackScript : MonoBehaviour
 
     void Attack()
     {
-        if (GetComponent<MainObject>().energy >= GetComponent<MainObject>().energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
+        if (GetComponent<Player>().energy >= GetComponent<Player>().energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
         {     
-            bufSpeed = GetComponent<MainObject>().speed;    //Записываем изначальную скорость персонажа в буфер
-            GetComponent<MainObject>().speed = 0f;         //Останавлиаем персонажа
+            bufSpeed = GetComponent<Player>().speed;    //Записываем изначальную скорость персонажа в буфер
+            GetComponent<Player>().speed = 0f;         //Останавлиаем персонажа
 
             anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
-            GetComponent<MainObject>().energy -= GetComponent<MainObject>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
+            GetComponent<Player>().energy -= GetComponent<Player>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
             CanAttack = false;
             NextAnimator.SetTrigger("OnAnimationEnded"); //Вызываем метод AttackToogle()
 
@@ -46,7 +46,13 @@ public class AttackScript : MonoBehaviour
 
             foreach(Collider2D enemy in HitEnemies)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(
+                if(Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge)
+                {
+                    Debug.Log($"Я {enemy.name} уклонился");
+                }
+                else
+                {
+                    enemy.GetComponent<TakeDamageScript>().TakeDamage(
                     prickDamage: GetComponent<Enemy>().prickDamage,
                     slashDamage: GetComponent<Enemy>().slashDamage,
                     crushDamage: GetComponent<Enemy>().crushDamage,
@@ -56,9 +62,8 @@ public class AttackScript : MonoBehaviour
                     electricalDamage: GetComponent<Enemy>().electricalDamage,
                     curseDamage: GetComponent<Enemy>().curseDamage,
                     drunkennessDamage: GetComponent<Enemy>().drunkennessDamage
-
-                    
                     );
+                }
             }
 
             Invoke("AttackReload", 1);
@@ -73,7 +78,7 @@ public class AttackScript : MonoBehaviour
     public void AttackToogle()
     {
         Debug.Log("WORK");
-        GetComponent<MainObject>().speed = bufSpeed;   //Востанавливаем скорость персонажа
+        GetComponent<Player>().speed = bufSpeed;   //Востанавливаем скорость персонажа
     }
 
     private void OnDrawGizmosSelected()

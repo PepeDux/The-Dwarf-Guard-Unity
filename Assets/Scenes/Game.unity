@@ -5436,6 +5436,8 @@ GameObject:
   - component: {fileID: 1437244068}
   - component: {fileID: 1437244073}
   - component: {fileID: 1437244074}
+  - component: {fileID: 1437244078}
+  - component: {fileID: 1437244077}
   - component: {fileID: 1437244075}
   - component: {fileID: 1437244076}
   m_Layer: 3
@@ -5459,7 +5461,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.6
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -5592,11 +5594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1437244076}
   anim: {fileID: 1437244070}
-  corpse: {fileID: 0}
-  loot:
-  - {fileID: 9124737131966314501, guid: 7d012d3c0810fd24e8bff7ae8e5e55a6, type: 3}
-  - {fileID: 7088786105172510301, guid: 011c8d1e3133ebc4ea0c9615c29b282e, type: 3}
-  - {fileID: 7615383639773451916, guid: 3a5268488d55d3649a5323793f2a74cf, type: 3}
   HP: 100
   maxHP: 100
   energy: 0
@@ -5604,48 +5601,85 @@ MonoBehaviour:
   energyWaste: 10
   money: 0
   prickDamage: 10
-  slashDamage: 0
-  crushDamage: 0
+  prickDamageWeapon: 10
+  prickDamageBonus: 0
+  slashDamage: 10
+  slashDamageWeapon: 0
+  slashDamageBonus: 0
+  crushDamage: 10
+  crushDamageWeapon: 0
+  crushDamageBonus: 0
   poisonDamage: 0
+  poisonDamageWeapon: 0
+  poisonDamageBonus: 0
   fireDamage: 0
+  fireDamageWeapon: 0
+  fireDamageBonus: 0
   frostDamage: 0
+  frostDamageWeapon: 0
+  frostDamageBonus: 0
   electricalDamage: 0
+  electricalDamageWeapon: 0
+  electricalDamageBonus: 0
   curseDamage: 0
+  curseDamageWeapon: 0
+  curseDamageBonus: 0
   drunkennessDamage: 0
+  drunkennessDamageWeapon: 0
+  drunkennessDamageBonus: 0
   XP: 0
+  maxXP: 100
   level: 0
+  maxLevel: 10
   strength: 0
+  strengthCharac: 10
+  strengthBonus: 0
   agility: 0
+  agilityCharac: 10
+  agilityBonus: 0
   intel: 0
+  intelCharac: 10
+  intelBonus: 0
   constitution: 0
+  constitutionCharac: 10
+  constitutionBonus: 0
   wisdom: 0
+  wisdomCharac: 10
+  wisdomBonus: 0
   dodge: 0
+  dodgeBonus: 0
   carryingCapacity: 0
+  carryingCapacityBonus: 0
   speed: 2
+  speedBonus: 2
   attackSpeed: 0
+  attackSpeedBonus: 0
   criticalDamage: 0
+  criticalDamageBonus: 0
+  criticalDamageChance: 0
+  criticalDamageChanceBonus: 0
   precision: 0
+  precisionBonus: 0
   drunkenness: 0
+  drunkennessBonus: 0
   prickResist: 50
+  prickResistBonus: 20
   slashResist: 0
+  slashResistBonus: 0
   crushResist: 0
-  impactResist: 0
+  crushResistBonus: 0
   poisonResist: 0
+  poisonResistBonus: 0
   fireResist: 0
+  fireResistBonus: 0
   frostResist: 0
+  frostResistBonus: 0
   curseResist: 0
+  curseResistBonus: 0
   electricalResist: 0
+  electricalResistBonus: 0
   drunkennessResist: 0
-  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
-  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
-  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
-  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
-  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
-  statusPoison: 0
-  statusFire: 0
-  statusCurse: 0
-  statusFrost: 0
-  statusDrunkenness: 0
+  drunkennessResistBonus: 0
   player: {fileID: 1642026058}
 --- !u!114 &1437244074
 MonoBehaviour:
@@ -5705,6 +5739,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1437244077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437244067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
+  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
+  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
+  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
+  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
+  statusPoison: 0
+  statusFire: 0
+  statusCurse: 0
+  statusFrost: 0
+  statusDrunkenness: 0
+--- !u!114 &1437244078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437244067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d81099bcad00cf429afaddd19519952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corpse: {fileID: 0}
+  loot: []
 --- !u!1 &1526609387
 GameObject:
   m_ObjectHideFlags: 0
@@ -10515,7 +10585,9 @@ GameObject:
   - component: {fileID: 1642026056}
   - component: {fileID: 1642026054}
   - component: {fileID: 1642026055}
+  - component: {fileID: 1642026062}
   - component: {fileID: 1642026053}
+  - component: {fileID: 1642026061}
   - component: {fileID: 1642026059}
   - component: {fileID: 1642026060}
   m_Layer: 6
@@ -10576,57 +10648,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1642026059}
   anim: {fileID: 1642026056}
-  corpse: {fileID: 0}
-  loot: []
   HP: 100
   maxHP: 100
   energy: 300
   maxEnergy: 300
   energyWaste: 10
   money: 0
-  prickDamage: 0
+  prickDamage: 20
+  prickDamageWeapon: 10
+  prickDamageBonus: 0
   slashDamage: 0
+  slashDamageWeapon: 0
+  slashDamageBonus: 0
   crushDamage: 0
+  crushDamageWeapon: 0
+  crushDamageBonus: 0
   poisonDamage: 0
+  poisonDamageWeapon: 0
+  poisonDamageBonus: 0
   fireDamage: 0
+  fireDamageWeapon: 0
+  fireDamageBonus: 0
   frostDamage: 0
+  frostDamageWeapon: 0
+  frostDamageBonus: 0
   electricalDamage: 0
+  electricalDamageWeapon: 0
+  electricalDamageBonus: 0
   curseDamage: 0
+  curseDamageWeapon: 0
+  curseDamageBonus: 0
   drunkennessDamage: 0
+  drunkennessDamageWeapon: 0
+  drunkennessDamageBonus: 0
   XP: 0
+  maxXP: 100
   level: 0
+  maxLevel: 10
   strength: 0
+  strengthCharac: 10
+  strengthBonus: 0
   agility: 0
+  agilityCharac: 10
+  agilityBonus: 0
   intel: 0
+  intelCharac: 10
+  intelBonus: 0
   constitution: 0
+  constitutionCharac: 10
+  constitutionBonus: 0
   wisdom: 0
-  dodge: 0
+  wisdomCharac: 10
+  wisdomBonus: 0
+  dodge: -137
+  dodgeBonus: 0
   carryingCapacity: 0
+  carryingCapacityBonus: 0
   speed: 2
+  speedBonus: 2
   attackSpeed: 0
+  attackSpeedBonus: 0
   criticalDamage: 0
+  criticalDamageBonus: 0
+  criticalDamageChance: 0
+  criticalDamageChanceBonus: 0
   precision: 0
+  precisionBonus: 0
   drunkenness: 0
-  prickResist: 50
+  drunkennessBonus: 0
+  prickResist: 0
+  prickResistBonus: 20
   slashResist: 0
+  slashResistBonus: 0
   crushResist: 0
-  impactResist: 0
+  crushResistBonus: 0
   poisonResist: 0
+  poisonResistBonus: 0
   fireResist: 0
+  fireResistBonus: 0
   frostResist: 0
+  frostResistBonus: 0
   curseResist: 0
+  curseResistBonus: 0
   electricalResist: 0
+  electricalResistBonus: 0
   drunkennessResist: 0
-  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
-  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
-  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
-  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
-  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
-  statusPoison: 0
-  statusFire: 0
-  statusCurse: 0
-  statusFrost: 0
-  statusDrunkenness: 0
+  drunkennessResistBonus: 0
 --- !u!95 &1642026056
 Animator:
   serializedVersion: 3
@@ -10760,6 +10867,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43534684, y: 0.18601727}
   m_EdgeRadius: 0
+--- !u!114 &1642026061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642026052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
+  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
+  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
+  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
+  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
+  statusPoison: 0
+  statusFire: 0
+  statusCurse: 0
+  statusFrost: 0
+  statusDrunkenness: 0
+--- !u!114 &1642026062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642026052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d81099bcad00cf429afaddd19519952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corpse: {fileID: 0}
+  loot: []
 --- !u!1 &1660368497
 GameObject:
   m_ObjectHideFlags: 3

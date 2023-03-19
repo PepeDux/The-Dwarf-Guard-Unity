@@ -33,17 +33,24 @@ public class EnemyMeleeAttack : MonoBehaviour
 
             foreach (Collider2D player in HitPlayer)
             {
-               player.GetComponent<Player>().TakeDamage(
-                   prickDamage: GetComponent<Enemy>().prickDamage,
-                   slashDamage: GetComponent<Enemy>().slashDamage,
-                   crushDamage: GetComponent<Enemy>().crushDamage,
-                   poisonDamage: GetComponent<Enemy>().poisonDamage,
-                   fireDamage: GetComponent<Enemy>().fireDamage,
-                   frostDamage: GetComponent<Enemy>().frostDamage,
-                   electricalDamage: GetComponent<Enemy>().electricalDamage,
-                   curseDamage: GetComponent<Enemy>().curseDamage,
-                   drunkennessDamage : GetComponent<Enemy>().drunkennessDamage
-                   );
+                if (Random.Range(0, 100) <= player.GetComponent<Player>().dodge) 
+                {
+                    Debug.Log($"Я {player.name} уклонился");
+                }
+                else 
+                {
+                    player.GetComponent<TakeDamageScript>().TakeDamage(
+                    prickDamage: GetComponent<Enemy>().prickDamage,
+                    slashDamage: GetComponent<Enemy>().slashDamage,
+                    crushDamage: GetComponent<Enemy>().crushDamage,
+                    poisonDamage: GetComponent<Enemy>().poisonDamage,
+                    fireDamage: GetComponent<Enemy>().fireDamage,
+                    frostDamage: GetComponent<Enemy>().frostDamage,
+                    electricalDamage: GetComponent<Enemy>().electricalDamage,
+                    curseDamage: GetComponent<Enemy>().curseDamage,
+                    drunkennessDamage: GetComponent<Enemy>().drunkennessDamage
+                    );
+                }
             }
 
             Invoke("AttackReload", 1);
