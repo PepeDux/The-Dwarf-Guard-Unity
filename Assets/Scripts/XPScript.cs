@@ -15,8 +15,9 @@ public class XPScript : MonoBehaviour
         //Опыт
         if (GetComponent<MainObject>().XP >= GetComponent<MainObject>().maxXP)
         {
-            GetComponent<MainObject>().XP = 0;
+            GetComponent<MainObject>().XP = GetComponent<MainObject>().maxXP - GetComponent<MainObject>().XP;
             GetComponent<MainObject>().HP = GetComponent<MainObject>().maxHP;
+            GetComponent<MainObject>().level++;
             //переход на следующий лвл
         }
 

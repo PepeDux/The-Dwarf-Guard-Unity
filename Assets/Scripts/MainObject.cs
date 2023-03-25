@@ -57,7 +57,7 @@ public class MainObject : MonoBehaviour
 
     //Колющий урон
     public float prickDamage = 0;
-    [HideInInspector] public float prickDamageWeapon;
+    public float prickDamageWeapon = 6f;
     [HideInInspector] public float prickDamageBonus = 0;
 
     //Режущий урон
@@ -113,10 +113,6 @@ public class MainObject : MonoBehaviour
 
 
 
-
-
-
-
     [Header("Основнык характеристики")]
     //1 переменная - итоговове значение характеристики
     //2 переменная - текущее значение характеристики(в прокачке, независимо от бонусов)
@@ -128,7 +124,6 @@ public class MainObject : MonoBehaviour
     [HideInInspector] public int strengthCharac = 10;
     [HideInInspector] private int maxStrengthCharac = 100;
     [HideInInspector] public int strengthBonus = 0 ;
-
 
     //Ловкость
     public int agility = 0;
@@ -173,7 +168,7 @@ public class MainObject : MonoBehaviour
     private const int maxCarryingCapacity = 10;
 
     //Скорость
-    public float speed = 2f;
+    public float speed = 0;
     [HideInInspector] public float speedBonus = 2f;
     private const float maxSpeed = 10f;
 

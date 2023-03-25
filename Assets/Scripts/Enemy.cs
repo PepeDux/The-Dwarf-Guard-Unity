@@ -29,7 +29,6 @@ public class Enemy : MainObject
 
     void MoveOrientation()
     {
-
         agent.SetDestination(player.position);
 
         if (transform.position != enemyLastPosition)
@@ -56,9 +55,5 @@ public class Enemy : MainObject
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-
     }
-
-
-
 }

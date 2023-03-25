@@ -13,8 +13,6 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     public bool CanAttack = true;
 
-    public int AttackDamage = 5;
-
     void Update()
     {
         anim = GetComponent<Animator>();

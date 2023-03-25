@@ -5701,7 +5701,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   CanAttack: 1
-  AttackDamage: 20
 --- !u!58 &1437244075
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5751,16 +5750,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
-  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
-  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
-  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
-  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
-  statusPoison: 0
-  statusFire: 0
-  statusCurse: 0
-  statusFrost: 0
-  statusDrunkenness: 0
+  effects: []
+  poisonStatus: 0
+  fireStatus: 0
+  curseStatus: 0
+  frostStatus: 0
+  drunkennessStatus: 0
 --- !u!114 &1437244078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10618,7 +10613,6 @@ MonoBehaviour:
     m_Bits: 8
   bufSpeed: 0
   CanAttack: 1
-  AttackDamage: 40
 --- !u!114 &1642026054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10879,16 +10873,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPoison: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
-  effectFire: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
-  effectCurse: {fileID: 8544145806569864975, guid: 785d6292d61beb8418a2eef938508df0, type: 3}
-  effectFrost: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
-  effectDrunkenness: {fileID: 8514217353668108427, guid: cad1547cf7b22b946873de69a2c3debe, type: 3}
-  statusPoison: 0
-  statusFire: 0
-  statusCurse: 0
-  statusFrost: 0
-  statusDrunkenness: 0
+  effects: []
+  poisonStatus: 0
+  fireStatus: 0
+  curseStatus: 0
+  frostStatus: 0
+  drunkennessStatus: 0
 --- !u!114 &1642026062
 MonoBehaviour:
   m_ObjectHideFlags: 0

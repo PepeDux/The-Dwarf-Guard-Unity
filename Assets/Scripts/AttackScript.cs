@@ -17,9 +17,6 @@ public class AttackScript : MonoBehaviour
 
     public bool CanAttack = true;
 
-    public int AttackDamage;
-
-
 
     private void Start()
     {
@@ -34,8 +31,8 @@ public class AttackScript : MonoBehaviour
     {
         if (GetComponent<Player>().energy >= GetComponent<Player>().energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
         {     
-            bufSpeed = GetComponent<Player>().speed;    //Записываем изначальную скорость персонажа в буфер
-            GetComponent<Player>().speed = 0f;         //Останавлиаем персонажа
+            bufSpeed = GetComponent<Player>().speedBonus;    //Записываем изначальную скорость персонажа в буфер
+            GetComponent<Player>().speedBonus -= GetComponent<Player>().speed;         //Останавлиаем персонажа
 
             anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
             GetComponent<Player>().energy -= GetComponent<Player>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
@@ -44,24 +41,24 @@ public class AttackScript : MonoBehaviour
 
             Collider2D[] HitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
 
-            foreach(Collider2D enemy in HitEnemies)
+            foreach (Collider2D enemy in HitEnemies) 
             {
-                if(Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge)
+                if (Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge) 
                 {
                     Debug.Log($"Я {enemy.name} уклонился");
                 }
                 else
                 {
                     enemy.GetComponent<TakeDamageScript>().TakeDamage(
-                    prickDamage: GetComponent<Enemy>().prickDamage,
-                    slashDamage: GetComponent<Enemy>().slashDamage,
-                    crushDamage: GetComponent<Enemy>().crushDamage,
-                    poisonDamage: GetComponent<Enemy>().poisonDamage,
-                    fireDamage: GetComponent<Enemy>().fireDamage,
-                    frostDamage: GetComponent<Enemy>().frostDamage,
-                    electricalDamage: GetComponent<Enemy>().electricalDamage,
-                    curseDamage: GetComponent<Enemy>().curseDamage,
-                    drunkennessDamage: GetComponent<Enemy>().drunkennessDamage
+                    prickDamage: GetComponent<Player>().prickDamage,
+                    slashDamage: GetComponent<Player>().slashDamage,
+                    crushDamage: GetComponent<Player>().crushDamage,
+                    poisonDamage: GetComponent<Player>().poisonDamage,
+                    fireDamage: GetComponent<Player>().fireDamage,
+                    frostDamage: GetComponent<Player>().frostDamage,
+                    electricalDamage: GetComponent<Player>().electricalDamage,
+                    curseDamage: GetComponent<Player>().curseDamage,
+                    drunkennessDamage: GetComponent<Player>().drunkennessDamage
                     );
                 }
             }
@@ -69,18 +66,15 @@ public class AttackScript : MonoBehaviour
             Invoke("AttackReload", 1);
         }
     }
-
+    public void AttackToogle()
+    {
+        Debug.Log("WORK");
+        GetComponent<Player>().speedBonus = bufSpeed;   //Востанавливаем скорость персонажа
+    }
     void AttackReload()
     {
         CanAttack = true;
     }
-
-    public void AttackToogle()
-    {
-        Debug.Log("WORK");
-        GetComponent<Player>().speed = bufSpeed;   //Востанавливаем скорость персонажа
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere (AttackPoint.position, AttackRange);

@@ -1,26 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PereodicDamageScript : MonoBehaviour
 {
     #region Pereodic Damage
 
-    [Header("Эффекты")]
-    //Ссылаемся на эффекты из префабов
-    public GameObject effectPoison;
-    public GameObject effectFire;
-    public GameObject effectCurse;
-    public GameObject effectFrost;
-    public GameObject effectDrunkenness;
+    [SerializeField] private EffectData[] effects;
 
     [Header("Активность эффектов")]
     //Статус активности того ил иного статуса
-    public bool statusPoison = false;
-    public bool statusFire = false;
-    public bool statusCurse = false;
-    public bool statusFrost = false;
-    public bool statusDrunkenness = false;
+    public bool poisonStatus = false;
+    public bool fireStatus = false;
+    public bool curseStatus = false;
+    public bool frostStatus = false;
+    public bool drunkennessStatus = false;
 
     //Структура переменных кода ниже:
     //time - Время длительности эффекта
@@ -48,12 +43,52 @@ public class PereodicDamageScript : MonoBehaviour
     private int intervalDrunkenness;
 
 
+    private GameObject poisonEffect;
+    private GameObject fireEffect;
+    private GameObject frostEffect;
+    private GameObject curseEffect;
+    private GameObject drunkennessEffect;
+    
+    
+    private void Start()
+    {
+        effects = Resources.LoadAll<EffectData>("PereodicEffects");
+
+        foreach(EffectData effect in effects)
+        {
+            if(effect.type == "Poison")
+            {
+                poisonEffect = effect.prefab;
+            }
+
+            if(effect.type == "Fire")
+            {
+                fireEffect = effect.prefab;
+            }
+
+            if(effect.type == "Frost")
+            {
+                frostEffect = effect.prefab;
+            }
+
+            if (effect.type == "Curse")
+            {
+                curseEffect = effect.prefab;
+            }
+
+            if (effect.type == "Drunkenness")
+            {
+                drunkennessEffect = effect.prefab;
+            }
+        }
+    }
+
 
     public void TakeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
     {
         if (typeInfo == "Poison")
         {
-            if (statusPoison)
+            if (poisonStatus)
             {
                 if (timePoison < timeInfo)
                 {
@@ -71,13 +106,13 @@ public class PereodicDamageScript : MonoBehaviour
                 }
             }
 
-            if (!statusPoison)
+            if (!poisonStatus)
             {
                 timePoison = timeInfo;
                 pereodicPoisonDamage = damageInfo;
                 intervalPoison = intervalInfo;
 
-                statusPoison = true;
+                poisonStatus = true;
 
                 StartCoroutine("Poison");
             }
@@ -86,7 +121,7 @@ public class PereodicDamageScript : MonoBehaviour
         ///////////////////////////////////////////////////////////////////
         if (typeInfo == "Fire")
         {
-            if (statusFire)
+            if (fireStatus)
             {
                 if (timeFire < timeInfo)
                 {
@@ -104,13 +139,13 @@ public class PereodicDamageScript : MonoBehaviour
                 }
             }
 
-            if (!statusFire)
+            if (!fireStatus)
             {
                 timeFire = timeInfo;
                 pereodicFireDamage = damageInfo;
                 intervalFire = intervalInfo;
 
-                statusFire = true;
+                fireStatus = true;
 
                 StartCoroutine("Fire");
             }
@@ -120,7 +155,7 @@ public class PereodicDamageScript : MonoBehaviour
 
         if (typeInfo == "Curse")
         {
-            if (statusCurse)
+            if (curseStatus)
             {
                 if (timeCurse < timeInfo)
                 {
@@ -138,13 +173,13 @@ public class PereodicDamageScript : MonoBehaviour
                 }
             }
 
-            if (!statusCurse)
+            if (!curseStatus)
             {
                 timeCurse = timeInfo;
                 pereodiCcurseDamage = damageInfo;
                 intervalCurse = intervalInfo;
 
-                statusCurse = true;
+                curseStatus = true;
 
                 StartCoroutine("Curse");
             }
@@ -154,7 +189,7 @@ public class PereodicDamageScript : MonoBehaviour
 
         if (typeInfo == "Frost")
         {
-            if (statusFrost)
+            if (frostStatus)
             {
                 if (timeFrost < timeInfo)
                 {
@@ -172,13 +207,13 @@ public class PereodicDamageScript : MonoBehaviour
                 }
             }
 
-            if (!statusFrost)
+            if (!frostStatus)
             {
                 timeFrost = timeInfo;
                 pereodicFrostDamage = damageInfo;
                 intervalFrost = intervalInfo;
 
-                statusFrost = true;
+                frostStatus = true;
 
                 StartCoroutine("Frost");
             }
@@ -189,7 +224,7 @@ public class PereodicDamageScript : MonoBehaviour
         if (typeInfo == "Drunkenness")
 
         {
-            if (statusDrunkenness)
+            if (drunkennessStatus)
             {
                 if (timeDrunkenness < timeInfo)
                 {
@@ -207,13 +242,13 @@ public class PereodicDamageScript : MonoBehaviour
                 }
             }
 
-            if (!statusDrunkenness)
+            if (!drunkennessStatus)
             {
                 timeDrunkenness = timeInfo;
                 pereodicDrunkennessDamage = damageInfo;
                 intervalDrunkenness = intervalInfo;
 
-                statusDrunkenness = true;
+                drunkennessStatus = true;
 
                 StartCoroutine("Drunkenness");
             }
@@ -221,20 +256,22 @@ public class PereodicDamageScript : MonoBehaviour
     }
     IEnumerator Poison()
     {
-        GetComponent<MainObject>().speed -= 1f;
+        //GetComponent<MainObject>().prickResistBonus += poisonEffect.PrickResist;
+        GetComponent<MainObject>().speedBonus -= 1f;
 
         for (int i = 0; i < (timePoison / intervalPoison); timePoison -= intervalPoison)
         {
             yield return new WaitForSeconds(intervalPoison);
 
-            Instantiate(effectPoison, this.transform.position, transform.rotation);
-
+            Instantiate(poisonEffect, this.transform.position, transform.rotation);
+            
             GetComponent<TakeDamageScript>().TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
-        GetComponent<MainObject>().speed += 1f;
+        GetComponent<MainObject>().speedBonus += 1f;
+        //GetComponent<MainObject>().prickResistBonus -= poisonEffect.PrickResist;
 
-        statusPoison = false;
+        poisonStatus = false;
         Debug.Log("Я закончил");
     }
 
@@ -244,12 +281,12 @@ public class PereodicDamageScript : MonoBehaviour
         {
             yield return new WaitForSeconds(intervalFire);
 
-            Instantiate(effectFire, this.transform.position, transform.rotation);
+            Instantiate(fireEffect, this.transform.position, transform.rotation);
 
             GetComponent<TakeDamageScript>().TakeDamage(fireDamage: pereodicFireDamage);
         }
 
-        statusFire = false;
+        fireStatus = false;
         Debug.Log("Я закончил");
     }
 
@@ -259,12 +296,12 @@ public class PereodicDamageScript : MonoBehaviour
         {
             yield return new WaitForSeconds(intervalCurse);
 
-            Instantiate(effectCurse, this.transform.position, transform.rotation);
+            Instantiate(curseEffect, this.transform.position, transform.rotation);
 
             GetComponent<TakeDamageScript>().TakeDamage(curseDamage: pereodiCcurseDamage);
         }
 
-        statusCurse = false;
+        curseStatus = false;
         Debug.Log("Я закончил");
     }
 
@@ -274,12 +311,12 @@ public class PereodicDamageScript : MonoBehaviour
         {
             yield return new WaitForSeconds(intervalFrost);
 
-            Instantiate(effectFrost, this.transform.position, transform.rotation);
+            Instantiate(frostEffect, this.transform.position, transform.rotation);
 
             GetComponent<TakeDamageScript>().TakeDamage(frostDamage: pereodicFrostDamage);
         }
 
-        statusFrost = false;
+        frostStatus = false;
         Debug.Log("Я закончил");
     }
 
@@ -289,12 +326,12 @@ public class PereodicDamageScript : MonoBehaviour
         {
             yield return new WaitForSeconds(intervalDrunkenness);
 
-            Instantiate(effectDrunkenness, this.transform.position, transform.rotation);
+            Instantiate(drunkennessEffect, this.transform.position, transform.rotation);
 
             GetComponent<TakeDamageScript>().TakeDamage(drunkennessDamage: pereodicDrunkennessDamage);
         }
 
-        statusDrunkenness = false;
+        drunkennessStatus = false;
         Debug.Log("Я закончил");
     }
 

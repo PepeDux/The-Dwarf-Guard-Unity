@@ -38,7 +38,7 @@ public class TakeDamageScript : MonoBehaviour
         GetComponent<MainObject>().HP -= curseDamage * (1 - GetComponent<MainObject>().curseResist / 100);
         GetComponent<MainObject>().HP -= drunkennessDamage * (1 - GetComponent<MainObject>().curseResist / 100);
 
-        GetComponent<MainObject>().anim.SetTrigger("TakeDamage");
+        //GetComponent<MainObject>().anim.SetTrigger("TakeDamage");
 
         if (GetComponent<MainObject>().HP <= 0)
         {
@@ -59,7 +59,7 @@ public class TakeDamageScript : MonoBehaviour
 
         GetComponent<MainObject>().anim.SetTrigger("Die");
 
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     public void Kill()
