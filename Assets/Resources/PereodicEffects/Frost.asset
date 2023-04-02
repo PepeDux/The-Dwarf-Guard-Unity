@@ -14,15 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Frost
   prefab: {fileID: 6201711957439111915, guid: cc5b47264abdd694f9e109a3236b6e30, type: 3}
-  prickResist: 20
-  slashResist: 0
-  crushResist: 0
-  poisonResist: 0
-  fireResist: 25
-  frostResist: 0
-  curseResist: 0
-  electricalResist: -40
-  drunkennessResist: 0
   strength: -2
   agility: -2
   intel: 0
@@ -36,3 +27,12 @@ MonoBehaviour:
   criticalDamageChance: 0
   precision: 0
   drunkenness: 0
+  prickResist: 20
+  slashResist: 0
+  crushResist: 0
+  poisonResist: 0
+  fireResist: 25
+  frostResist: 0
+  curseResist: 0
+  electricalResist: -40
+  drunkennessResist: 0

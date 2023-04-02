@@ -8,7 +8,7 @@ using MinAttribute = UnityEngine.MinAttribute;
 [CreateAssetMenu(fileName = "New EffectData", menuName = "Effect Data", order = 51)]
 public class EffectData : ScriptableObject
 {
-    [Header("Сопротивления к урону")]
+    [Header("Плюшки")]
     //Написание типа эффекта
     [SerializeField] public string type;
     public string Type { get => type; }
@@ -16,45 +16,6 @@ public class EffectData : ScriptableObject
     //Префаб еффекта(необязательно)
     [SerializeField] public GameObject prefab;
     public GameObject Prefab { get => prefab; }
-
-
-
-    [Header("Сопротивления к урону")]
-    //Сопротивление колющему📌
-    [SerializeField, Range(-100f, 100f)] private float prickResist = 0;
-    public float PrickResist { get => prickResist; }
-
-    //Сопротивление режущему🔪
-    [SerializeField, Range(-100f, 100f)] private float slashResist = 0;
-    public float SlashResist { get => slashResist; }
-
-    //Сопротивление дробящему🔨
-    [SerializeField, Range(-100f, 100f)] private float crushResist = 0;
-    public float CrushResist { get => crushResist; }
-
-    //Сопротивление ядам🍄
-    [SerializeField, Range(-100f, 100f)] private float poisonResist = 0;
-    public float PoisonResist { get => poisonResist; }
-
-    //Сопротивление огню🔥
-    [SerializeField, Range(-100f, 100f)] private float fireResist = 0;
-    public float FireResist { get => fireResist; }
-
-    //Сопростивление морозу❄ 
-    [SerializeField, Range(-100f, 100f)] private float frostResist = 0;
-    public float FrostResist { get => frostResist; }
-
-    //Сопротивление проклятию☠
-    [SerializeField, Range(-100f, 100f)] private float curseResist = 0;
-    public float CurseResist { get => curseResist; }
-
-    //Сопротивление электричеству⛈
-    [SerializeField, Range(-100f, 100f)] private float electricalResist = 0;
-    public float ElectricalResist { get => electricalResist; }
-
-    //Сопротивление АлКоГоЛю🍺
-    [SerializeField, Range(-100f, 100f)] private float drunkennessResist = 0;
-    public float DrunkennessResist { get => drunkennessResist; }
 
 
 
@@ -117,4 +78,45 @@ public class EffectData : ScriptableObject
     //Опьянение
     [SerializeField, Range(-100f, 100f)] public int drunkenness = 0;
     public float Drunkenness { get => drunkenness; }
+
+
+
+
+
+    [Header("Сопротивления к урону")]
+    //Сопротивление колющему📌
+    [SerializeField, Range(-100f, 100f)] public float prickResist = 0;
+    public float PrickResist { get => prickResist; }
+
+    //Сопротивление режущему🔪
+    [SerializeField, Range(-100f, 100f)] public float slashResist = 0;
+    public float SlashResist { get => slashResist; }
+
+    //Сопротивление дробящему🔨
+    [SerializeField, Range(-100f, 100f)] public float crushResist = 0;
+    public float CrushResist { get => crushResist; }
+
+    //Сопротивление ядам🍄
+    [SerializeField, Range(-100f, 100f)] public float poisonResist = 0;
+    public float PoisonResist { get => poisonResist; }
+
+    //Сопротивление огню🔥
+    [SerializeField, Range(-100f, 100f)] public float fireResist = 0;
+    public float FireResist { get => fireResist; }
+
+    //Сопростивление морозу❄ 
+    [SerializeField, Range(-100f, 100f)] public float frostResist = 0;
+    public float FrostResist { get => frostResist; }
+
+    //Сопротивление проклятию☠
+    [SerializeField, Range(-100f, 100f)] public float curseResist = 0;
+    public float CurseResist { get => curseResist; }
+
+    //Сопротивление электричеству⛈
+    [SerializeField, Range(-100f, 100f)] public float electricalResist = 0;
+    public float ElectricalResist { get => electricalResist; }
+
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public float drunkennessResist = 0;
+    public float DrunkennessResist { get => drunkennessResist; }
 }

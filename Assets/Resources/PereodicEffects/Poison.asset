@@ -14,6 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Poison
   prefab: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
+  strength: -3
+  agility: -3
+  intel: 0
+  constitution: -3
+  wisdom: 0
+  dodge: 0
+  carryingCapacity: 0
+  speed: -0.5
+  attackSpeed: 0
+  criticalDamage: 0
+  criticalDamageChance: 0
+  precision: 0
+  drunkenness: 0
   prickResist: 0
   slashResist: 0
   crushResist: 0
@@ -23,16 +36,3 @@ MonoBehaviour:
   curseResist: 0
   electricalResist: 0
   drunkennessResist: 0
-  strength: -3
-  agility: -3
-  intel: 0
-  constitution: -3
-  wisdom: 0
-  dodge: 0
-  carryingCapacity: 0
-  speed: -20
-  attackSpeed: 0
-  criticalDamage: 0
-  criticalDamageChance: 0
-  precision: 0
-  drunkenness: 0

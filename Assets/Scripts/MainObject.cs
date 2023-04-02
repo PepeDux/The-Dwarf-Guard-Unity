@@ -169,7 +169,7 @@ public class MainObject : MonoBehaviour
 
     //Скорость
     public float speed = 0;
-    [HideInInspector] public float speedBonus = 2f;
+    public float speedBonus = 2f;
     private const float maxSpeed = 10f;
 
     //Скорость атаки
@@ -623,34 +623,7 @@ public class MainObject : MonoBehaviour
 
     #region Таланты/Перки
 
-    //1 переменная отвечает за активность статуса
-    //2 переменная отвечает за свободность статуса
-    //Чтобы при запуске метода повторно не сработал кусок кода свзанный с этим эффектом и нужна 2 переменные
-    //Типо буфер
-
-    private bool wound = false;
-    private bool checkWound = true;
-    
-
-    public void RandomWound()
-    {
-        int random = Random.Range(10, 50);        
-    }
-    public void CheckTalents()
-    {
-        if(wound && checkWound)
-        {
-            maxHP -= 10;
-
-            checkWound = false;
-        }
-        else if(!wound && !checkWound)
-        {
-            maxHP += 10;
-
-            checkWound = true;
-        }       
-    }
+    public bool coalDwarf = false;
 
 
 
@@ -664,7 +637,7 @@ public class MainObject : MonoBehaviour
     public void Updater()
     {
         CheckCharac();
-        CheckTalents();
+        //CheckTalents();
         UpdateCharac();
 
         rb.WakeUp();

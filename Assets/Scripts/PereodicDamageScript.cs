@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,7 @@ public class PereodicDamageScript : MonoBehaviour
     private int intervalDrunkenness;
 
 
+
     private GameObject poisonEffect;
     private GameObject fireEffect;
     private GameObject frostEffect;
@@ -83,7 +85,6 @@ public class PereodicDamageScript : MonoBehaviour
         }
     }
 
-
     public void TakeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
     {
         if (typeInfo == "Poison")
@@ -114,11 +115,14 @@ public class PereodicDamageScript : MonoBehaviour
 
                 poisonStatus = true;
 
+                GetComponent<StatusData>().statusAdd = "Poison";
+
                 StartCoroutine("Poison");
             }
         }
 
         ///////////////////////////////////////////////////////////////////
+
         if (typeInfo == "Fire")
         {
             if (fireStatus)
@@ -146,6 +150,8 @@ public class PereodicDamageScript : MonoBehaviour
                 intervalFire = intervalInfo;
 
                 fireStatus = true;
+
+                GetComponent<StatusData>().statusAdd = "Fire";
 
                 StartCoroutine("Fire");
             }
@@ -181,6 +187,8 @@ public class PereodicDamageScript : MonoBehaviour
 
                 curseStatus = true;
 
+                GetComponent<StatusData>().statusAdd = "Curse";
+
                 StartCoroutine("Curse");
             }
         }
@@ -214,6 +222,8 @@ public class PereodicDamageScript : MonoBehaviour
                 intervalFrost = intervalInfo;
 
                 frostStatus = true;
+
+                GetComponent<StatusData>().statusAdd = "Frost";
 
                 StartCoroutine("Frost");
             }
@@ -250,15 +260,17 @@ public class PereodicDamageScript : MonoBehaviour
 
                 drunkennessStatus = true;
 
+                GetComponent<StatusData>().statusAdd = "Drunkenness";
+
                 StartCoroutine("Drunkenness");
             }
         }
+
     }
+
+
     IEnumerator Poison()
     {
-        //GetComponent<MainObject>().prickResistBonus += poisonEffect.PrickResist;
-        GetComponent<MainObject>().speedBonus -= 1f;
-
         for (int i = 0; i < (timePoison / intervalPoison); timePoison -= intervalPoison)
         {
             yield return new WaitForSeconds(intervalPoison);
@@ -268,9 +280,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
-        GetComponent<MainObject>().speedBonus += 1f;
-        //GetComponent<MainObject>().prickResistBonus -= poisonEffect.PrickResist;
-
+        GetComponent<StatusData>().statusRemove = "Poison";
         poisonStatus = false;
         Debug.Log("Я закончил");
     }
@@ -286,6 +296,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(fireDamage: pereodicFireDamage);
         }
 
+        GetComponent<StatusData>().statusRemove = "Fire";
         fireStatus = false;
         Debug.Log("Я закончил");
     }
@@ -301,6 +312,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(curseDamage: pereodiCcurseDamage);
         }
 
+        GetComponent<StatusData>().statusRemove = "Curse";
         curseStatus = false;
         Debug.Log("Я закончил");
     }
@@ -316,13 +328,14 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(frostDamage: pereodicFrostDamage);
         }
 
+        GetComponent<StatusData>().statusRemove = "Frost";
         frostStatus = false;
         Debug.Log("Я закончил");
     }
 
     IEnumerator Drunkenness()
     {
-        for (int i = 0; i < (timeDrunkenness / intervalDrunkenness); timeFire -= intervalDrunkenness)
+        for (int i = 0; i < (timeDrunkenness / intervalDrunkenness); timeDrunkenness -= intervalDrunkenness)
         {
             yield return new WaitForSeconds(intervalDrunkenness);
 
@@ -331,6 +344,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(drunkennessDamage: pereodicDrunkennessDamage);
         }
 
+        GetComponent<StatusData>().statusRemove = "Drunkenness";
         drunkennessStatus = false;
         Debug.Log("Я закончил");
     }
