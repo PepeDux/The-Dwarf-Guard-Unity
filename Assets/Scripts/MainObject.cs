@@ -621,18 +621,6 @@ public class MainObject : MonoBehaviour
 
     #endregion
 
-    #region Таланты/Перки
-
-    public bool coalDwarf = false;
-
-
-
-
-
-
-    #endregion  
-
-  
 
     public void Updater()
     {
@@ -643,4 +631,7 @@ public class MainObject : MonoBehaviour
         rb.WakeUp();
     }
 
+
+
+ 
 }

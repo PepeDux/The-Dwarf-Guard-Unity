@@ -22,7 +22,7 @@ public class Food : MonoBehaviour
             other.GetComponent<MainObject>().HP += HP;
             other.GetComponent<MainObject>().energy += energy;
             
-            other.GetComponent<PereodicDamageScript>().TakeInfo(time, damage, interval, type);
+            other.GetComponent<PereodicDamageScript>().TakeInfo(time, damage, type);
 
             Destroy(this.gameObject);
         }

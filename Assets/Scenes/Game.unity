@@ -4800,6 +4800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7833423113784541080, guid: 8072fc27576577b40b4358929d168ad0, type: 3}
+      propertyPath: cost
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4960508630262422205, guid: 8072fc27576577b40b4358929d168ad0, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -5680,7 +5684,6 @@ MonoBehaviour:
   electricalResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
-  coalDwarf: 0
   player: {fileID: 1642026058}
 --- !u!114 &1437244074
 MonoBehaviour:
@@ -5751,7 +5754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects: []
+  statuses: []
   poisonStatus: 0
   fireStatus: 0
   curseStatus: 0
@@ -10730,7 +10733,6 @@ MonoBehaviour:
   electricalResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
-  coalDwarf: 0
 --- !u!95 &1642026056
 Animator:
   serializedVersion: 3
@@ -10876,7 +10878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects: []
+  statuses: []
   poisonStatus: 0
   fireStatus: 0
   curseStatus: 0

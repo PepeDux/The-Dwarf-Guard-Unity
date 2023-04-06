@@ -8,7 +8,7 @@ public class PereodicDamageScript : MonoBehaviour
 {
     #region Pereodic Damage
 
-    [SerializeField] private EffectData[] effects;
+    [SerializeField] private StatusData[] statuses;
 
     [Header("Активность эффектов")]
     //Статус активности того ил иного статуса
@@ -25,23 +25,23 @@ public class PereodicDamageScript : MonoBehaviour
 
     private int timePoison;
     private float pereodicPoisonDamage;
-    private int intervalPoison;
+    private int intervalPoison = 5;
 
     private int timeFire;
     private float pereodicFireDamage;
-    private int intervalFire;
+    private int intervalFire = 3;
 
     private int timeCurse;
     private float pereodiCcurseDamage;
-    private int intervalCurse;
+    private int intervalCurse = 20;
 
     private int timeFrost;
     private float pereodicFrostDamage;
-    private int intervalFrost;
+    private int intervalFrost = 7;
 
     private int timeDrunkenness;
     private float pereodicDrunkennessDamage;
-    private int intervalDrunkenness;
+    private int intervalDrunkenness = 10;
 
 
 
@@ -54,38 +54,38 @@ public class PereodicDamageScript : MonoBehaviour
     
     private void Start()
     {
-        effects = Resources.LoadAll<EffectData>("PereodicEffects");
+        statuses = Resources.LoadAll<StatusData>("Statuses");
 
-        foreach(EffectData effect in effects)
+        foreach(StatusData status in statuses)
         {
-            if(effect.type == "Poison")
+            if(status.name == "Poison")
             {
-                poisonEffect = effect.prefab;
+                poisonEffect = status.prefab;
             }
 
-            if(effect.type == "Fire")
+            if(status.name == "Fire")
             {
-                fireEffect = effect.prefab;
+                fireEffect = status.prefab;
             }
 
-            if(effect.type == "Frost")
+            if(status.name == "Frost")
             {
-                frostEffect = effect.prefab;
+                frostEffect = status.prefab;
             }
 
-            if (effect.type == "Curse")
+            if (status.name == "Curse")
             {
-                curseEffect = effect.prefab;
+                curseEffect = status.prefab;
             }
 
-            if (effect.type == "Drunkenness")
+            if (status.name == "Drunkenness")
             {
-                drunkennessEffect = effect.prefab;
+                drunkennessEffect = status.prefab;
             }
         }
     }
 
-    public void TakeInfo(int timeInfo, int damageInfo, int intervalInfo, string typeInfo)
+    public void TakeInfo(int timeInfo, int damageInfo, string typeInfo)
     {
         if (typeInfo == "Poison")
         {
@@ -100,22 +100,16 @@ public class PereodicDamageScript : MonoBehaviour
                 {
                     pereodicPoisonDamage = damageInfo;
                 }
-
-                if (intervalPoison > intervalInfo)
-                {
-                    intervalPoison = intervalInfo;
-                }
             }
 
             if (!poisonStatus)
             {
                 timePoison = timeInfo;
                 pereodicPoisonDamage = damageInfo;
-                intervalPoison = intervalInfo;
 
                 poisonStatus = true;
 
-                GetComponent<StatusData>().statusAdd = "Poison";
+                GetComponent<StatusCalculation>().statusAdd = "Poison";
 
                 StartCoroutine("Poison");
             }
@@ -136,22 +130,16 @@ public class PereodicDamageScript : MonoBehaviour
                 {
                     pereodicFireDamage = damageInfo;
                 }
-
-                if (intervalFire > intervalInfo)
-                {
-                    intervalFire = intervalInfo;
-                }
             }
 
             if (!fireStatus)
             {
                 timeFire = timeInfo;
                 pereodicFireDamage = damageInfo;
-                intervalFire = intervalInfo;
 
                 fireStatus = true;
 
-                GetComponent<StatusData>().statusAdd = "Fire";
+                GetComponent<StatusCalculation>().statusAdd = "Fire";
 
                 StartCoroutine("Fire");
             }
@@ -172,22 +160,16 @@ public class PereodicDamageScript : MonoBehaviour
                 {
                     pereodiCcurseDamage = damageInfo;
                 }
-
-                if (intervalCurse > intervalInfo)
-                {
-                    intervalCurse = intervalInfo;
-                }
             }
 
             if (!curseStatus)
             {
                 timeCurse = timeInfo;
                 pereodiCcurseDamage = damageInfo;
-                intervalCurse = intervalInfo;
 
                 curseStatus = true;
 
-                GetComponent<StatusData>().statusAdd = "Curse";
+                GetComponent<StatusCalculation>().statusAdd = "Curse";
 
                 StartCoroutine("Curse");
             }
@@ -208,22 +190,16 @@ public class PereodicDamageScript : MonoBehaviour
                 {
                     pereodicFrostDamage = damageInfo;
                 }
-
-                if (intervalFrost > intervalInfo)
-                {
-                    intervalFrost = intervalInfo;
-                }
             }
 
             if (!frostStatus)
             {
                 timeFrost = timeInfo;
                 pereodicFrostDamage = damageInfo;
-                intervalFrost = intervalInfo;
 
                 frostStatus = true;
 
-                GetComponent<StatusData>().statusAdd = "Frost";
+                GetComponent<StatusCalculation>().statusAdd = "Frost";
 
                 StartCoroutine("Frost");
             }
@@ -245,22 +221,16 @@ public class PereodicDamageScript : MonoBehaviour
                 {
                     pereodicDrunkennessDamage = damageInfo;
                 }
-
-                if (intervalDrunkenness > intervalInfo)
-                {
-                    intervalDrunkenness = intervalInfo;
-                }
             }
 
             if (!drunkennessStatus)
             {
                 timeDrunkenness = timeInfo;
                 pereodicDrunkennessDamage = damageInfo;
-                intervalDrunkenness = intervalInfo;
 
                 drunkennessStatus = true;
 
-                GetComponent<StatusData>().statusAdd = "Drunkenness";
+                GetComponent<StatusCalculation>().statusAdd = "Drunkenness";
 
                 StartCoroutine("Drunkenness");
             }
@@ -280,7 +250,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
-        GetComponent<StatusData>().statusRemove = "Poison";
+        GetComponent<StatusCalculation>().statusRemove = "Poison";
         poisonStatus = false;
         Debug.Log("Я закончил");
     }
@@ -296,7 +266,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(fireDamage: pereodicFireDamage);
         }
 
-        GetComponent<StatusData>().statusRemove = "Fire";
+        GetComponent<StatusCalculation>().statusRemove = "Fire";
         fireStatus = false;
         Debug.Log("Я закончил");
     }
@@ -312,7 +282,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(curseDamage: pereodiCcurseDamage);
         }
 
-        GetComponent<StatusData>().statusRemove = "Curse";
+        GetComponent<StatusCalculation>().statusRemove = "Curse";
         curseStatus = false;
         Debug.Log("Я закончил");
     }
@@ -328,7 +298,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(frostDamage: pereodicFrostDamage);
         }
 
-        GetComponent<StatusData>().statusRemove = "Frost";
+        GetComponent<StatusCalculation>().statusRemove = "Frost";
         frostStatus = false;
         Debug.Log("Я закончил");
     }
@@ -344,7 +314,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(drunkennessDamage: pereodicDrunkennessDamage);
         }
 
-        GetComponent<StatusData>().statusRemove = "Drunkenness";
+        GetComponent<StatusCalculation>().statusRemove = "Drunkenness";
         drunkennessStatus = false;
         Debug.Log("Я закончил");
     }

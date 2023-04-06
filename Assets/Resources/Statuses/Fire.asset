@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114fe513a9d865f4a8d7080986eaefce, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  type: Pereodic
+  prefab: {fileID: 722846013730055075, guid: ecc9c8e7444200f43ab1c1bf17f8a0d3, type: 3}
+  strength: 0
+  agility: -6
+  intel: 0
+  constitution: 0
+  wisdom: 0
+  dodge: 0
+  carryingCapacity: 0
+  speed: 0
+  attackSpeed: 0
+  criticalDamage: 0
+  criticalDamageChance: 0
+  precision: 0
+  drunkenness: 0
+  prickResist: 0
+  slashResist: 0
+  crushResist: 0
+  poisonResist: 0
+  fireResist: 0
+  frostResist: 25
+  curseResist: 0
+  electricalResist: 0
+  drunkennessResist: 0
