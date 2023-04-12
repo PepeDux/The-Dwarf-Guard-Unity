@@ -5604,6 +5604,14 @@ MonoBehaviour:
   maxEnergy: 30
   energyWaste: 10
   money: 0
+  firstWeapon: {fileID: 0}
+  secondWeapon: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  head: {fileID: 0}
+  chest: {fileID: 0}
+  hands: {fileID: 0}
+  legs: {fileID: 0}
+  feet: {fileID: 0}
   prickDamage: 10
   prickDamageWeapon: 10
   prickDamageBonus: 0
@@ -5636,19 +5644,14 @@ MonoBehaviour:
   level: 0
   maxLevel: 10
   strength: 0
-  strengthCharac: 10
   strengthBonus: 0
   agility: 0
-  agilityCharac: 10
   agilityBonus: 0
   intel: 0
-  intelCharac: 10
   intelBonus: 0
   constitution: 0
-  constitutionCharac: 10
   constitutionBonus: 0
   wisdom: 0
-  wisdomCharac: 10
   wisdomBonus: 0
   dodge: 0
   dodgeBonus: 0
@@ -5684,6 +5687,16 @@ MonoBehaviour:
   electricalResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
+  hammerWay: 0
+  hammerWayBonus: 0
+  gearWay: 0
+  gearWayBonus: 0
+  anvilWay: 0
+  anvilWayBonus: 0
+  beerWay: 0
+  beerWayBonus: 0
+  runeWay: 0
+  runeWayBonus: 0
   player: {fileID: 1642026058}
 --- !u!114 &1437244074
 MonoBehaviour:
@@ -10588,6 +10601,7 @@ GameObject:
   - component: {fileID: 1642026053}
   - component: {fileID: 1642026061}
   - component: {fileID: 1642026063}
+  - component: {fileID: 1642026064}
   - component: {fileID: 1642026059}
   - component: {fileID: 1642026060}
   m_Layer: 6
@@ -10653,6 +10667,14 @@ MonoBehaviour:
   maxEnergy: 300
   energyWaste: 10
   money: 0
+  firstWeapon: {fileID: 11400000, guid: 2457deda278dcb344a06bd0d6eb317f4, type: 2}
+  secondWeapon: {fileID: 11400000, guid: b55c897d81ab4514cb80e48718e5aa0f, type: 2}
+  currentWeapon: {fileID: 11400000, guid: 2457deda278dcb344a06bd0d6eb317f4, type: 2}
+  head: {fileID: 0}
+  chest: {fileID: 0}
+  hands: {fileID: 0}
+  legs: {fileID: 0}
+  feet: {fileID: 0}
   prickDamage: 20
   prickDamageWeapon: 10
   prickDamageBonus: 0
@@ -10685,19 +10707,14 @@ MonoBehaviour:
   level: 0
   maxLevel: 10
   strength: 0
-  strengthCharac: 10
   strengthBonus: 0
   agility: 0
-  agilityCharac: 10
   agilityBonus: 0
   intel: 0
-  intelCharac: 10
   intelBonus: 0
   constitution: 0
-  constitutionCharac: 10
   constitutionBonus: 0
   wisdom: 0
-  wisdomCharac: 10
   wisdomBonus: 0
   dodge: -137
   dodgeBonus: 0
@@ -10733,6 +10750,16 @@ MonoBehaviour:
   electricalResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
+  hammerWay: 0
+  hammerWayBonus: 0
+  gearWay: 0
+  gearWayBonus: 0
+  anvilWay: 0
+  anvilWayBonus: 0
+  beerWay: 0
+  beerWayBonus: 0
+  runeWay: 0
+  runeWayBonus: 0
 --- !u!95 &1642026056
 Animator:
   serializedVersion: 3
@@ -10914,6 +10941,21 @@ MonoBehaviour:
   activeStatusName: []
   statusAdd: 
   statusRemove: 
+--- !u!114 &1642026064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642026052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141efe425eb520f4cb935af9bc58b011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: 
+  lastWeapon: 
+  weapons: []
 --- !u!1 &1660368497
 GameObject:
   m_ObjectHideFlags: 3

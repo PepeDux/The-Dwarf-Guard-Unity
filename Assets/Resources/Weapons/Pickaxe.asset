@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc79a4eebc69c4408960e9648713c97, type: 3}
+  m_Name: Pickaxe
+  m_EditorClassIdentifier: 
+  type: 1
+  prefab: {fileID: 0}
+  strength: 0
+  agility: -1
+  intel: 0
+  constitution: 0
+  wisdom: 0
+  dodge: 0
+  carryingCapacity: 0
+  speed: 0
+  attackSpeed: 0
+  criticalDamage: 0
+  criticalDamageChance: 0
+  precision: 0
+  drunkenness: 0
+  prickResist: 0
+  slashResist: 0
+  crushResist: 0
+  poisonResist: 0
+  fireResist: 0
+  frostResist: 0
+  curseResist: 0
+  electricalResist: 0
+  drunkennessResist: 0
+  hammerWay: 0
+  gearWay: 0
+  anvilWay: 0
+  beerWay: 0
+  runeWay: 0
+  cost: 0
+  weight: 0
+  durability: 0
+  maxDurability: 0
+  itemLevel: 0
+  requestStrength: 0
+  requestAgility: 0
+  requesIntel: 0
+  requesConstitution: 0
+  requestwisdom: 0
+  weaponType: 
+  prickDamageWeapon: 0
+  slashDamageWeapon: 0
+  crushDamageWeapon: 0
+  poisonDamageWeapon: 0
+  fireDamageWeapon: 0
+  frostDamageWeapon: 0
+  curseDamageWeapon: 0
+  electricalDamageWeapon: 0
+  drunkennessDamageWeapon: 0
+  damageMod: 0

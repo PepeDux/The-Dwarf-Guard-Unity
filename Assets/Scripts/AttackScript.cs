@@ -21,16 +21,19 @@ public class AttackScript : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+
+        GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().currentWeapon.name;
     }
-    void Update()
-    {     
-        Attack();     
+    void FixedUpdate()
+    {
+        Attack();
+        WeaponChange();
     }
 
     void Attack()
     {
         if (GetComponent<Player>().energy >= GetComponent<Player>().energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
-        {     
+        {
             bufSpeed = GetComponent<Player>().speedBonus;    //Записываем изначальную скорость персонажа в буфер
             GetComponent<Player>().speedBonus -= GetComponent<Player>().speed;         //Останавлиаем персонажа
 
@@ -41,9 +44,9 @@ public class AttackScript : MonoBehaviour
 
             Collider2D[] HitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
 
-            foreach (Collider2D enemy in HitEnemies) 
+            foreach (Collider2D enemy in HitEnemies)
             {
-                if (Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge) 
+                if (Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge)
                 {
                     Debug.Log($"Я {enemy.name} уклонился");
                 }
@@ -77,8 +80,26 @@ public class AttackScript : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere (AttackPoint.position, AttackRange);
+        Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
     }
 
+    void WeaponChange()
+    {
+        if (Input.GetKeyDown("1") || Input.GetKeyDown("2")) 
+        {
+            if (GetComponent<Player>().currentWeapon == GetComponent<Player>().firstWeapon) 
+            {
+                GetComponent<Player>().currentWeapon = GetComponent<Player>().secondWeapon; //Текущее оружее игрока = второму                 
+                GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().secondWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
+                GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().firstWeapon.name; //Убирает характеристики предыдущего оружия
+            }
+            else if (GetComponent<Player>().currentWeapon == GetComponent<Player>().secondWeapon)
+            {
+                GetComponent<Player>().currentWeapon = GetComponent<Player>().firstWeapon; //Текущее оружее игрока = второму  
+                GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().firstWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
+                GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().secondWeapon.name; //Убирает характеристики предыдущего оружия
+            }   
+        }
+    }
 }
 

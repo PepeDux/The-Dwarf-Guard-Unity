@@ -15,7 +15,6 @@ public class MainObject : MonoBehaviour
 
     public static int random;
 
-
     #region Characteristic
 
     private int freeCharacteristicLevel = 0;
@@ -39,13 +38,19 @@ public class MainObject : MonoBehaviour
     //Монетки
     public int money = 0;
 
-    //Физическая броня
-    private float physicalArmor;
-    private float maxPhysicalArmor;
+    [Header("Оружие")]
+    public ScriptableObject firstWeapon;
+    public ScriptableObject secondWeapon;
+    public ScriptableObject currentWeapon;
 
-    //Магическая броня
-    private float magicArmor;
-    private float maxMagicArmor;
+
+
+    [Header("Экипировка")]
+    public ScriptableObject head;   //Броня головы
+    public ScriptableObject chest;  //Броня торса
+    public ScriptableObject hands;  //Броня рук
+    public ScriptableObject legs;   //Броня ног
+    public ScriptableObject feet;   //Броня ступней
 
 
 
@@ -58,47 +63,47 @@ public class MainObject : MonoBehaviour
     //Колющий урон
     public float prickDamage = 0;
     public float prickDamageWeapon = 6f;
-    [HideInInspector] public float prickDamageBonus = 0;
+    [HideInInspector] public float prickDamageBonus = 0f;
 
     //Режущий урон
     public float slashDamage = 0;
-    [HideInInspector] public float slashDamageWeapon = 1f;
-    [HideInInspector] public float slashDamageBonus = 0;
+    [HideInInspector] public float slashDamageWeapon = 0f;
+    [HideInInspector] public float slashDamageBonus = 0f;
 
     //Дробящий урон
     public float crushDamage = 0;
     [HideInInspector] public float crushDamageWeapon = 0f;
-    [HideInInspector] public float crushDamageBonus = 0;
+    [HideInInspector] public float crushDamageBonus = 0f;
 
     //Ядовитый урон
     public float poisonDamage = 0;
     [HideInInspector] public float poisonDamageWeapon = 0f;
-    [HideInInspector] public float poisonDamageBonus = 0;
+    [HideInInspector] public float poisonDamageBonus = 0f;
 
     //Огненный урон
     public float fireDamage = 0;
     [HideInInspector] public float fireDamageWeapon = 0f;
-    [HideInInspector] public float fireDamageBonus = 0;
+    [HideInInspector] public float fireDamageBonus = 0f;
 
     //Морозный урон
     public float frostDamage = 0;
     [HideInInspector] public float frostDamageWeapon = 0f;
-    [HideInInspector] public float frostDamageBonus = 0;
+    [HideInInspector] public float frostDamageBonus = 0f;
 
     //Электрический урон
     public float electricalDamage = 0;
     [HideInInspector] public float electricalDamageWeapon = 0f;
-    [HideInInspector] public float electricalDamageBonus = 0;
+    [HideInInspector] public float electricalDamageBonus = 0f;
 
     //Проклятый урон
     public float curseDamage = 0;
     [HideInInspector] public float curseDamageWeapon = 0f;
-    [HideInInspector] public float curseDamageBonus = 0;
+    [HideInInspector] public float curseDamageBonus = 0f;
 
     //Алкогольный урон
     public float drunkennessDamage = 0;
     [HideInInspector] public float drunkennessDamageWeapon = 0f;
-    [HideInInspector] public float drunkennessDamageBonus = 0;
+    [HideInInspector] public float drunkennessDamageBonus = 0f;
 
 
 
@@ -121,32 +126,32 @@ public class MainObject : MonoBehaviour
 
     //Сила
     public int strength = 0;
-    [HideInInspector] public int strengthCharac = 10;
-    [HideInInspector] private int maxStrengthCharac = 100;
+    [HideInInspector] private int strengthCharac = 10;
+    [HideInInspector] private const int maxStrengthCharac = 100;
     [HideInInspector] public int strengthBonus = 0 ;
 
     //Ловкость
     public int agility = 0;
-    [HideInInspector] public int agilityCharac = 10;
-    [HideInInspector] private int maxAgilityCharac = 100;
+    [HideInInspector] private int agilityCharac = 10;
+    [HideInInspector] private const int maxAgilityCharac = 100;
     [HideInInspector] public int agilityBonus = 0;
 
     //Интеллект
     public int intel = 0;
-    [HideInInspector] public int intelCharac = 10;
-    [HideInInspector] private int maxIntelCharac = 100;
+    [HideInInspector] private int intelCharac = 10;
+    [HideInInspector] private const int maxIntelCharac = 100;
     [HideInInspector] public int intelBonus = 0;
 
     //Телосложение
     public int constitution = 0;
-    [HideInInspector] public int constitutionCharac = 10;
-    [HideInInspector] private int maxConstitutionCharac = 100;
+    [HideInInspector] private int constitutionCharac = 10;
+    [HideInInspector] private const int maxConstitutionCharac = 100;
     [HideInInspector] public int constitutionBonus = 0;
 
     //Мудрость
     public int wisdom = 0;
-    [HideInInspector] public int wisdomCharac = 10;
-    [HideInInspector] private int maxWisdomCharac = 100;
+    [HideInInspector] private int wisdomCharac = 10;
+    [HideInInspector] private const int maxWisdomCharac = 100;
     [HideInInspector] public int wisdomBonus = 0;
 
 
@@ -169,7 +174,7 @@ public class MainObject : MonoBehaviour
 
     //Скорость
     public float speed = 0;
-    public float speedBonus = 2f;
+    [HideInInspector] public float speedBonus = 2f;
     private const float maxSpeed = 10f;
 
     //Скорость атаки
@@ -256,6 +261,37 @@ public class MainObject : MonoBehaviour
     private const int minDrunkennessResist = -100;
 
 
+
+    [Header("Пути")]
+    //Путь молота
+    public int hammerWay = 0;
+    [HideInInspector] private int hammerWayCharac = 0;
+    [HideInInspector] private const int maxHammerWayCharac = 20;
+    [HideInInspector] public int hammerWayBonus = 0;
+
+    //Путь шестеренки
+    public int gearWay = 0;
+    [HideInInspector] private int gearWayCharac = 0;
+    [HideInInspector] private const int maxGearWayCharac = 20;
+    [HideInInspector] public int gearWayBonus = 0;
+
+    //Путь наковальни
+    public int anvilWay = 0;
+    [HideInInspector] private int anvilWayCharac = 0;
+    [HideInInspector] private const int maxAnvilWayCharac = 20;
+    [HideInInspector] public int anvilWayBonus = 0;
+
+    //Путь пива
+    public int beerWay = 0;
+    [HideInInspector] private int beerWayCharac = 0;
+    [HideInInspector] private const int maxBeerWayCharac = 20;
+    [HideInInspector] public int beerWayBonus = 0;
+
+    //Путь рун
+    public int runeWay = 0;
+    [HideInInspector] private int runeWayCharac = 0;
+    [HideInInspector] private const int maxRuneWayCharac = 20;
+    [HideInInspector] public int runeWayBonus = 0;
 
     public void CheckCharac()
     {
@@ -616,6 +652,15 @@ public class MainObject : MonoBehaviour
         attackSpeed = agility * 0.05f + attackSpeedBonus;
         criticalDamage = agility * 1 + criticalDamageBonus;
         precision = agility * 1 + precisionBonus;
+
+
+
+        //Пути
+        hammerWay = hammerWayCharac * 1 + hammerWayBonus;
+        gearWay = gearWayCharac * 1 + gearWayBonus;
+        anvilWay = anvilWay * 1 + anvilWayBonus;
+        beerWay = beerWayCharac * 1 + beerWayCharac;
+        runeWay = runeWayCharac * 1 + runeWayBonus;
     }//Обновляет характеристики исходя из других переменных и бонусов к ним
 
 

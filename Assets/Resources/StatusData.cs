@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using MinAttribute = UnityEngine.MinAttribute;
 
-[CreateAssetMenu(fileName = "New StatusData", menuName = "Status", order = 51)]
+[CreateAssetMenu(fileName = "New Status", menuName = "Status", order = 51)]
 public class StatusData : ScriptableObject
 {
     [Header("Плюшки")]
@@ -119,4 +119,27 @@ public class StatusData : ScriptableObject
     //Сопротивление АлКоГоЛю🍺
     [SerializeField, Range(-100f, 100f)] public float drunkennessResist = 0;
     public float DrunkennessResist { get => drunkennessResist; }
+
+
+
+    [Header("Сопротивления к урону")]
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public int hammerWay = 0;
+    public int HammerWay { get => hammerWay; }
+
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public int gearWay = 0;
+    public int GearWay { get => gearWay; }
+
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public int anvilWay = 0;
+    public int AnvilWay { get => anvilWay; }
+
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public int beerWay = 0;
+    public int BeerWay { get => beerWay; }
+
+    //Сопротивление АлКоГоЛю🍺
+    [SerializeField, Range(-100f, 100f)] public int runeWay = 0;
+    public int RuneWay { get => runeWay; }
 }

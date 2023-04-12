@@ -12,15 +12,17 @@ public class StatusCalculation : MonoBehaviour
     public string statusRemove; // Переменная принимает значение удаляемого статуса
     private int mod = 1; // Модификатор использующийся для расчета добавления и удаления статуса из объекта
 
+    private void Start()
+    {
+        statuses = Resources.LoadAll<StatusData>("Statuses");
+    }
 
-    public void Update()
+    private void FixedUpdate()
     {
         Change();
     }
-    public void Change()
+    private void Change()
     {
-        statuses = Resources.LoadAll<StatusData>("Statuses");
-
         if(statusAdd != null && statusAdd != "")
         {
             if (!activeStatusName.Contains(statusAdd))
@@ -44,7 +46,8 @@ public class StatusCalculation : MonoBehaviour
     }
 
 
-    public void Сalculation()
+
+    private void Сalculation()
     {
         foreach (StatusData status in statuses)
         {
@@ -82,6 +85,13 @@ public class StatusCalculation : MonoBehaviour
                 GetComponent<MainObject>().curseResistBonus += mod * status.curseResist;
                 GetComponent<MainObject>().electricalResistBonus += mod * status.electricalResist;
                 GetComponent<MainObject>().drunkennessResistBonus += mod * status.drunkennessResist;
+
+                GetComponent<MainObject>().hammerWayBonus += mod * status.hammerWay;
+                GetComponent<MainObject>().gearWayBonus += mod * status.gearWay;
+                GetComponent<MainObject>().anvilWayBonus += mod * status.anvilWay;
+                GetComponent<MainObject>().beerWayBonus += mod * status.beerWay;
+                GetComponent<MainObject>().runeWayBonus += mod * status.runeWay;
+
             }
         }
     }
