@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Equipment", menuName = "Weapon", order = 51)]
+[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon", order = 51)]
 public class WeaponData : EquipmentData
 {
     [Header("Тип оружия")]

@@ -13,6 +13,11 @@ public class WeaponCalculation : MonoBehaviour
     void Start()
     {
         weapons = Resources.LoadAll<WeaponData>("Weapons");
+
+        if(GetComponent<Player>().currentWeapon != null)
+        {
+            currentWeapon = GetComponent<Player>().currentWeapon.name;
+        }
     }
     void FixedUpdate()
     {
@@ -21,6 +26,12 @@ public class WeaponCalculation : MonoBehaviour
 
     private void ChangeWeapon()
     {
+        if (lastWeapon != null && lastWeapon != "") 
+        {
+            Calculation();
+            lastWeapon = null;
+        }
+
         if (currentWeapon != null && currentWeapon != "")
         {
             Calculation();

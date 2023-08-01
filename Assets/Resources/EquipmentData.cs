@@ -17,17 +17,6 @@ public class EquipmentData : StatusData
 
 
 
-    [Header("Прочность")]
-    //Прочность
-    [SerializeField, Range(0, 100f)] public float durability;
-    public float Durability { get => durability; }
-
-    //Максимальная прочность
-    [SerializeField, Range(0, 100f)] public float maxDurability;
-    public float MaxDurability { get => maxDurability; }
-
-
-
     [Header("Уровень предмета")]
     //Прочность
     [SerializeField, Range(0, 100)] public int itemLevel;

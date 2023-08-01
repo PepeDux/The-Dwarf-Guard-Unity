@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c92b6791d8b45347b07c653919dbc17, type: 3}
+  m_Name: Dwarfhelm
+  m_EditorClassIdentifier: 
+  type: 
+  prefab: {fileID: 0}
+  strength: 0
+  agility: 0
+  intel: 0
+  constitution: 0
+  wisdom: 0
+  dodge: 0
+  carryingCapacity: 0
+  speed: 0
+  attackSpeed: 0
+  criticalDamage: 0
+  criticalDamageChance: 0
+  precision: 0
+  drunkenness: 0
+  prickResist: 0
+  slashResist: 5
+  crushResist: 0
+  poisonResist: 0
+  fireResist: 0
+  frostResist: 0
+  curseResist: 0
+  electricalResist: 0
+  drunkennessResist: 0
+  hammerWay: 0
+  gearWay: 0
+  anvilWay: 0
+  beerWay: 0
+  runeWay: 0
+  cost: 0
+  weight: 0
+  itemLevel: 0
+  requestStrength: 0
+  requestAgility: 0
+  requesIntel: 0
+  requesConstitution: 0
+  requestwisdom: 0
+  armorType: 

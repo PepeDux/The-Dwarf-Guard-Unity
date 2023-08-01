@@ -21,66 +21,63 @@ public class AttackScript : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-
-        GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().currentWeapon.name;
-    }
-    void FixedUpdate()
-    {
-        Attack();
-        WeaponChange();
     }
 
     void Attack()
     {
-        if (GetComponent<Player>().energy >= GetComponent<Player>().energyWaste && Input.GetMouseButtonDown(0) && CanAttack == true)
+        if(Input.GetMouseButtonDown(0) && CanAttack == true && GetComponent<Player>().actionPoints >= 1)
         {
-            bufSpeed = GetComponent<Player>().speedBonus;    //Записываем изначальную скорость персонажа в буфер
-            GetComponent<Player>().speedBonus -= GetComponent<Player>().speed;         //Останавлиаем персонажа
-
-            anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
-            GetComponent<Player>().energy -= GetComponent<Player>().energyWaste; // Отнимаем расход энергии от энергии персонажа 
-            CanAttack = false;
-            NextAnimator.SetTrigger("OnAnimationEnded"); //Вызываем метод AttackToogle()
-
-            Collider2D[] HitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyLayers);
-
-            foreach (Collider2D enemy in HitEnemies)
+            foreach(var enemy in TileManager.enemyList)
             {
-                if (Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge)
+                if(enemy.GetComponent<Enemy>().coordinate == TileManager.CellPosition)
                 {
-                    Debug.Log($"Я {enemy.name} уклонился");
-                }
-                else
-                {
-                    enemy.GetComponent<TakeDamageScript>().TakeDamage(
-                    prickDamage: GetComponent<Player>().prickDamage,
-                    slashDamage: GetComponent<Player>().slashDamage,
-                    crushDamage: GetComponent<Player>().crushDamage,
-                    poisonDamage: GetComponent<Player>().poisonDamage,
-                    fireDamage: GetComponent<Player>().fireDamage,
-                    frostDamage: GetComponent<Player>().frostDamage,
-                    electricalDamage: GetComponent<Player>().electricalDamage,
-                    curseDamage: GetComponent<Player>().curseDamage,
-                    drunkennessDamage: GetComponent<Player>().drunkennessDamage
-                    );
-                }
-            }
+                    anim.SetTrigger("Attack");  //Воспроизводим анимацию атаки
+                    GetComponent<Player>().actionPoints -= 1; // Отнимаем расход энергии от энергии персонажа 
+                    CanAttack = false;
+                    NextAnimator.SetTrigger("OnAnimationEnded"); //Вызываем метод AttackToogle()
 
-            Invoke("AttackReload", 1);
+
+
+                    if (Random.Range(0, 100) <= enemy.GetComponent<Enemy>().dodge)
+                    {
+                        Debug.Log($"Я {enemy.name} уклонился");
+                    }
+                    else
+                    {
+                        enemy.GetComponent<TakeDamageScript>().TakeDamage(
+                        prickDamage: GetComponent<Player>().prickDamage,
+                        slashDamage: GetComponent<Player>().slashDamage,
+                        crushDamage: GetComponent<Player>().crushDamage,
+                        poisonDamage: GetComponent<Player>().poisonDamage,
+                        fireDamage: GetComponent<Player>().fireDamage,
+                        frostDamage: GetComponent<Player>().frostDamage,
+                        electricalDamage: GetComponent<Player>().electricalDamage,
+                        curseDamage: GetComponent<Player>().curseDamage,
+                        drunkennessDamage: GetComponent<Player>().drunkennessDamage
+                        );
+                    }
+
+                    Invoke("AttackReload", 1);
+                }              
+            }
         }
+
+        
+     
+
+
+           
+
+           
+        
     }
     public void AttackToogle()
     {
         Debug.Log("WORK");
-        GetComponent<Player>().speedBonus = bufSpeed;   //Востанавливаем скорость персонажа
     }
     void AttackReload()
     {
         CanAttack = true;
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
     }
 
     void WeaponChange()
@@ -89,15 +86,23 @@ public class AttackScript : MonoBehaviour
         {
             if (GetComponent<Player>().currentWeapon == GetComponent<Player>().firstWeapon) 
             {
-                GetComponent<Player>().currentWeapon = GetComponent<Player>().secondWeapon; //Текущее оружее игрока = второму                 
-                GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().secondWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
-                GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().firstWeapon.name; //Убирает характеристики предыдущего оружия
+                GetComponent<Player>().currentWeapon = GetComponent<Player>().secondWeapon; //Текущее оружее игрока = второму
+                if (GetComponent<Player>().currentWeapon != null)
+                {
+                    GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().secondWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
+                    GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().firstWeapon.name; //Убирает характеристики предыдущего оружия
+                }
+                
             }
             else if (GetComponent<Player>().currentWeapon == GetComponent<Player>().secondWeapon)
             {
                 GetComponent<Player>().currentWeapon = GetComponent<Player>().firstWeapon; //Текущее оружее игрока = второму  
-                GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().firstWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
-                GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().secondWeapon.name; //Убирает характеристики предыдущего оружия
+                if (GetComponent<Player>().currentWeapon != null)
+                {
+                    GetComponent<WeaponCalculation>().currentWeapon = GetComponent<Player>().firstWeapon.name; //Передает скрипту для расчета характеристик оружия текущее оружее, для добавления характеристик
+                    GetComponent<WeaponCalculation>().lastWeapon = GetComponent<Player>().secondWeapon.name; //Убирает характеристики предыдущего оружия
+                }
+                    
             }   
         }
     }

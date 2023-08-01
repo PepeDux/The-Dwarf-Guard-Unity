@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class EnemyMeleeAttack : MonoBehaviour
@@ -13,12 +14,13 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     public bool CanAttack = true;
 
-    void Update()
+
+    private void Start()
     {
         anim = GetComponent<Animator>();
     }
 
-    void Attack()
+    public void Attack()
     {
         if(CanAttack == true) 
         {
