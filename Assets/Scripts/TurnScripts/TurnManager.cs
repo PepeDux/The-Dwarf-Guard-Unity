@@ -1,6 +1,9 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -47,16 +50,20 @@ public class TurnManager : MonoBehaviour
             playerTurn = true;
         }
     }
-    
+
     public void EnemyTurn()
     {
-        if(playerTurn == false && totalTurn == true)
+        if (playerTurn == false && totalTurn == true)
         {
             foreach (var enemy in TileManager.enemyList)
             {
                 enemy.GetComponent<EnemyTileManager>().Turn();
             }
-        }    
+        }
     }
+
+
+   
+
 
 }

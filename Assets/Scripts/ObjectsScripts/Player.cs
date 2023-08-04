@@ -11,7 +11,10 @@ public class Player : MainObject
     private bool isFacingRight = true;
 
 
-
+    private void Start()
+    {
+        Starter();
+    }
     private void Update()
     {
         Updater();
@@ -20,55 +23,11 @@ public class Player : MainObject
 
     void MoveOrientation()
     {
-        //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //Vector2 moveVolecity = moveInput.normalized * speed;
-        //rb.MovePosition(rb.position + moveVolecity * Time.fixedDeltaTime);
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            GetComponent<Player>().transform.Translate(0, 0.5f, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetComponent<Player>().transform.Translate(-0.5f, 0, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            GetComponent<Player>().transform.Translate(0, -0.5f, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            GetComponent<Player>().transform.Translate(0.5f, 0, 0);
-        }
-
-
-
-
-        float movex = Input.GetAxis("Horizontal");
-        anim.SetFloat("SpeedX", Mathf.Abs(movex));
-
-        float movey = Input.GetAxis("Vertical");
-        anim.SetFloat("SpeedY", Mathf.Abs(movey));
-
-        if (movex > 0 && !isFacingRight)
+        if (TileManager.WorldPosition.x < GetComponent<Player>().transform.position.x && isFacingRight == true)
         {
             Flip();
         }
-
-        else if (movex < 0 && isFacingRight)
-        {
-            Flip();
-        }
-
-        if (Input.mousePosition.x < 900f && isFacingRight)
-        {
-            Flip();
-        }
-
-        else if (Input.mousePosition.x > 950 && !isFacingRight)
+        else if (TileManager.WorldPosition.x > GetComponent<Player>().transform.position.x && isFacingRight == false)
         {
             Flip();
         }

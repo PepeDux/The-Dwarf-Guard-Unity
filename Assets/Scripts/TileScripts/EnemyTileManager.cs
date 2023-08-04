@@ -5,8 +5,10 @@ using System.Linq;
 using TMPro;
 using TreeEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.ParticleSystem;
 
 public class EnemyTileManager : MonoBehaviour
@@ -15,30 +17,71 @@ public class EnemyTileManager : MonoBehaviour
     private List<Node> checkedNodes = new List<Node>(); //Проверенные ноды
     private List<Node> freeNodes = new List<Node>(); //Свободные ноды
     private List<Node> waitingNodes = new List<Node>(); //Ожидающие ноды
+
     public GameObject target; //Цель
+    private GameObject tileManager;
+    public bool finishTurn;
 
 
-    public void Turn()
+    public void Start()
+    {
+        finishTurn = true;
+        target = GetComponent<Enemy>().player;
+        tileManager = GameObject.Find("TileManager");
+    }
+
+    public void EnemyMove()
     {
         if (GetComponent<Enemy>().movePoint > 0)
         {
             pathToTarget.Clear();
             pathToTarget = GetPath(target.GetComponent<Player>().coordinate);
 
-            Debug.Log(String.Join(",", pathToTarget));
-
             if (pathToTarget.Count > 1)
             {
                 pathToTarget.RemoveAt(0);
-
                 GetComponent<Enemy>().coordinate = pathToTarget[pathToTarget.Count - 1];
-
+                GetComponent<Enemy>().UpdateCoordinate();
                 GetComponent<Enemy>().movePoint -= 1;
-
-                
+            }
+            else
+            {
+                //break;
             }
 
-          
+
+
+
+        }
+
+        finishTurn = true;
+    }
+
+
+
+    public void Turn()
+    {
+        tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+
+        EnemyMove();
+
+
+        while (GetComponent<Enemy>().actionPoints > 0)
+        {
+            int startActionPoints = GetComponent<Enemy>().actionPoints;
+
+            if (GetComponent<Enemy>().actionPoints > 0)
+            {
+                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.up);
+                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.down);
+                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.left);
+                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.right);
+            }
+
+            if(startActionPoints == GetComponent<Enemy>().actionPoints)
+            {
+                break;
+            }
         }
     }
     public List<Vector3Int> GetPath(Vector3Int target)

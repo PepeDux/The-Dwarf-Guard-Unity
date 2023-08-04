@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,6 +22,11 @@ public class AttackScript : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        Attack();
     }
 
     void Attack()
@@ -73,6 +79,7 @@ public class AttackScript : MonoBehaviour
     }
     public void AttackToogle()
     {
+        CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
         Debug.Log("WORK");
     }
     void AttackReload()
