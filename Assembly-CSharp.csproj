@@ -137,6 +137,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\EnemyMeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\ObjectsScripts\Coin.cs" />
+    <Compile Include="Assets\Scripts\ObjectsScripts\Crystal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

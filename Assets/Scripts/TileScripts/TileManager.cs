@@ -20,7 +20,7 @@ public class TileManager : MonoBehaviour
 
     public static List<Vector3Int> occupiedCells = new List<Vector3Int>(); //¬се зан€тые клетки
     public static List<Vector3Int> impassableCells = new List<Vector3Int>(); // летки на которые нельз€ наступить
-    public static List<Vector3Int> edgeCells = new List<Vector3Int>();
+    public static List<Vector3Int> edgeCells = new List<Vector3Int>(); // летки "стенки" сто€щие на кра€х уровн€ и запрещающие движен€ за них
     public static List<Vector3Int> markerCells = new List<Vector3Int>(); // летки которые отображают маркеры на поле
     public static List<Vector3Int> enemyCells = new List<Vector3Int>(); // летки на которых находитс€ враг
 

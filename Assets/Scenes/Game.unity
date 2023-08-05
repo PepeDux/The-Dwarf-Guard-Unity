@@ -577,9 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6b65219c7d34b47b0fa40c8dd22e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood:
-  - {fileID: 34846705260380556, guid: 91737bf1a226c644da9bcfb35a236dc3, type: 3}
-  player: {fileID: 1642026052}
 --- !u!1 &336247600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1642026052}
+  tileManager: {fileID: 64866466}
 --- !u!4 &569862202
 Transform:
   m_ObjectHideFlags: 0

@@ -10,8 +10,6 @@ public class Food : BaseObject
     //
     //
 
-    [SerializeField] public GameObject gam;
-
     public int restoredHP;
     public int restoredEnergy;
 
@@ -22,15 +20,12 @@ public class Food : BaseObject
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            other.GetComponent<MainObject>().HP += restoredHP;
-            other.GetComponent<MainObject>().energy += restoredEnergy;
-            
-            other.GetComponent<PereodicDamageScript>().TakeInfo(time, damage, type);
+        other.GetComponent<MainObject>().HP += restoredHP;
+        other.GetComponent<MainObject>().energy += restoredEnergy;
 
-            Destroy(this.gameObject);
-        }
+        other.GetComponent<PereodicDamageScript>().TakeInfo(time, damage, type);
+
+        Destroy(this.gameObject);
     }
 
     private void Update()

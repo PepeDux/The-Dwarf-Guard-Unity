@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5292938591662008570}
   - component: {fileID: 2123116448764306498}
   - component: {fileID: 4224681454971389296}
-  - component: {fileID: -7833423113784541080}
+  - component: {fileID: 5924085729136290002}
   m_Layer: 0
   m_Name: Golden Moneta
   m_TagString: GoldMoneta
@@ -142,7 +142,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0052001476, y: 0}
   m_Size: {x: 0.15649414, y: 0.1843257}
   m_Direction: 0
---- !u!114 &-7833423113784541080
+--- !u!114 &5924085729136290002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8225026437891573065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f04dadad53214daec759cc066a386, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa9736b0f5c6d143998eb0ab9f29a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 5
+  coordinate: {x: 0, y: 0, z: 0}
+  tileMap: {fileID: 0}
+  cost: 0

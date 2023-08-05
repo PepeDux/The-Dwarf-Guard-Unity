@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 756117636915659988}
   - component: {fileID: 4147754739529489129}
   - component: {fileID: 4735799520006160085}
-  - component: {fileID: 4773308783645145330}
+  - component: {fileID: 3030358530057878694}
   m_Layer: 0
   m_Name: Silver Moneta
   m_TagString: SilverMoneta
@@ -142,7 +142,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0026156902, y: -0.0013078451}
   m_Size: {x: 0.15556383, y: 0.18144488}
   m_Direction: 0
---- !u!114 &4773308783645145330
+--- !u!114 &3030358530057878694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7088786105172510301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f04dadad53214daec759cc066a386, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa9736b0f5c6d143998eb0ab9f29a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 3
+  coordinate: {x: 0, y: 0, z: 0}
+  tileMap: {fileID: 0}
+  cost: 0

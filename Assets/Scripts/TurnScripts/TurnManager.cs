@@ -15,6 +15,7 @@ public class TurnManager : MonoBehaviour
     public static bool totalTurn = false; //ѕри завершении всех действий на этот ход
 
     public GameObject player;
+    public GameObject tileManager;
 
     void Start()
     {
@@ -55,8 +56,11 @@ public class TurnManager : MonoBehaviour
     {
         if (playerTurn == false && totalTurn == true)
         {
-            foreach (var enemy in TileManager.enemyList)
+            for (int i = 0; i < TileManager.enemyList.Count; i++)
             {
+                tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+
+                GameObject enemy = TileManager.enemyList[i];
                 enemy.GetComponent<EnemyTileManager>().Turn();
             }
         }

@@ -19,7 +19,6 @@ public class EnemyTileManager : MonoBehaviour
     private List<Node> waitingNodes = new List<Node>(); //ќжидающие ноды
 
     public GameObject target; //÷ель
-    private GameObject tileManager;
     public bool finishTurn;
 
 
@@ -27,7 +26,6 @@ public class EnemyTileManager : MonoBehaviour
     {
         finishTurn = true;
         target = GetComponent<Enemy>().player;
-        tileManager = GameObject.Find("TileManager");
     }
 
     public void EnemyMove()
@@ -61,8 +59,6 @@ public class EnemyTileManager : MonoBehaviour
 
     public void Turn()
     {
-        tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
-
         EnemyMove();
 
 

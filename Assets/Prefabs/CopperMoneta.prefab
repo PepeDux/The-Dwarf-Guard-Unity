@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4605989332810459810}
   - component: {fileID: 2529840614946590548}
   - component: {fileID: 6422782177291439392}
-  - component: {fileID: 5406691070845965416}
+  - component: {fileID: 536168229521614252}
   m_Layer: 0
   m_Name: CopperMoneta
   m_TagString: CopperMoneta
@@ -142,7 +142,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00000011920929, y: 0.00000023841858}
   m_Size: {x: 0.15258479, y: 0.18843222}
   m_Direction: 0
---- !u!114 &5406691070845965416
+--- !u!114 &536168229521614252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9001404232566913776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f04dadad53214daec759cc066a386, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa9736b0f5c6d143998eb0ab9f29a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1
+  coordinate: {x: 0, y: 0, z: 0}
+  tileMap: {fileID: 0}
+  restoredHP: 0
