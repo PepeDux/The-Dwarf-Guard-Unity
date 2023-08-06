@@ -11,6 +11,9 @@ public class Enemy : MainObject
 
     [Header("Игрок")]
     public GameObject player;
+
+
+
     public void FixedUpdate() 
     {
         Updater();

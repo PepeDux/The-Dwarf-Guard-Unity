@@ -59,26 +59,17 @@ public class EnemyTileManager : MonoBehaviour
 
     public void Turn()
     {
-        EnemyMove();
-
-
-        while (GetComponent<Enemy>().actionPoints > 0)
+        if (GetComponent<Enemy>().movePoint > 0)
         {
-            int startActionPoints = GetComponent<Enemy>().actionPoints;
-
-            if (GetComponent<Enemy>().actionPoints > 0)
-            {
-                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.up);
-                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.down);
-                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.left);
-                GetComponent<EnemyMeleeAttack>().Attack(GetComponent<Enemy>().coordinate + Vector3Int.right);
-            }
-
-            if(startActionPoints == GetComponent<Enemy>().actionPoints)
-            {
-                break;
-            }
+            EnemyMove();
         }
+
+
+
+        if (GetComponent<Enemy>().actionPoints > 0)
+        {
+            GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
+        }       
     }
     public List<Vector3Int> GetPath(Vector3Int target)
     {
@@ -186,6 +177,10 @@ public class EnemyTileManager : MonoBehaviour
 
 
 
+       
+
+
+
         return Neighbours;
     }
 
@@ -195,11 +190,11 @@ public class EnemyTileManager : MonoBehaviour
         public Vector3Int TargetPosition; //Позиция цели
         public Node PreviousNode; //Ссылка на предыдущую ноду
 
-        public int F; // F=G+H
-        public int G; // расстояние от старта до ноды
-        public int H; // расстояние от ноды до цели
+        public float F; // F=G+H
+        public float G; // расстояние от старта до ноды
+        public float H; // расстояние от ноды до цели
 
-        public Node(int g, Vector3Int nodePosition, Vector3Int targetPosition, Node previousNode)
+        public Node(float g, Vector3Int nodePosition, Vector3Int targetPosition, Node previousNode)
         {
             Position = nodePosition;
             TargetPosition = targetPosition;

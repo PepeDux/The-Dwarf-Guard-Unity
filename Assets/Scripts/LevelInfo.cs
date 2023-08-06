@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelInfo : MonoBehaviour
 {
     //Колличество юнитов которые нужно заспавнить при старте уровня
-    public static int melee = 2; //Ближники 
+    public static int melee = 1; //Ближники 
     public static int range = 1; //Дальники
     public static int captain = 1; //Капитаны
     public static int wizard = 0; //Колдуны

@@ -63,6 +63,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\TileScripts\EnemyTileManager.cs" />
     <Compile Include="Assets\Scripts\LevelInfo.cs" />
+    <Compile Include="Assets\Scripts\ObjectsScripts\Crystal.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\TileScripts\PlayerTileManager.cs" />
     <Compile Include="Assets\Scripts\TileScripts\TileManager.cs" />
@@ -89,12 +90,13 @@
     <Compile Include="Assets\Resources\ArmorData.cs" />
     <Compile Include="Assets\Scripts\Spawners\PickUpObjectSpawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\ObjectsScripts\Coin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\ObjectsScripts\Food.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Resources\StatusData.cs" />
-    <Compile Include="Assets\Scripts\AttackScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerMeleeAttack.cs" />
     <Compile Include="Assets\EZ Camera Shake\Scripts\CameraShakeInstance.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Trash\CameraFollow.cs" />
@@ -132,13 +134,12 @@
     <Compile Include="Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
     <Compile Include="Assets\EZ Camera Shake\Scripts\CameraShakePresets.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\Scripts\ObjectsScripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Trash\MainUIUpdate.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\EnemyMeleeAttack.cs" />
-    <Compile Include="Assets\Scripts\ObjectsScripts\Coin.cs" />
-    <Compile Include="Assets\Scripts\ObjectsScripts\Crystal.cs" />
+    <Compile Include="Assets\Scripts\AttackScripts\AttackScript.cs" />
+    <Compile Include="Assets\Scripts\AttackScripts\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\AttackScripts\PlayerAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

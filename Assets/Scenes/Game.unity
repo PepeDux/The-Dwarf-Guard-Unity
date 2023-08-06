@@ -3409,7 +3409,6 @@ GameObject:
   - component: {fileID: 1642026054}
   - component: {fileID: 1642026055}
   - component: {fileID: 1642026062}
-  - component: {fileID: 1642026053}
   - component: {fileID: 1642026061}
   - component: {fileID: 1642026063}
   - component: {fileID: 1642026066}
@@ -3425,27 +3424,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1642026053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642026052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1187db9cdf9137e46b3af1a9998a5ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 1642026056}
-  NextAnimator: {fileID: 1642026056}
-  AttackPoint: {fileID: 1203969152}
-  AttackRange: 0.35
-  EnemyLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  bufSpeed: 0
-  CanAttack: 1
 --- !u!114 &1642026054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3481,6 +3459,14 @@ MonoBehaviour:
   maxActionPoint: 6
   beerPoint: 0
   maxBeerPoint: 2
+  horizontalMove: 0
+  diagonalMove: 0
+  lineAttack: 0
+  diagonalAttack: 0
+  melee: 0
+  range: 0
+  meleeAttackDistance: 0
+  rangeAttackDistance: 0
   anim: {fileID: 1642026056}
   HP: 100
   maxHP: 100

@@ -25,6 +25,28 @@ public class MainObject : BaseObject
 
 
 
+    [Header("Тип передвиженя")]
+    public bool horizontalMove;
+    public bool diagonalMove;
+
+
+
+    [Header("Тип атаки")]
+    public bool lineAttack;
+    public bool diagonalAttack;
+
+
+
+    [Header("Тип атаки")]
+    public bool melee; //Ближняя атака
+    public bool range; //Дальняя атака
+
+
+
+    [Header("Дальность атаки")]
+    public bool rangeAttackDistance; //Дальность дальней атаки
+
+
     [Header("Плюшки")]
     public Animator anim;
 

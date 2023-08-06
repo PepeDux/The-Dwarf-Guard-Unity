@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7199952085752115591}
   - component: {fileID: 7199952085752115584}
   - component: {fileID: 7199952085752115587}
-  - component: {fileID: 7199952085752115588}
+  - component: {fileID: 2078013242607108643}
   - component: {fileID: 7199952085752115586}
   m_Layer: 3
   m_Name: Enemy
@@ -169,6 +169,14 @@ MonoBehaviour:
   maxActionPoint: 6
   beerPoint: 0
   maxBeerPoint: 0
+  horizontalMove: 0
+  diagonalMove: 0
+  lineAttack: 1
+  diagonalAttack: 0
+  melee: 1
+  range: 0
+  meleeAttackDistance: 0
+  rangeAttackDistance: 0
   anim: {fileID: 7199952085752115592}
   HP: 100
   maxHP: 100
@@ -304,7 +312,7 @@ MonoBehaviour:
   curseStatus: 0
   frostStatus: 0
   drunkennessStatus: 0
---- !u!114 &7199952085752115588
+--- !u!114 &2078013242607108643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,12 +321,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7199952085752115597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c870f085436cc24f98c8db2f332af2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 21c5afce2b6c12b428e56f126c0caa02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 7199952085752115592}
-  NextAnimator: {fileID: 7199952085752115592}
-  player: {fileID: 0}
+  anim: {fileID: 0}
+  NextAnimator: {fileID: 0}
 --- !u!50 &7199952085752115586
 Rigidbody2D:
   serializedVersion: 4

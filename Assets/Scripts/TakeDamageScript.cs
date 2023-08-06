@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,7 @@ public class TakeDamageScript : MonoBehaviour
         GetComponent<MainObject>().HP -= curseDamage * (1 - GetComponent<MainObject>().curseResist / 100);
         GetComponent<MainObject>().HP -= drunkennessDamage * (1 - GetComponent<MainObject>().curseResist / 100);
 
+        CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
         //GetComponent<MainObject>().anim.SetTrigger("TakeDamage");
 
         if (GetComponent<MainObject>().HP <= 0)
