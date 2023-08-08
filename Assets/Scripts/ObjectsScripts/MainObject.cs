@@ -7,6 +7,7 @@ using UnityEngine.Rendering.PostProcessing;
 using System;
 using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
+using JetBrains.Annotations;
 
 public class MainObject : BaseObject
 {
@@ -25,26 +26,34 @@ public class MainObject : BaseObject
 
 
 
+    [Header("Цена дейсвтий")]
+    public int moveCost;
+    public int meleeAttackCost;
+    public int rangeAttackCost;
+
+
+
     [Header("Тип передвиженя")]
-    public bool horizontalMove;
-    public bool diagonalMove;
+    public bool lineMove = false;
+    public bool diagonalMove = false;
 
 
 
     [Header("Тип атаки")]
-    public bool lineAttack;
-    public bool diagonalAttack;
+    public bool lineAttack = false;
+    public bool diagonalAttack = false;
 
 
 
     [Header("Тип атаки")]
-    public bool melee; //Ближняя атака
-    public bool range; //Дальняя атака
+    public bool melee = false; //Ближняя атака
+    public bool range = false; //Дальняя атака
 
 
 
     [Header("Дальность атаки")]
-    public bool rangeAttackDistance; //Дальность дальней атаки
+    public int rangeAttackDistance; //Дальность дальней атаки
+    public const int meleeAttackDistance = 1;
 
 
     [Header("Плюшки")]
@@ -58,36 +67,14 @@ public class MainObject : BaseObject
     private int CharacteristicLevel = 0;
     private int maxCharacteristicLevel = 10;
 
-    [Header("Первичные характеристики")]
+    [Header("Здоровье")]
     //Здоровье
     public float HP = 100;
     public float maxHP = 100;
 
-    //Энергия
-    public float energy = 30;
-    public float maxEnergy = 100;
-    public float energyWaste = 10;
-
-    //Скорость востановления энергии
-    private float energyRegeneration = 0;
-    private float maxEnergyRegeneration = 30;
-
+    [Header("Монетки")]
     //Монетки
     public int money = 0;
-
-    [Header("Оружие")]
-    public WeaponData firstWeapon;
-    public WeaponData secondWeapon;
-    public WeaponData currentWeapon;
-
-
-
-    [Header("Экипировка")]
-    public ArmorData headArmor;   //Броня головы
-    public ArmorData chestArmor;  //Броня торса
-    public ArmorData handsArmor;  //Броня рук
-    public ArmorData legsArmor;   //Броня ног
-    public ArmorData feetArmor;   //Броня ступней
 
 
 
@@ -144,12 +131,6 @@ public class MainObject : BaseObject
 
 
 
-    [Header("Дистанция атаки и тип атаки")]
-    public int attackRange;
-    public string attackType;
-
-
-
     [Header("Уровень и опыт")]
     //Опыт
     public float XP = 0;
@@ -174,16 +155,16 @@ public class MainObject : BaseObject
     [HideInInspector] public int strengthBonus = 0 ;
 
     //Ловкость
-    public int agility = 0;
-    [HideInInspector] private int agilityCharac = 10;
-    [HideInInspector] private const int maxAgilityCharac = 100;
-    [HideInInspector] public int agilityBonus = 0;
+    public int dexterity = 0;
+    [HideInInspector] private int dexterityCharac = 10;
+    [HideInInspector] private const int maxDexterityCharac = 100;
+    [HideInInspector] public int dexterityBonus = 0;
 
     //Интеллект
-    public int intel = 0;
-    [HideInInspector] private int intelCharac = 10;
-    [HideInInspector] private const int maxIntelCharac = 100;
-    [HideInInspector] public int intelBonus = 0;
+    public int inteligence = 0;
+    [HideInInspector] private int inteligenceCharac = 10;
+    [HideInInspector] private const int maxInteligenceCharac = 100;
+    [HideInInspector] public int inteligenceBonus = 0;
 
     //Телосложение
     public int constitution = 0;
@@ -214,16 +195,6 @@ public class MainObject : BaseObject
     public int carryingCapacity = 0;
     [HideInInspector] public int carryingCapacityBonus = 0;
     private const int maxCarryingCapacity = 10;
-
-    //Скорость
-    public float speed = 0;
-    [HideInInspector] public float speedBonus = 2f;
-    private const float maxSpeed = 10f;
-
-    //Скорость атаки
-    public float attackSpeed = 0;
-    [HideInInspector] public float attackSpeedBonus = 0;
-    private const float maxAttackSpeed = 10;
 
     //Критический урон
     public float criticalDamage = 0;
@@ -344,12 +315,6 @@ public class MainObject : BaseObject
             HP = maxHP;
         }
 
-        //Энергия
-        if (energy >= maxEnergy)
-        {
-            energy = maxEnergy;
-        }
-
         //Сила
         if (strengthCharac >= maxStrengthCharac)
         {
@@ -361,23 +326,23 @@ public class MainObject : BaseObject
         }
 
         //Ловкость
-        if (agilityCharac >= maxAgilityCharac) 
+        if (dexterityCharac >= maxDexterityCharac) 
         {
-            agilityCharac = maxAgilityCharac;
+            dexterityCharac = maxDexterityCharac;
         }
-        else if (agilityCharac <= 0)
+        else if (dexterityCharac <= 0)
         {
-            agilityCharac = 0;
+            dexterityCharac = 0;
         }
 
         //Интеллект
-        if (intelCharac >= maxIntelCharac) 
+        if (inteligenceCharac >= maxInteligenceCharac) 
         {
-            intelCharac = maxIntelCharac;
+            inteligenceCharac = maxInteligenceCharac;
         }
-        else if (intelCharac <= 0)
+        else if (inteligenceCharac <= 0)
         {
-            intelCharac = 0;
+            inteligenceCharac = 0;
         }
 
         //Телосложение
@@ -418,26 +383,6 @@ public class MainObject : BaseObject
         else if (carryingCapacity <= 0)
         {
             carryingCapacity = 0;
-        }
-
-        //Скорость
-        if (speed >= maxSpeed) 
-        { 
-            speed = maxSpeed; 
-        }
-        else if (speed <= 0)
-        {
-            speed = 0;
-        }
-
-        //Скорость атаки
-        if (attackSpeed >= maxAttackSpeed) 
-        {
-            attackSpeed = maxAttackSpeed;
-        }
-        else if (attackSpeed <= 0)
-        {
-            attackSpeed = 0;
         }
 
         //Крит урон
@@ -576,9 +521,9 @@ public class MainObject : BaseObject
     {
         //Первичные характеристики
         strength = strengthCharac * 1 + strengthBonus;
-        agility = agilityCharac * 1 + agilityBonus;
+        dexterity = dexterityCharac * 1 + dexterityBonus;
         constitution = constitutionCharac * 1 + constitutionBonus;
-        intel = intelCharac * 1 + intelBonus;
+        inteligence = inteligenceCharac * 1 + inteligenceBonus;
         wisdom = wisdomCharac * 1 + wisdomBonus;
 
         //Дамаги
@@ -676,9 +621,9 @@ public class MainObject : BaseObject
 
 
         //Сопротивляшки
-        prickResist = (constitution * 2) + (agility * 2) + prickResistBonus;
-        slashResist = (constitution * 2) + (strength * 1) + (agility * 1) + slashResistBonus;
-        crushResist = (constitution * 2) + (agility * 2) + crushResistBonus;
+        prickResist = (constitution * 2) + (dexterity * 2) + prickResistBonus;
+        slashResist = (constitution * 2) + (strength * 1) + (dexterity * 1) + slashResistBonus;
+        crushResist = (constitution * 2) + (dexterity * 2) + crushResistBonus;
 
         poisonResist = (wisdom * 2) + poisonResistBonus;
         fireResist = (wisdom * 2) + fireResistBonus;
@@ -690,11 +635,9 @@ public class MainObject : BaseObject
 
         //Вторичные характеристики
         carryingCapacity = strength * 5 + carryingCapacityBonus;
-        dodge = agility * 2 + dodgeBonus;
-        speed = agility * 0.05f + speedBonus;
-        attackSpeed = agility * 0.05f + attackSpeedBonus;
-        criticalDamage = agility * 1 + criticalDamageBonus;
-        precision = agility * 1 + precisionBonus;
+        dodge = dexterity * 2 + dodgeBonus;
+        criticalDamage = dexterity * 1 + criticalDamageBonus;
+        precision = dexterity * 1 + precisionBonus;
 
 
 

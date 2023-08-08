@@ -29,6 +29,9 @@ public class TakeDamageScript : MonoBehaviour
         float drunkennessDamage = 0
         )
     {
+        //TileManager tileMannager = new TileManager();
+        //tileMannager.TileGameObjectUpdatePosition();
+
         GetComponent<MainObject>().HP -= prickDamage * (1 - GetComponent<MainObject>().prickResist / 100);
         GetComponent<MainObject>().HP -= slashDamage * (1 - GetComponent<MainObject>().slashResist / 100);
         GetComponent<MainObject>().HP -= crushDamage * (1 - GetComponent<MainObject>().crushResist / 100);
@@ -42,10 +45,11 @@ public class TakeDamageScript : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
         //GetComponent<MainObject>().anim.SetTrigger("TakeDamage");
 
-        if (GetComponent<MainObject>().HP <= 0)
+        if (GetComponent<MainObject>().HP <= 0 && gameObject != null)
         {
             Die();
         }
+
     }
 
 

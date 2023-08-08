@@ -20,10 +20,12 @@ public class AttackScript : MonoBehaviour
     }
 
 
-    public void Attack(Vector3Int attackCell, MainObject target)
+    public void Attack(Vector3Int attackCell, MainObject target, int attackCost)
     { 
         if (canAttack == true && attackCell == target.coordinate && GetComponent<MainObject>().actionPoints > 0)
         {
+            canAttack = false;
+
             Debug.Log(attackCell);
             Debug.Log(target.coordinate);
 
@@ -52,26 +54,33 @@ public class AttackScript : MonoBehaviour
                 CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
             }
 
-            GetComponent<MainObject>().actionPoints -= 1;
+            GetComponent<MainObject>().actionPoints -= attackCost;
+
+            //Invoke("AttackReload", 1);
+
+            canAttack = true;
         }
     }
 
-
+    void AttackReload()
+    {
+        canAttack = true;
+    }
 
     public void CalculationAttack(MainObject target)
     {
         if (GetComponent<MainObject>().melee == true)
         {
-            FindTarget(1, target);
+            FindTarget(MainObject.meleeAttackDistance, target, GetComponent<MainObject>().meleeAttackCost);
         }
 
         if (GetComponent<MainObject>().range == true)
         {
-            FindTarget(TileManager.xField, target);
+            FindTarget(TileManager.xField, target, GetComponent<MainObject>().rangeAttackCost);
         }
     }
 
-    public void FindTarget(int distanceAttack, MainObject target)
+    public void FindTarget(int distanceAttack, MainObject target, int attackCost)
     {
         Vector3Int attackCell = new Vector3Int();
 
@@ -82,7 +91,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Налево от атакующего
@@ -90,7 +99,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Вверх от атакующего
@@ -98,7 +107,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Вниз от атакующего
@@ -106,7 +115,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
         }
 
@@ -117,7 +126,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Вверх-направо
@@ -125,7 +134,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Вниз-налево
@@ -133,7 +142,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
 
             //Вниз-направо
@@ -141,12 +150,9 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target);
+                Attack(attackCell, target, attackCost);
             }
         }
-       
-
-
     }
 }
 

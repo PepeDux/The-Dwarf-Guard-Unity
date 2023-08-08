@@ -63,14 +63,12 @@ public class StatusCalculation : MonoBehaviour
                 }                
 
                 GetComponent<MainObject>().strengthBonus += mod * status.strength;
-                GetComponent<MainObject>().agilityBonus += mod * status.agility;
-                GetComponent<MainObject>().intelBonus += mod * status.intel;
+                GetComponent<MainObject>().dexterityBonus += mod * status.agility;
+                GetComponent<MainObject>().inteligenceBonus += mod * status.intel;
                 GetComponent<MainObject>().constitutionBonus += mod * status.constitution;
                 GetComponent<MainObject>().wisdomBonus += mod * status.wisdom;
 
                 GetComponent<MainObject>().carryingCapacityBonus += mod * status.carryingCapacity;
-                GetComponent<MainObject>().speedBonus += mod * status.speed;
-                GetComponent<MainObject>().attackSpeedBonus += mod * status.attackSpeed;
                 GetComponent<MainObject>().criticalDamageBonus += mod * status.criticalDamage;
                 GetComponent<MainObject>().criticalDamageChanceBonus += mod * status.CriticalDamageChance;
                 GetComponent<MainObject>().precisionBonus += mod * status.Precision;

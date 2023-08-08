@@ -24,7 +24,7 @@ public class TileManager : MonoBehaviour
     public static List<Vector3Int> markerCells = new List<Vector3Int>(); //Клетки которые отображают маркеры на поле
     public static List<Vector3Int> enemyCells = new List<Vector3Int>(); //Клетки на которых находится враг
 
-    public static List<GameObject> enemyList = new List<GameObject>(); //Список врагов на сцене в виде игровых объектов
+    public static List<MainObject> enemyList = new List<MainObject>(); //Список врагов на сцене в виде игровых объектов
 
 
 
@@ -69,7 +69,7 @@ public class TileManager : MonoBehaviour
             {
                 impassableCells.Add(tileMap.WorldToCell(obj.transform.position));
                 enemyCells.Add(tileMap.WorldToCell(obj.transform.position));
-                enemyList.Add(obj.gameObject);
+                enemyList.Add(obj.gameObject.GetComponent<MainObject>());
             }
         }
 

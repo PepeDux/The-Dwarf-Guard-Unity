@@ -22,7 +22,6 @@ public class MainUIUpdate : MonoBehaviour
     public void CheckStatus()
     {
         HPBar.fillAmount = GetComponent<MainObject>().HP / GetComponent<MainObject>().maxHP * 1f;
-        EnergyBar.fillAmount = GetComponent<MainObject>().energy / GetComponent<MainObject>().maxEnergy * 1f;
         Money.text = GetComponent<MainObject>().money.ToString();
     }
 

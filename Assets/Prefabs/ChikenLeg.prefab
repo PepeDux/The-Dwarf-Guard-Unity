@@ -112,5 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f728061c2eacb04387cd76e5491c14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
-  energy: 4
+  coordinate: {x: 0, y: 0, z: 0}
+  tileMap: {fileID: 0}
+  restoredHP: 10
+  restoredMovePoint: 2
+  restoredActionPoint: 2
+  restoredBeerPoint: 2

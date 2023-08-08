@@ -4,26 +4,17 @@ using UnityEngine;
 
 public class Food : BaseObject
 {
-    //
-    //
-    //  À¿—— ¬ –¿«–¿¡Œ“ ≈!!!
-    //
-    //
-
     public int restoredHP;
-    public int restoredEnergy;
+    public int restoredMovePoint;
+    public int restoredActionPoint;
+    public int restoredBeerPoint;
 
-    public int time;
-    public int interval;
-    public int damage;
-    public string type;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D target)
     {
-        other.GetComponent<MainObject>().HP += restoredHP;
-        other.GetComponent<MainObject>().energy += restoredEnergy;
-
-        other.GetComponent<PereodicDamageScript>().TakeInfo(time, damage, type);
+        target.GetComponent<MainObject>().HP += restoredHP;
+        target.GetComponent<MainObject>().movePoint += restoredMovePoint;
+        target.GetComponent<MainObject>().actionPoints += restoredActionPoint;
+        target.GetComponent<MainObject>().beerPoint += restoredBeerPoint;
 
         Destroy(this.gameObject);
     }

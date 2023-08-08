@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -60,14 +61,9 @@ public class TurnManager : MonoBehaviour
             {
                 tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
 
-                GameObject enemy = TileManager.enemyList[i];
+                MainObject enemy = TileManager.enemyList[i];
                 enemy.GetComponent<EnemyTileManager>().Turn();
             }
         }
     }
-
-
-   
-
-
 }

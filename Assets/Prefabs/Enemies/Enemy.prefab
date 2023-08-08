@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.048672915, y: -0.17523098}
+  m_Offset: {x: -0.030268073, y: -0.047902346}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.390836, y: 0.17016792}
+  m_Size: {x: 0.3136084, y: 0.2822814}
   m_EdgeRadius: 0
 --- !u!114 &7199952085752115594
 MonoBehaviour:
@@ -164,34 +164,25 @@ MonoBehaviour:
   coordinate: {x: 0, y: 0, z: 0}
   tileMap: {fileID: 435237621311129907, guid: 2a80ff469c610404390359ede1beb6df, type: 3}
   movePoint: 0
-  maxMovePoint: 2
+  maxMovePoint: 4
   actionPoints: 0
   maxActionPoint: 6
   beerPoint: 0
   maxBeerPoint: 0
-  horizontalMove: 0
+  moveCost: 1
+  meleeAttackCost: 1
+  rangeAttackCost: 1
+  lineMove: 1
   diagonalMove: 0
   lineAttack: 1
   diagonalAttack: 0
   melee: 1
   range: 0
-  meleeAttackDistance: 0
   rangeAttackDistance: 0
   anim: {fileID: 7199952085752115592}
   HP: 100
   maxHP: 100
-  energy: 0
-  maxEnergy: 30
-  energyWaste: 10
   money: 0
-  firstWeapon: {fileID: 0}
-  secondWeapon: {fileID: 0}
-  currentWeapon: {fileID: 0}
-  headArmor: {fileID: 0}
-  chestArmor: {fileID: 0}
-  handsArmor: {fileID: 0}
-  legsArmor: {fileID: 0}
-  feetArmor: {fileID: 0}
   prickDamage: 10
   prickDamageWeapon: 10
   prickDamageBonus: 0
@@ -219,18 +210,16 @@ MonoBehaviour:
   drunkennessDamage: 0
   drunkennessDamageWeapon: 0
   drunkennessDamageBonus: 0
-  attackRange: 1
-  attackType: 
   XP: 1
   maxXP: 100
   level: 0
   maxLevel: 10
   strength: 0
   strengthBonus: 0
-  agility: 0
-  agilityBonus: 0
-  intel: 0
-  intelBonus: 0
+  dexterity: 0
+  dexterityBonus: 0
+  inteligence: 0
+  inteligenceBonus: 0
   constitution: 0
   constitutionBonus: 0
   wisdom: 0
@@ -239,10 +228,6 @@ MonoBehaviour:
   dodgeBonus: 0
   carryingCapacity: 0
   carryingCapacityBonus: 0
-  speed: 2
-  speedBonus: 2
-  attackSpeed: 0
-  attackSpeedBonus: 0
   criticalDamage: 0
   criticalDamageBonus: 0
   criticalDamageChance: 0

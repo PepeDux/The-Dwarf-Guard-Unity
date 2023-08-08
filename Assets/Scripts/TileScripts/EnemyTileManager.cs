@@ -30,7 +30,7 @@ public class EnemyTileManager : MonoBehaviour
 
     public void EnemyMove()
     {
-        if (GetComponent<Enemy>().movePoint > 0)
+        if (GetComponent<Enemy>().movePoint >= GetComponent<Enemy>().moveCost)
         {
             pathToTarget.Clear();
             pathToTarget = GetPath(target.GetComponent<Player>().coordinate);
@@ -42,15 +42,9 @@ public class EnemyTileManager : MonoBehaviour
                 GetComponent<Enemy>().UpdateCoordinate();
                 GetComponent<Enemy>().movePoint -= 1;
             }
-            else
-            {
-                //break;
-            }
-
-
-
-
         }
+
+
 
         finishTurn = true;
     }
@@ -59,17 +53,34 @@ public class EnemyTileManager : MonoBehaviour
 
     public void Turn()
     {
-        if (GetComponent<Enemy>().movePoint > 0)
+        for (int i = 0; i < GetComponent<Enemy>().movePoint / GetComponent<Enemy>().moveCost; i++)
         {
-            EnemyMove();
+            int startPoints = GetComponent<Enemy>().movePoint;
+
+            Invoke("EnemyMove", i);
+
+            //if (startPoints == GetComponent<Enemy>().movePoint)
+            //{
+            //    break;
+            //}
         }
 
+ 
+         
+        
 
+        //while (GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().meleeAttackCost || GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().rangeAttackCost)
+        //{
+        //    int startPoints = GetComponent<Enemy>().actionPoints;
 
-        if (GetComponent<Enemy>().actionPoints > 0)
-        {
-            GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
-        }       
+        //    GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
+
+        //    if (startPoints == GetComponent<Enemy>().actionPoints)
+        //    {
+        //        break;
+        //    }
+        //}
+
     }
     public List<Vector3Int> GetPath(Vector3Int target)
     {
@@ -155,31 +166,51 @@ public class EnemyTileManager : MonoBehaviour
         var Neighbours = new List<Node>();
         Neighbours.Clear();
 
-        Neighbours.Add(new Node(node.G + 1, new Vector3Int(
-             node.Position.x, node.Position.y + 1, node.Position.z = 0),
-             node.TargetPosition,
-             node));
+        if(GetComponent<Enemy>().lineMove == true)
+        {
+            Neighbours.Add(new Node(node.G + 1, new Vector3Int(
+                node.Position.x, node.Position.y + 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
-        Neighbours.Add(new Node(node.G + 1, new Vector3Int(
-             node.Position.x, node.Position.y - 1, node.Position.z = 0),
-             node.TargetPosition,
-             node));
+            Neighbours.Add(new Node(node.G + 1, new Vector3Int(
+                 node.Position.x, node.Position.y - 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
-        Neighbours.Add(new Node(node.G + 1, new Vector3Int(
-             node.Position.x + 1, node.Position.y, node.Position.z = 0),
-             node.TargetPosition,
-             node));
+            Neighbours.Add(new Node(node.G + 1, new Vector3Int(
+                 node.Position.x + 1, node.Position.y, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
-        Neighbours.Add(new Node(node.G + 1, new Vector3Int(
-             node.Position.x - 1, node.Position.y, node.Position.z = 0),
-             node.TargetPosition,
-             node));
+            Neighbours.Add(new Node(node.G + 1, new Vector3Int(
+                 node.Position.x - 1, node.Position.y, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
+        }
 
+        if(GetComponent<Enemy>().diagonalMove == true)
+        {
+            Neighbours.Add(new Node(node.G + 1.4f, new Vector3Int(
+                  node.Position.x + 1, node.Position.y + 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
+            Neighbours.Add(new Node(node.G + 1.4f, new Vector3Int(
+                 node.Position.x + 1, node.Position.y - 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
-       
+            Neighbours.Add(new Node(node.G + 1.4f, new Vector3Int(
+                 node.Position.x - 1, node.Position.y - 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
 
-
+            Neighbours.Add(new Node(node.G + 1.4f, new Vector3Int(
+                 node.Position.x - 1, node.Position.y - 1, node.Position.z = 0),
+                 node.TargetPosition,
+                 node));
+        }
 
         return Neighbours;
     }

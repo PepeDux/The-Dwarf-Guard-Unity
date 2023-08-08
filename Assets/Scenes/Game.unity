@@ -3411,12 +3411,10 @@ GameObject:
   - component: {fileID: 1642026062}
   - component: {fileID: 1642026061}
   - component: {fileID: 1642026063}
-  - component: {fileID: 1642026066}
-  - component: {fileID: 1642026065}
-  - component: {fileID: 1642026064}
   - component: {fileID: 1642026059}
   - component: {fileID: 1642026060}
   - component: {fileID: 1642026067}
+  - component: {fileID: 1642026053}
   m_Layer: 6
   m_Name: Dwarf Guard
   m_TagString: Player
@@ -3424,6 +3422,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1642026053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642026052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e349c42d411f242934bd93540b4b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  NextAnimator: {fileID: 0}
 --- !u!114 &1642026054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,29 +3471,20 @@ MonoBehaviour:
   maxActionPoint: 6
   beerPoint: 0
   maxBeerPoint: 2
-  horizontalMove: 0
-  diagonalMove: 0
-  lineAttack: 0
+  moveCost: 1
+  meleeAttackCost: 1
+  rangeAttackCost: 2
+  lineMove: 1
+  diagonalMove: 1
+  lineAttack: 1
   diagonalAttack: 0
-  melee: 0
+  melee: 1
   range: 0
-  meleeAttackDistance: 0
   rangeAttackDistance: 0
   anim: {fileID: 1642026056}
   HP: 100
   maxHP: 100
-  energy: 300
-  maxEnergy: 300
-  energyWaste: 10
   money: 0
-  firstWeapon: {fileID: 11400000, guid: 2457deda278dcb344a06bd0d6eb317f4, type: 2}
-  secondWeapon: {fileID: 0}
-  currentWeapon: {fileID: 11400000, guid: 2457deda278dcb344a06bd0d6eb317f4, type: 2}
-  headArmor: {fileID: 11400000, guid: ca749b0abbd52a94d83872b0c1f99cd8, type: 2}
-  chestArmor: {fileID: 0}
-  handsArmor: {fileID: 0}
-  legsArmor: {fileID: 0}
-  feetArmor: {fileID: 0}
   prickDamage: 20
   prickDamageWeapon: 10
   prickDamageBonus: 0
@@ -3509,18 +3512,16 @@ MonoBehaviour:
   drunkennessDamage: 0
   drunkennessDamageWeapon: 0
   drunkennessDamageBonus: 0
-  attackRange: 0
-  attackType: 
   XP: 0
   maxXP: 100
   level: 0
   maxLevel: 10
   strength: 0
   strengthBonus: 0
-  agility: 0
-  agilityBonus: 0
-  intel: 0
-  intelBonus: 0
+  dexterity: 0
+  dexterityBonus: 0
+  inteligence: 0
+  inteligenceBonus: 0
   constitution: 0
   constitutionBonus: 0
   wisdom: 0
@@ -3529,10 +3530,6 @@ MonoBehaviour:
   dodgeBonus: 0
   carryingCapacity: 0
   carryingCapacityBonus: 0
-  speed: 2
-  speedBonus: 2
-  attackSpeed: 0
-  attackSpeedBonus: 0
   criticalDamage: 0
   criticalDamageBonus: 0
   criticalDamageChance: 0
@@ -3683,7 +3680,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642026052}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3750,50 +3747,6 @@ MonoBehaviour:
   activeStatusName: []
   statusAdd: 
   statusRemove: 
---- !u!114 &1642026064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642026052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 141efe425eb520f4cb935af9bc58b011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeapon: 
-  lastWeapon: 
-  weapons: []
---- !u!114 &1642026065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642026052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4fe88fb5fb331e4ba5dbb1cddcf3eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentArmor: 
-  currentArmorType: 
-  lastArmor: 
-  lastArmorType: 
-  armors: []
---- !u!114 &1642026066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642026052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c3d733d0f4fa24992f5c70b14ee16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1642026067
 MonoBehaviour:
   m_ObjectHideFlags: 0

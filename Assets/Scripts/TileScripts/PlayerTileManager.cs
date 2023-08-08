@@ -9,7 +9,6 @@ public class PlayerTileManager : MonoBehaviour
 
     private bool canMove = true;
 
-    private Vector3 WorldPosition; //Мировая координата курсора
     private Vector3Int CellPosition; //Тайловая координата курсора
     private Vector3Int playerPosition; //Тайловая координата игрока
 
@@ -18,7 +17,6 @@ public class PlayerTileManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && TurnManager.playerTurn == true && GetComponent<Player>().movePoint > 0)
         {
-            WorldPosition = TileManager.WorldPosition;
             CellPosition = TileManager.CellPosition;
             playerPosition = TileManager.playerPosition;
 
@@ -26,10 +24,22 @@ public class PlayerTileManager : MonoBehaviour
 
             CheckCells();
 
-            Move(Vector3Int.up);
-            Move(Vector3Int.down);
-            Move(Vector3Int.left);
-            Move(Vector3Int.right);
+            if(GetComponent<Player>().lineMove == true)
+            {
+                Move(new Vector3Int(0, 1, 0));  //Вверх
+                Move(new Vector3Int(0, -1, 0)); //Вниз
+                Move(new Vector3Int(-1, 0, 0)); //Влево
+                Move(new Vector3Int(1, 0, 0));  //Вправо
+            }
+
+            if(GetComponent<Player>().diagonalMove == true)
+            {
+                Move(new Vector3Int(1, 1, 0));   //Вправо вверх
+                Move(new Vector3Int(1, -1, 0));  //Вправо вниз
+                Move(new Vector3Int(-1, -1, 0)); //Влево вниз
+                Move(new Vector3Int(-1, 1, 0));  //Влево вверх
+            }
+         
         }
     }
 

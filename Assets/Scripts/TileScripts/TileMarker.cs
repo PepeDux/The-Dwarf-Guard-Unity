@@ -7,22 +7,26 @@ public class TileMarker : MonoBehaviour
 {
     [SerializeField] private Tilemap markerTileMap; //Тайлмап с маркерами
 
-    private Vector3 WorldPosition; //Мировая координата курсора
     private Vector3Int CellPosition; //Тайловая координата курсора
     private Vector3Int playerPosition; //Тайловая координата игрока
 
     [SerializeField] private TileBase basicPointer; //Указатель возможного хода
     [SerializeField] private TileBase enemyPointer; //Указатель возможного хода
 
+    private GameObject player;
+
     private bool canMove = true;
     private bool canSelect = true;
     private bool canSelectEnemyMarker = true;
 
 
+    private void Start()
+    {
+        player = GameObject.Find("Dwarf Guard");
+    }
 
     void Update()
     {
-        WorldPosition = TileManager.WorldPosition;
         CellPosition = TileManager.CellPosition;
         playerPosition = TileManager.playerPosition;
 
@@ -31,10 +35,21 @@ public class TileMarker : MonoBehaviour
 
         CheckCells();
 
-        Select(Vector3Int.up);
-        Select(Vector3Int.down);
-        Select(Vector3Int.left);
-        Select(Vector3Int.right);
+        if (player.GetComponent<Player>().lineMove == true)
+        {
+            Select(new Vector3Int(0, 1, 0));  //Вверх
+            Select(new Vector3Int(0, -1, 0)); //Вниз
+            Select(new Vector3Int(-1, 0, 0)); //Влево
+            Select(new Vector3Int(1, 0, 0));  //Вправо
+        }
+
+        if (player.GetComponent<Player>().diagonalMove == true)
+        {
+            Select(new Vector3Int(1, 1, 0));   //Вправо вверх
+            Select(new Vector3Int(1, -1, 0));  //Вправо вниз
+            Select(new Vector3Int(-1, -1, 0)); //Влево вниз
+            Select(new Vector3Int(-1, 1, 0));  //Влево вверх
+        }
     }
 
     private void Select(Vector3Int select)
