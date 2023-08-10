@@ -164,9 +164,9 @@ MonoBehaviour:
   coordinate: {x: 0, y: 0, z: 0}
   tileMap: {fileID: 435237621311129907, guid: 2a80ff469c610404390359ede1beb6df, type: 3}
   movePoint: 0
-  maxMovePoint: 4
+  maxMovePoint: 2
   actionPoints: 0
-  maxActionPoint: 6
+  maxActionPoint: 1
   beerPoint: 0
   maxBeerPoint: 0
   moveCost: 1
@@ -182,33 +182,18 @@ MonoBehaviour:
   anim: {fileID: 7199952085752115592}
   HP: 100
   maxHP: 100
+  armor: 0
+  maxArmor: 0
   money: 0
-  prickDamage: 10
-  prickDamageWeapon: 10
-  prickDamageBonus: 0
-  slashDamage: 10
-  slashDamageWeapon: 0
-  slashDamageBonus: 0
-  crushDamage: 10
-  crushDamageWeapon: 0
-  crushDamageBonus: 0
+  physicalDamage: 0
+  physicalDamageBonus: 0
   poisonDamage: 0
-  poisonDamageWeapon: 0
   poisonDamageBonus: 0
   fireDamage: 0
-  fireDamageWeapon: 0
   fireDamageBonus: 0
   frostDamage: 0
-  frostDamageWeapon: 0
   frostDamageBonus: 0
-  electricalDamage: 0
-  electricalDamageWeapon: 0
-  electricalDamageBonus: 0
-  curseDamage: 0
-  curseDamageWeapon: 0
-  curseDamageBonus: 0
   drunkennessDamage: 0
-  drunkennessDamageWeapon: 0
   drunkennessDamageBonus: 0
   XP: 1
   maxXP: 100
@@ -226,8 +211,6 @@ MonoBehaviour:
   wisdomBonus: 0
   dodge: 0
   dodgeBonus: 0
-  carryingCapacity: 0
-  carryingCapacityBonus: 0
   criticalDamage: 0
   criticalDamageBonus: 0
   criticalDamageChance: 0
@@ -236,22 +219,14 @@ MonoBehaviour:
   precisionBonus: 0
   drunkenness: 0
   drunkennessBonus: 0
-  prickResist: 50
-  prickResistBonus: 20
-  slashResist: 0
-  slashResistBonus: 0
-  crushResist: 0
-  crushResistBonus: 0
+  physicalResist: 0
+  physicalResistBonus: 20
   poisonResist: 0
   poisonResistBonus: 0
   fireResist: 0
   fireResistBonus: 0
   frostResist: 0
   frostResistBonus: 0
-  curseResist: 0
-  curseResistBonus: 0
-  electricalResist: 0
-  electricalResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
   hammerWay: 0

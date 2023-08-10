@@ -68,20 +68,14 @@ public class StatusCalculation : MonoBehaviour
                 GetComponent<MainObject>().constitutionBonus += mod * status.constitution;
                 GetComponent<MainObject>().wisdomBonus += mod * status.wisdom;
 
-                GetComponent<MainObject>().carryingCapacityBonus += mod * status.carryingCapacity;
                 GetComponent<MainObject>().criticalDamageBonus += mod * status.criticalDamage;
                 GetComponent<MainObject>().criticalDamageChanceBonus += mod * status.CriticalDamageChance;
                 GetComponent<MainObject>().precisionBonus += mod * status.Precision;
                 GetComponent<MainObject>().drunkennessBonus += mod * status.drunkenness;
 
-                GetComponent<MainObject>().prickResistBonus += mod * status.prickResist;
-                GetComponent<MainObject>().slashResistBonus += mod * status.slashResist;
-                GetComponent<MainObject>().crushResistBonus += mod * status.CrushResist;
                 GetComponent<MainObject>().poisonResistBonus += mod * status.poisonResist;
                 GetComponent<MainObject>().fireResistBonus += mod * status.fireResist;
                 GetComponent<MainObject>().frostResistBonus += mod * status.frostResist;
-                GetComponent<MainObject>().curseResistBonus += mod * status.curseResist;
-                GetComponent<MainObject>().electricalResistBonus += mod * status.electricalResist;
                 GetComponent<MainObject>().drunkennessResistBonus += mod * status.drunkennessResist;
 
                 GetComponent<MainObject>().hammerWayBonus += mod * status.hammerWay;

@@ -28,13 +28,16 @@ public class Enemy : MainObject
 
     void MoveOrientation()
     {
-        if (player.transform.position.x < transform.position.x && isFacingRight == true)
+        if(player != null)
         {
-            Flip();
-        }
-        else if (player.transform.position.x > transform.position.x && isFacingRight == false)
-        {
-            Flip();
+            if (player.transform.position.x < transform.position.x && isFacingRight == true)
+            {
+                Flip();
+            }
+            else if (player.transform.position.x > transform.position.x && isFacingRight == false)
+            {
+                Flip();
+            }
         }
     }
 

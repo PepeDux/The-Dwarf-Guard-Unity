@@ -12,6 +12,8 @@ public class PlayerTurnManager : MonoBehaviour
             TurnManager.playerTurn = false;
             TurnManager.totalTurn = false;
 
+            TurnManager.turnCount += 1;
+
             Debug.Log("End Turn");
         }
     }

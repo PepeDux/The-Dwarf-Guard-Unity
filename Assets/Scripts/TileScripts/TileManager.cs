@@ -109,10 +109,13 @@ public class TileManager : MonoBehaviour
 
     public void PlayerSelectTile()
     {
-        WorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //Берем координаты мировые на сцене
-        CellPosition = tileMap.WorldToCell(WorldPosition); //Переводим мировые координаты в координаты на тайлмапе
+        if(player != null)
+        {
+            WorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //Берем координаты мировые на сцене
+            CellPosition = tileMap.WorldToCell(WorldPosition); //Переводим мировые координаты в координаты на тайлмапе
 
-        playerPosition = tileMap.WorldToCell(player.transform.position);
+            playerPosition = tileMap.WorldToCell(player.transform.position);
+        }
     }
 }
 

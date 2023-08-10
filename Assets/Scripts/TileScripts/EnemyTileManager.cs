@@ -53,33 +53,35 @@ public class EnemyTileManager : MonoBehaviour
 
     public void Turn()
     {
-        for (int i = 0; i < GetComponent<Enemy>().movePoint / GetComponent<Enemy>().moveCost; i++)
+        while(GetComponent<Enemy>().movePoint >= GetComponent<Enemy>().moveCost)
         {
             int startPoints = GetComponent<Enemy>().movePoint;
 
-            Invoke("EnemyMove", i);
+            EnemyMove();
 
-            //if (startPoints == GetComponent<Enemy>().movePoint)
-            //{
-            //    break;
-            //}
+            if(startPoints == GetComponent<Enemy>().movePoint)
+            {
+                break;
+            }
         }
 
- 
-         
         
 
-        //while (GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().meleeAttackCost || GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().rangeAttackCost)
-        //{
-        //    int startPoints = GetComponent<Enemy>().actionPoints;
 
-        //    GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
 
-        //    if (startPoints == GetComponent<Enemy>().actionPoints)
-        //    {
-        //        break;
-        //    }
-        //}
+
+
+        while (GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().meleeAttackCost || GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().rangeAttackCost)
+        {
+            int startPoints = GetComponent<Enemy>().actionPoints;
+
+            GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
+
+            if (startPoints == GetComponent<Enemy>().actionPoints)
+            {
+                break;
+            }
+        }
 
     }
     public List<Vector3Int> GetPath(Vector3Int target)

@@ -24,23 +24,23 @@ public class PereodicDamageScript : MonoBehaviour
     //interval - ¬рем€ ожидани€ получени€ урона
 
     private int timePoison;
-    private float pereodicPoisonDamage;
+    private int pereodicPoisonDamage;
     private int intervalPoison = 5;
 
     private int timeFire;
-    private float pereodicFireDamage;
+    private int pereodicFireDamage;
     private int intervalFire = 3;
 
     private int timeCurse;
-    private float pereodiCcurseDamage;
+    private int pereodiCcurseDamage;
     private int intervalCurse = 20;
 
     private int timeFrost;
-    private float pereodicFrostDamage;
+    private int pereodicFrostDamage;
     private int intervalFrost = 7;
 
     private int timeDrunkenness;
-    private float pereodicDrunkennessDamage;
+    private int pereodicDrunkennessDamage;
     private int intervalDrunkenness = 10;
 
 
@@ -147,36 +147,6 @@ public class PereodicDamageScript : MonoBehaviour
 
         ///////////////////////////////////////////////////////////////////
 
-        if (typeInfo == "Curse")
-        {
-            if (curseStatus)
-            {
-                if (timeCurse < timeInfo)
-                {
-                    timeCurse = timeInfo;
-                }
-
-                if (pereodiCcurseDamage < timeCurse)
-                {
-                    pereodiCcurseDamage = damageInfo;
-                }
-            }
-
-            if (!curseStatus)
-            {
-                timeCurse = timeInfo;
-                pereodiCcurseDamage = damageInfo;
-
-                curseStatus = true;
-
-                GetComponent<StatusCalculation>().statusAdd = curseEffect.name;
-
-                StartCoroutine("Curse");
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////
-
         if (typeInfo == "Frost")
         {
             if (frostStatus)
@@ -268,22 +238,6 @@ public class PereodicDamageScript : MonoBehaviour
 
         GetComponent<StatusCalculation>().statusRemove = fireEffect.name;
         fireStatus = false;
-        Debug.Log("я закончил");
-    }
-
-    IEnumerator Curse()
-    {
-        for (int i = 0; i < (timeCurse / intervalCurse); timeCurse -= intervalCurse)
-        {
-            yield return new WaitForSeconds(intervalCurse);
-
-            Instantiate(curseEffect, this.transform.position, transform.rotation);
-
-            GetComponent<TakeDamageScript>().TakeDamage(curseDamage: pereodiCcurseDamage);
-        }
-
-        GetComponent<StatusCalculation>().statusRemove = curseEffect.name;
-        curseStatus = false;
         Debug.Log("я закончил");
     }
 

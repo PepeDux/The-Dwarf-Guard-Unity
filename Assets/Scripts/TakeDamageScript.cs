@@ -18,38 +18,40 @@ public class TakeDamageScript : MonoBehaviour
 
     public void TakeDamage
         (
-        float prickDamage = 0,
-        float slashDamage = 0,
-        float crushDamage = 0,
-        float poisonDamage = 0,
-        float fireDamage = 0,
-        float frostDamage = 0,
-        float electricalDamage = 0,
-        float curseDamage = 0,
-        float drunkennessDamage = 0
+        int physicalDamage = 0,
+        int poisonDamage = 0,
+        int fireDamage = 0,
+        int frostDamage = 0,
+        int drunkennessDamage = 0
         )
     {
-        //TileManager tileMannager = new TileManager();
-        //tileMannager.TileGameObjectUpdatePosition();
+        //GetComponent<MainObject>().HP -= poisonDamage * (1 - GetComponent<MainObject>().poisonResist / 100);
+        //GetComponent<MainObject>().HP -= fireDamage * (1 - GetComponent<MainObject>().fireResist / 100);
+        //GetComponent<MainObject>().HP -= frostDamage * (1 - GetComponent<MainObject>().frostResist / 100);
+        //GetComponent<MainObject>().HP -= drunkennessDamage * (1 - GetComponent<MainObject>().drunkennessResist / 100);
 
-        GetComponent<MainObject>().HP -= prickDamage * (1 - GetComponent<MainObject>().prickResist / 100);
-        GetComponent<MainObject>().HP -= slashDamage * (1 - GetComponent<MainObject>().slashResist / 100);
-        GetComponent<MainObject>().HP -= crushDamage * (1 - GetComponent<MainObject>().crushResist / 100);
-        GetComponent<MainObject>().HP -= poisonDamage * (1 - GetComponent<MainObject>().poisonResist / 100);
-        GetComponent<MainObject>().HP -= fireDamage * (1 - GetComponent<MainObject>().fireResist / 100);
-        GetComponent<MainObject>().HP -= frostDamage * (1 - GetComponent<MainObject>().frostResist / 100);
-        GetComponent<MainObject>().HP -= electricalDamage * (1 - GetComponent<MainObject>().electricalResist / 100);
-        GetComponent<MainObject>().HP -= curseDamage * (1 - GetComponent<MainObject>().curseResist / 100);
-        GetComponent<MainObject>().HP -= drunkennessDamage * (1 - GetComponent<MainObject>().curseResist / 100);
 
-        CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
+        physicalDamage -= GetComponent<MainObject>().physicalResist;
+
+        if (physicalDamage > 0)
+        {
+            if (GetComponent<MainObject>().armor <= 0)
+            {
+                GetComponent<MainObject>().HP -= physicalDamage;
+            }
+
+            GetComponent<MainObject>().armor -= 1;
+        }
+
+
+
+        CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f); //Дрожание экрана при получении урона
         //GetComponent<MainObject>().anim.SetTrigger("TakeDamage");
 
         if (GetComponent<MainObject>().HP <= 0 && gameObject != null)
         {
             Die();
         }
-
     }
 
 

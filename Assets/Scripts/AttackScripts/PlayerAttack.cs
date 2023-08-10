@@ -6,7 +6,7 @@ public class PlayerAttack : AttackScript
 {
     void Update()
     {
-        if (Input.GetMouseButton(0) && GetComponent<Player>().actionPoints > 0) 
+        if (Input.GetMouseButton(0) && GetComponent<Player>().actionPoints >= GetComponent<Player>().meleeAttackCost) 
         {
             foreach(var target in TileManager.enemyList)
             {

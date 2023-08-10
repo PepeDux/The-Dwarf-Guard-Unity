@@ -26,9 +26,6 @@ public class AttackScript : MonoBehaviour
         {
             canAttack = false;
 
-            Debug.Log(attackCell);
-            Debug.Log(target.coordinate);
-
             anim.SetTrigger("Attack");
             //Enemy.speed = 0;
             //NextAnimator.SetTrigger("OnAnimationEnded");
@@ -40,18 +37,12 @@ public class AttackScript : MonoBehaviour
             else
             {
                 target.GetComponent<TakeDamageScript>().TakeDamage(
-                prickDamage: GetComponent<MainObject>().prickDamage,
-                slashDamage: GetComponent<MainObject>().slashDamage,
-                crushDamage: GetComponent<MainObject>().crushDamage,
+                physicalDamage: GetComponent<MainObject>().physicalDamage,
                 poisonDamage: GetComponent<MainObject>().poisonDamage,
                 fireDamage: GetComponent<MainObject>().fireDamage,
                 frostDamage: GetComponent<MainObject>().frostDamage,
-                electricalDamage: GetComponent<MainObject>().electricalDamage,
-                curseDamage: GetComponent<MainObject>().curseDamage,
                 drunkennessDamage: GetComponent<MainObject>().drunkennessDamage
                 );
-
-                CameraShaker.Instance.ShakeOnce(0.7f, 12f, 0.3f, 0.3f);
             }
 
             GetComponent<MainObject>().actionPoints -= attackCost;

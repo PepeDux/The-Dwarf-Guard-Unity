@@ -10,7 +10,7 @@ using UnityEngine.PlayerLoop;
 
 public class TurnManager : MonoBehaviour
 {
-    public static int turnCount; //Счеткич ходов
+    public static int turnCount = 1; //Счеткич ходов
 
     public static bool playerTurn = true; //При завершении хода игрока - true, при начале хода игрока - true
     public static bool totalTurn = false; //При завершении всех действий на этот ход

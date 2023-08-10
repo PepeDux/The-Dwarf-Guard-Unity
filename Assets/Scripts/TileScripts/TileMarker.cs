@@ -35,20 +35,23 @@ public class TileMarker : MonoBehaviour
 
         CheckCells();
 
-        if (player.GetComponent<Player>().lineMove == true)
+        if(player != null)
         {
-            Select(new Vector3Int(0, 1, 0));  //Вверх
-            Select(new Vector3Int(0, -1, 0)); //Вниз
-            Select(new Vector3Int(-1, 0, 0)); //Влево
-            Select(new Vector3Int(1, 0, 0));  //Вправо
-        }
+            if (player.GetComponent<Player>().lineMove == true)
+            {
+                Select(new Vector3Int(0, 1, 0));  //Вверх
+                Select(new Vector3Int(0, -1, 0)); //Вниз
+                Select(new Vector3Int(-1, 0, 0)); //Влево
+                Select(new Vector3Int(1, 0, 0));  //Вправо
+            }
 
-        if (player.GetComponent<Player>().diagonalMove == true)
-        {
-            Select(new Vector3Int(1, 1, 0));   //Вправо вверх
-            Select(new Vector3Int(1, -1, 0));  //Вправо вниз
-            Select(new Vector3Int(-1, -1, 0)); //Влево вниз
-            Select(new Vector3Int(-1, 1, 0));  //Влево вверх
+            if (player.GetComponent<Player>().diagonalMove == true)
+            {
+                Select(new Vector3Int(1, 1, 0));   //Вправо вверх
+                Select(new Vector3Int(1, -1, 0));  //Вправо вниз
+                Select(new Vector3Int(-1, -1, 0)); //Влево вниз
+                Select(new Vector3Int(-1, 1, 0));  //Влево вверх
+            }
         }
     }
 
