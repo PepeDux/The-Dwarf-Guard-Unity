@@ -47,9 +47,7 @@ public class AttackScript : MonoBehaviour
 
             GetComponent<MainObject>().actionPoints -= attackCost;
 
-            //Invoke("AttackReload", 1);
-
-            canAttack = true;
+            Invoke("AttackReload", 1);
         }
     }
 

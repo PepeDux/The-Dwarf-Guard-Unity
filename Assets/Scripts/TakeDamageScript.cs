@@ -6,7 +6,7 @@ using UnityEngine;
 public class TakeDamageScript : MonoBehaviour
 {
     public GameObject corpse; //Труп или объект после смерти(не путать с лутом)
-    public GameObject[] loot; //Вещи выпадающие из обхекта после смерти
+    public GameObject[] lootAfterDeath; //Вещи выпадающие из обхекта после смерти
 
     //Скрипт TakeDamage обрабатывает типы урона поступаемые объектам
     //Он учитывает сопроивления к урону в объекте и выдает  итоге дамаг после вычислений
@@ -59,9 +59,14 @@ public class TakeDamageScript : MonoBehaviour
     {
         Debug.Log($"Я {this.name} умер");
 
-        //loot = UnityEngine.Random.Range(0, loot.Length);
+        //Спавнит случайны лут из списка с вероятностью 50%
+        if(Random.Range(0, 100) > 50)
+        {
+            GameObject loot = Instantiate(lootAfterDeath[Random.Range(0, lootAfterDeath.Length)]);
+            loot.GetComponent<BaseObject>().coordinate = GetComponent<BaseObject>().tileMap.WorldToCell(transform.position);
+        }
 
-        //Instantiate(loot[random], transform.position, transform.rotation);
+
 
         //Instantiate(corpse, transform.position, transform.rotation);
 

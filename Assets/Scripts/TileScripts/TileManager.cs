@@ -28,9 +28,10 @@ public class TileManager : MonoBehaviour
 
 
 
-    public static int xField = 8;
-    public static int yField = 8;
+    public static int xField = 8; //Размер ширины игрового поля, начало отсчета с 0
+    public static int yField = 8; //Размер высоты игрового поля, начало отсчета с 0
 
+    //Максимальные координаты всех направлений игрового поля
     public static int maxTop = yField;
     public static int maxDown = 0;
     public static int maxLeft = 0;
@@ -42,6 +43,8 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+
+        TileGameObjectUpdatePosition();
     }
 
     void Update()
@@ -53,42 +56,50 @@ public class TileManager : MonoBehaviour
 
     public void TileGameObjectUpdatePosition()
     {
-        //Очищаем все листы чтобы их обновить
+        //Очищаем все листы от старых данных чтобы их обновить
         occupiedCells.Clear();
         impassableCells.Clear();
         enemyCells.Clear();
         enemyList.Clear();
 
-        impassableCells.AddRange(edgeCells);
-        impassableCells.Add(playerPosition);
+        //Позиция игрока на игровом поле
+        playerPosition = player.GetComponent<Player>().coordinate;
 
-        //Перебираем все дочерние объекты из родительского объекта для записи координат в лист
+        //Записываем грани игрового поля в список непроходимых клеток
+        impassableCells.AddRange(edgeCells);
+
+        //Записываем позицию игрока в список непроходимых и занятых клеток
+        impassableCells.Add(playerPosition);
+        occupiedCells.Add(playerPosition);
+
+        //Перебираем все дочерние объекты из родительского объекта врагов для записи координат в лист
         foreach (Transform obj in parentEnemy.transform)
         {
             if (obj != null)
             {
-                impassableCells.Add(tileMap.WorldToCell(obj.transform.position));
-                enemyCells.Add(tileMap.WorldToCell(obj.transform.position));
+                impassableCells.Add(obj.GetComponent<BaseObject>().coordinate);
+                occupiedCells.Add(obj.GetComponent<BaseObject>().coordinate);
+                enemyCells.Add(obj.GetComponent<BaseObject>().coordinate);
                 enemyList.Add(obj.gameObject.GetComponent<MainObject>());
             }
         }
 
-        //Перебираем все дочерние объекты из родительского объекта для записи координат в лист
+        //Перебираем все дочерние объекты из родительского объекта статичных объектов для записи координат в лист
         foreach (Transform obj in parentStaticObject.transform)
         {
             if (obj != null)
             {
-                occupiedCells.Add(tileMap.WorldToCell(obj.transform.position));
-                impassableCells.Add(tileMap.WorldToCell(obj.transform.position));
+                occupiedCells.Add(obj.GetComponent<BaseObject>().coordinate);
+                impassableCells.Add(obj.GetComponent<BaseObject>().coordinate);
             }
         }
 
-        //Перебираем все дочерние объекты из родительского объекта для записи координат в лист
+        //Перебираем все дочерние объекты из родительского объекта подбираемых объектов для записи координат в лист
         foreach (Transform obj in parentPickUpObject.transform)
         {
             if (obj != null)
             {
-                occupiedCells.Add(tileMap.WorldToCell(obj.transform.position));
+                occupiedCells.Add(obj.GetComponent<BaseObject>().coordinate);
             }
         }
     }
@@ -113,9 +124,6 @@ public class TileManager : MonoBehaviour
         {
             WorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //Берем координаты мировые на сцене
             CellPosition = tileMap.WorldToCell(WorldPosition); //Переводим мировые координаты в координаты на тайлмапе
-
-            playerPosition = tileMap.WorldToCell(player.transform.position);
         }
     }
 }
-

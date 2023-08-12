@@ -598,7 +598,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 305570792}
-  - component: {fileID: 305570794}
   - component: {fileID: 305570793}
   m_Layer: 0
   m_Name: Enemies
@@ -615,7 +614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305570791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1292896, y: 5.6564765, z: -244.1672}
+  m_LocalPosition: {x: 0, y: 0, z: -244.1672}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -634,30 +633,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
-  tileManager: {fileID: 64866466}
-  coordinate: {x: 0, y: 0, z: 0}
-  canPut: 0
+  tileManager: {fileID: 64866467}
   melee:
   - {fileID: 7199952085752115597, guid: 9b8d74e73262000478d455fc2a3f6828, type: 3}
   range: []
   captain: []
   wizard: []
---- !u!114 &305570794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305570791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57500e3929842b94dbe6a651140c39bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnitude: 0.7
-  roughness: 10
-  fadeInTime: 0.5
-  FadeOutTime: 0.5
 --- !u!1 &312112476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1686,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689212056}
   m_CullTransparentMesh: 1
+--- !u!1 &700498888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700498891}
+  - component: {fileID: 700498890}
+  - component: {fileID: 700498889}
+  m_Layer: 0
+  m_Name: TEST
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700498889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700498888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9446c90e9f76941a3777a634f4984f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &700498890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700498888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57500e3929842b94dbe6a651140c39bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &700498891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700498888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.87945175, y: 2.039618, z: 17904.586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722099549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,8 +2438,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186226933}
-  - component: {fileID: 1186226932}
-  - component: {fileID: 1186226934}
   - component: {fileID: 1186226935}
   m_Layer: 0
   m_Name: PickUpObjects
@@ -2411,22 +2446,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1186226932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186226931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d9c887edba7e4439e1661994a0228a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMap: {fileID: 1526609390}
-  tileManager: {fileID: 64866466}
-  coordinate: {x: 0, y: 0, z: 0}
-  canPut: 0
 --- !u!4 &1186226933
 Transform:
   m_ObjectHideFlags: 0
@@ -2435,28 +2454,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186226931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5384698, y: 2.6257708, z: -248.72801}
+  m_LocalPosition: {x: 0, y: 0, z: -248.72801}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186226934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186226931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57500e3929842b94dbe6a651140c39bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnitude: 0.7
-  roughness: 10
-  fadeInTime: 0.5
-  FadeOutTime: 0.5
 --- !u!114 &1186226935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,9 +2473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
-  tileManager: {fileID: 64866466}
-  coordinate: {x: 0, y: 0, z: 0}
-  canPut: 0
+  tileManager: {fileID: 64866467}
   food:
   - {fileID: 7615383639773451916, guid: 3a5268488d55d3649a5323793f2a74cf, type: 3}
   money: []
@@ -2593,7 +2594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487860098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5384698, y: 2.6257708, z: -248.72801}
+  m_LocalPosition: {x: 0, y: 0, z: -248.72801}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2612,9 +2613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
-  tileManager: {fileID: 64866466}
-  coordinate: {x: 0, y: 0, z: 0}
-  canPut: 0
+  tileManager: {fileID: 64866467}
   wall: []
   trap: []
   pit: []
@@ -3780,7 +3779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829e955973607e14cbb5e2da087b1bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0, z: 0}
+  coordinate: {x: 4, y: 1, z: 0}
   tileMap: {fileID: 0}
   movePoint: 0
   maxMovePoint: 2
@@ -4022,7 +4021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpse: {fileID: 0}
-  loot: []
+  lootAfterDeath: []
 --- !u!114 &1642026063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4096,7 +4095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646911154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5372232, y: 1.4265379, z: -219.65369}
+  m_LocalPosition: {x: 0, y: 0, z: -219.65369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

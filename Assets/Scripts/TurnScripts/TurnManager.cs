@@ -18,52 +18,51 @@ public class TurnManager : MonoBehaviour
     public GameObject player;
     public GameObject tileManager;
 
-    void Start()
-    {
 
+
+    private void OnEnable()
+    {
+        PlayerTurnManager.playerTurnFinished += OtherObjectsTurn;
     }
 
-    void Update()
+    private void OnDisable()
     {
-        totalTurn = true;
-
-        EnemyTurn();
-
-        totalTurn = false;
-
-        UpdatePoint();
+        PlayerTurnManager.playerTurnFinished -= OtherObjectsTurn;
     }
 
-    public void UpdatePoint()
+
+
+    public void UpdatePoints()
     {
-        if (totalTurn == false && playerTurn == false)
+        foreach (var obj in TileManager.enemyList)
         {
-            foreach (var obj in TileManager.enemyList)
-            {
-                obj.GetComponent<Enemy>().movePoint = obj.GetComponent<Enemy>().maxMovePoint;
-                obj.GetComponent<Enemy>().actionPoints = obj.GetComponent<Enemy>().maxActionPoint;
-                obj.GetComponent<Enemy>().beerPoint = obj.GetComponent<Enemy>().maxBeerPoint;
-            }
-
-            player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
-            player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
-            player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
-
-            playerTurn = true;
+            obj.GetComponent<Enemy>().movePoint = obj.GetComponent<Enemy>().maxMovePoint;
+            obj.GetComponent<Enemy>().actionPoints = obj.GetComponent<Enemy>().maxActionPoint;
+            obj.GetComponent<Enemy>().beerPoint = obj.GetComponent<Enemy>().maxBeerPoint;
         }
+
+        player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
+        player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
+        player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
+
+        playerTurn = true;
+
     }
 
-    public void EnemyTurn()
+    private void OtherObjectsTurn()
     {
-        if (playerTurn == false && totalTurn == true)
-        {
-            for (int i = 0; i < TileManager.enemyList.Count; i++)
-            {
-                tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+        EnemyTurn();
+        UpdatePoints();
+    }
 
-                MainObject enemy = TileManager.enemyList[i];
-                enemy.GetComponent<EnemyTileManager>().Turn();
-            }
+    private void EnemyTurn()
+    {
+        for (int i = 0; i < TileManager.enemyList.Count; i++)
+        {
+            tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+
+            MainObject enemy = TileManager.enemyList[i];
+            enemy.GetComponent<EnemyTileManager>().Turn();
         }
     }
 }

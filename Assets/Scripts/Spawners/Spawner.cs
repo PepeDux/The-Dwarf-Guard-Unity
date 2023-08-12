@@ -9,46 +9,52 @@ using UnityEngine.Tilemaps;
 public class Spawner : MonoBehaviour
 {
     public Tilemap tileMap;
-    public GameObject tileManager;
+    public TileManager tileManager;
 
-    [HideInInspector] public Vector3Int coordinate;
-    [HideInInspector] public bool canPut;
+    private Vector3Int coordinate;
+    private bool canPut;
 
     public void Spawn(GameObject[] objects)
     {
         if (objects.Length > 0)
         {
-            tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+            //Проверка всех клеток на их статус
+            tileManager.TileGameObjectUpdatePosition();
 
-            canPut = true;
-
-            //Проверка координат на свободность клетки
-            СheckCoordinate();
-
-            if (canPut == true)
+            //n-ое попыток на спавн объекта
+            for (int i = 0; i < 5; i++)
             {
-                //Спавним объект на сцену исходя из случайного выбраного объекта
-                int random = Random.Range(0, objects.Length);
+                if (СheckCoordinate(true))
+                {
+                    //Спавним объект на сцену исходя из случайного выбраного объекта
+                    int random = Random.Range(0, objects.Length);
 
-                //Спаним объект и перемещаем его на нужную координату
-                GameObject gameObject = Instantiate(objects[random], transform);
-                gameObject.GetComponent<BaseObject>().coordinate = coordinate;
-            }
+                    //Спаним объект и перемещаем его на нужную координату, и прикрепляем его к соответствующему ему объекту
+                    GameObject gameObject = Instantiate(objects[random], transform);
+                    gameObject.GetComponent<BaseObject>().coordinate = coordinate;
+
+                    break;
+                }
+            }      
         }      
     }
 
-    public void СheckCoordinate()
+    public bool СheckCoordinate(bool canPut)
     {
         //Случайная координата в пределах игрового поля
         coordinate = new Vector3Int(Random.Range(0, TileManager.xField + 1), Random.Range(0, TileManager.yField + 1), 0);
 
         foreach (var cell in TileManager.occupiedCells)
-        {
+        {     
             if (coordinate == cell)
             {
                 //Если объект присутствует в листе, то его спавн запрещается
                 canPut = false;
+
+                break;
             }
         }
+
+        return canPut;
     }
 }

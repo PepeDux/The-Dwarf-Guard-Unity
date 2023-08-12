@@ -166,7 +166,7 @@ MonoBehaviour:
   movePoint: 0
   maxMovePoint: 2
   actionPoints: 0
-  maxActionPoint: 1
+  maxActionPoint: 6
   beerPoint: 0
   maxBeerPoint: 0
   moveCost: 1
@@ -180,8 +180,8 @@ MonoBehaviour:
   range: 0
   rangeAttackDistance: 0
   anim: {fileID: 7199952085752115592}
-  HP: 100
-  maxHP: 100
+  HP: 0
+  maxHP: 10
   armor: 0
   maxArmor: 0
   money: 0
@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpse: {fileID: 0}
-  loot: []
+  lootAfterDeath:
+  - {fileID: 3325409924122575864, guid: a2c1ee319a2a3eb4e92f44e42be83390, type: 3}
 --- !u!114 &7199952085752115587
 MonoBehaviour:
   m_ObjectHideFlags: 0

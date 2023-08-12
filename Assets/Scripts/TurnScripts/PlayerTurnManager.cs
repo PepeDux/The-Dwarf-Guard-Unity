@@ -1,16 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTurnManager : MonoBehaviour
 {
-    // Update is called once per frame
+    public static Action playerTurnFinished;
     void Update()
     {
-        if(TurnManager.playerTurn == true && Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            TurnManager.playerTurn = false;
-            TurnManager.totalTurn = false;
+            playerTurnFinished?.Invoke();
 
             TurnManager.turnCount += 1;
 

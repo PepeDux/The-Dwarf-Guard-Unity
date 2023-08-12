@@ -1,4 +1,5 @@
 using EZCameraShake;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,16 @@ using UnityEngine.Tilemaps;
 
 public class Test : MonoBehaviour
 {
-
-    public float magnitude = 0.7f;
-    public float roughness = 10f;
-    public float fadeInTime = 0.5f;
-    public float FadeOutTime = 0.5f;
+    public static Action action;
+    
 
 
 
-    void Start()
+    void Update()
     {
-
+        if(Input.GetKeyUp(KeyCode.V))
+        {
+            action?.Invoke();
+        }
     }
 }
