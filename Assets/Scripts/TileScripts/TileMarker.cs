@@ -27,7 +27,7 @@ public class TileMarker : MonoBehaviour
 
     void Update()
     {
-        CellPosition = TileManager.CellPosition;
+        CellPosition = TileManager.CellPosition; 
         playerPosition = TileManager.playerPosition;
 
         markerTileMap.ClearAllTiles(); //Очищаем тайлмап от предыдущих тайлов-маркеров
@@ -63,7 +63,7 @@ public class TileMarker : MonoBehaviour
         }
         else if (CellPosition == playerPosition + select && canSelectEnemyMarker == true && canSelect == false)
         {
-            markerTileMap.SetTile(CellPosition, enemyPointer);
+            markerTileMap.SetTile(CellPosition, enemyPointer); //Ставим маркер врага
         }
     }
     private void CheckCells()

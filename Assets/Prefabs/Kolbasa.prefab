@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6249120736005076950}
   - component: {fileID: 3393586083236750089}
   - component: {fileID: 1305450386771067687}
-  - component: {fileID: 1470251768048011532}
+  - component: {fileID: 2804972022850124702}
   m_Layer: 0
   m_Name: Kolbasa
   m_TagString: Kolbasa
@@ -100,7 +100,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.0024912357}
   m_Size: {x: 0.31518412, y: 0.31518412}
   m_Direction: 0
---- !u!114 &1470251768048011532
+--- !u!114 &2804972022850124702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +109,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7615383639773451916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f728061c2eacb04387cd76e5491c14a, type: 3}
+  m_Script: {fileID: 11500000, guid: f4079c0ddb78b624e98489001e843a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coordinate: {x: 0, y: 0, z: 0}
   tileMap: {fileID: 0}
-  restoredHP: 10
-  restoredMovePoint: 2
-  restoredActionPoint: 2
-  restoredBeerPoint: 2
+  destroyAfterUse: 1
+  useEveryTurn: 0
+  status: {fileID: 0}

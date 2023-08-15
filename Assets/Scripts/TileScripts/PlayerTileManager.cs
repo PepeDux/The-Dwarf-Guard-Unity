@@ -7,15 +7,13 @@ public class PlayerTileManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tileMap; //Тайлмап
 
-    private bool canMove = true;
-
     private Vector3Int CellPosition; //Тайловая координата курсора
     private Vector3Int playerPosition; //Тайловая координата игрока
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && TurnManager.playerTurn == true && GetComponent<Player>().movePoint > 0)
+        if (Input.GetMouseButtonDown(0) && GetComponent<Player>().movePoint > 0)
         {
             CellPosition = TileManager.CellPosition;
             playerPosition = TileManager.playerPosition;
@@ -45,7 +43,7 @@ public class PlayerTileManager : MonoBehaviour
 
     private void Move(Vector3Int move)
     {
-        if (CellPosition == playerPosition + move && canMove == true)
+        if (CellPosition == playerPosition + move && CheckCells() == true)
         {
             transform.position = tileMap.CellToWorld(CellPosition); //Перемещаем игрока на место кликнутого тайла
             transform.Translate(0.25f, 0.25f, 0); //Корректтируем координаты (Возможно в будущем может быть убрано)
@@ -54,23 +52,23 @@ public class PlayerTileManager : MonoBehaviour
             GetComponent<Player>().coordinate = playerPosition;
 
             GetComponent<Player>().movePoint -= 1; //Отнимаем у игрока очки движения
-
-            Debug.Log(playerPosition);
         }
     }
 
     
 
-    private void CheckCells()
+    private bool CheckCells()
     {
-        canMove = true;
-
         foreach (var cell in TileManager.impassableCells)
         {
             if (CellPosition == cell)
             {
-                canMove = false;
+                //Если желаемая клетка занята, то ходить на нее запрещается
+                return false;
             } 
         }
+
+        //Возвращает true если при проверке клеток желаемая клетка была свободной
+        return true;
     }
 }

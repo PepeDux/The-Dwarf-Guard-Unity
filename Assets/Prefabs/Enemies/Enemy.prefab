@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7199952085752115595}
   - component: {fileID: 7199952085752115594}
   - component: {fileID: 7199952085752115591}
+  - component: {fileID: -9023103296649158117}
   - component: {fileID: 7199952085752115584}
   - component: {fileID: 7199952085752115587}
   - component: {fileID: 2078013242607108643}
@@ -147,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ddc949625701943a33c4cea7361ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathToTarget: []
   target: {fileID: 0}
   finishTurn: 0
 --- !u!114 &7199952085752115591
@@ -229,17 +231,20 @@ MonoBehaviour:
   frostResistBonus: 0
   drunkennessResist: 0
   drunkennessResistBonus: 0
-  hammerWay: 0
-  hammerWayBonus: 0
-  gearWay: 0
-  gearWayBonus: 0
-  anvilWay: 0
-  anvilWayBonus: 0
-  beerWay: 0
-  beerWayBonus: 0
-  runeWay: 0
-  runeWayBonus: 0
   player: {fileID: 0}
+  tileManager: {fileID: 0}
+--- !u!114 &-9023103296649158117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199952085752115597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f705ea7c86b8aa3469ec1eeeee45af03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7199952085752115584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,8 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpse: {fileID: 0}
-  lootAfterDeath:
-  - {fileID: 3325409924122575864, guid: a2c1ee319a2a3eb4e92f44e42be83390, type: 3}
+  lootAfterDeath: []
 --- !u!114 &7199952085752115587
 MonoBehaviour:
   m_ObjectHideFlags: 0

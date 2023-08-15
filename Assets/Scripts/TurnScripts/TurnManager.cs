@@ -12,9 +12,6 @@ public class TurnManager : MonoBehaviour
 {
     public static int turnCount = 1; //Счеткич ходов
 
-    public static bool playerTurn = true; //При завершении хода игрока - true, при начале хода игрока - true
-    public static bool totalTurn = false; //При завершении всех действий на этот ход
-
     public GameObject player;
     public GameObject tileManager;
 
@@ -22,12 +19,14 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerTurnManager.playerTurnFinished += OtherObjectsTurn;
+        //Подписываемся на событие конца хода игрока 
+        PlayerTurnManager.playerTurnFinished += EndPlayerTurn;
     }
 
     private void OnDisable()
     {
-        PlayerTurnManager.playerTurnFinished -= OtherObjectsTurn;
+        //Отписываемся на событие конца хода игрока 
+        PlayerTurnManager.playerTurnFinished -= EndPlayerTurn;
     }
 
 
@@ -44,25 +43,10 @@ public class TurnManager : MonoBehaviour
         player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
         player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
         player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
-
-        playerTurn = true;
-
     }
 
-    private void OtherObjectsTurn()
-    {
-        EnemyTurn();
+    private void EndPlayerTurn()
+    {        
         UpdatePoints();
-    }
-
-    private void EnemyTurn()
-    {
-        for (int i = 0; i < TileManager.enemyList.Count; i++)
-        {
-            tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
-
-            MainObject enemy = TileManager.enemyList[i];
-            enemy.GetComponent<EnemyTileManager>().Turn();
-        }
     }
 }

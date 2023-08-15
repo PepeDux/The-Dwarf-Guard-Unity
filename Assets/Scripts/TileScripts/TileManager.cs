@@ -7,9 +7,9 @@ public class TileManager : MonoBehaviour
 {
     public Transform parentEnemy; //Родительский объект врагов объектов
     public Transform parentStaticObject; //Родительский объект статичных объектов
-    public Transform parentPickUpObject; //Родительский объект подбираемых объектов
+    public Transform parentFunctionalObject; //Родительский объект функциональных объектов
 
-    [SerializeField] public GameObject player; //Игрок
+    [SerializeField] public Player player; //Игрок
 
     [SerializeField] private Tilemap tileMap; //Тайлмап
     private Camera mainCamera; //Камера
@@ -20,11 +20,13 @@ public class TileManager : MonoBehaviour
 
     public static List<Vector3Int> occupiedCells = new List<Vector3Int>(); //Все занятые клетки
     public static List<Vector3Int> impassableCells = new List<Vector3Int>(); //Клетки на которые нельзя наступить
+    public static List<Vector3Int> functionalCells = new List<Vector3Int>(); //Функциональные объекты
     public static List<Vector3Int> edgeCells = new List<Vector3Int>(); //Клетки "стенки" стоящие на краях уровня и запрещающие движеня за них
     public static List<Vector3Int> markerCells = new List<Vector3Int>(); //Клетки которые отображают маркеры на поле
     public static List<Vector3Int> enemyCells = new List<Vector3Int>(); //Клетки на которых находится враг
 
     public static List<MainObject> enemyList = new List<MainObject>(); //Список врагов на сцене в виде игровых объектов
+    public static List<MainObject> allСharacters = new List<MainObject>(); //Список всех персонажей на сцене
 
 
 
@@ -59,11 +61,18 @@ public class TileManager : MonoBehaviour
         //Очищаем все листы от старых данных чтобы их обновить
         occupiedCells.Clear();
         impassableCells.Clear();
+        functionalCells.Clear();
         enemyCells.Clear();
         enemyList.Clear();
+        allСharacters.Clear();
+
+
 
         //Позиция игрока на игровом поле
-        playerPosition = player.GetComponent<Player>().coordinate;
+        if (player != null)
+        {
+            playerPosition = player.coordinate;
+        }
 
         //Записываем грани игрового поля в список непроходимых клеток
         impassableCells.AddRange(edgeCells);
@@ -94,18 +103,26 @@ public class TileManager : MonoBehaviour
             }
         }
 
-        //Перебираем все дочерние объекты из родительского объекта подбираемых объектов для записи координат в лист
-        foreach (Transform obj in parentPickUpObject.transform)
+        //Перебираем все дочерние объекты из родительского объекта ловушек для записи координат в лист
+        foreach (Transform obj in parentFunctionalObject.transform)
         {
             if (obj != null)
             {
                 occupiedCells.Add(obj.GetComponent<BaseObject>().coordinate);
             }
         }
+
+
+
+
+        allСharacters.AddRange(enemyList);
+        allСharacters.Add(player);
     }
 
     public void EdgeCalcelation()
     {
+        //Вычисляет границы карты исходя из заданных значений и записывает их в список
+
         for (int i = 0; i <= xField; i++)
         {
             edgeCells.Add(new Vector3Int(i, -1, 0));

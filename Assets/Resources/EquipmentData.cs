@@ -7,13 +7,13 @@ public class EquipmentData : StatusData
 {
     [Header("Цена")]
     //Цена      ///Неожиданно? Да я сам в ахуе
-    [SerializeField, Range(0, 1000f)] public float cost;
-    public float Cost { get => cost; }
+    [SerializeField, Range(0, 1000)] public int cost;
+    public int Cost { get => cost; }
 
     [Header("Вес")]
     //Вес
-    [SerializeField, Range(0, 100f)] public float weight;
-    public float Weight { get => weight; }
+    [SerializeField, Range(0, 100)] public int weight;
+    public int Weight { get => weight; }
 
 
 
@@ -26,22 +26,22 @@ public class EquipmentData : StatusData
 
     [Header("Требования к характеристикам")]
     //Сила
-    [SerializeField, Range(0, 100f)] public float requestStrength = 0;
-    public float RequestStrength { get => requestStrength; }
+    [SerializeField, Range(0, 100)] public int requestStrength = 0;
+    public int RequestStrength { get => requestStrength; }
 
     //Ловкость
-    [SerializeField, Range(0, 100f)] public float requestAgility = 0;
-    public float RequestAgility { get => requestAgility; }
+    [SerializeField, Range(0, 100)] public int requestAgility = 0;
+    public int RequestAgility { get => requestAgility; }
 
     //Интеллект
-    [SerializeField, Range(0, 100f)] public float requesIntel = 0;
-    public float RequestIntel { get => requesIntel; }
+    [SerializeField, Range(0, 100)] public int requesIntel = 0;
+    public int RequestIntel { get => requesIntel; }
 
     //Телосложение
-    [SerializeField, Range(0, 100f)] public float requesConstitution = 0;
-    public float RequestConstitution { get => requesConstitution; }
+    [SerializeField, Range(0, 100)] public int requesConstitution = 0;
+    public int RequestConstitution { get => requesConstitution; }
 
     //Мудрость
-    [SerializeField, Range(0, 100f)] public float requestwisdom = 0;
-    public float RequestWisdom { get => requestwisdom; }
+    [SerializeField, Range(0, 100)] public int requestwisdom = 0;
+    public int RequestWisdom { get => requestwisdom; }
 }

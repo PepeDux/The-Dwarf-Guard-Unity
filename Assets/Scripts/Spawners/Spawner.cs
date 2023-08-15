@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
     public Tilemap tileMap;
     public TileManager tileManager;
 
+    [Header("Информация о уровне")]
+    public LevelInfo levelInfo;
+
     private Vector3Int coordinate;
     private bool canPut;
 
@@ -24,7 +27,7 @@ public class Spawner : MonoBehaviour
             //n-ое попыток на спавн объекта
             for (int i = 0; i < 5; i++)
             {
-                if (СheckCoordinate(true))
+                if (СheckCoordinate() == true)
                 {
                     //Спавним объект на сцену исходя из случайного выбраного объекта
                     int random = Random.Range(0, objects.Length);
@@ -39,7 +42,7 @@ public class Spawner : MonoBehaviour
         }      
     }
 
-    public bool СheckCoordinate(bool canPut)
+    public bool СheckCoordinate()
     {
         //Случайная координата в пределах игрового поля
         coordinate = new Vector3Int(Random.Range(0, TileManager.xField + 1), Random.Range(0, TileManager.yField + 1), 0);
@@ -49,12 +52,10 @@ public class Spawner : MonoBehaviour
             if (coordinate == cell)
             {
                 //Если объект присутствует в листе, то его спавн запрещается
-                canPut = false;
-
-                break;
+                return false;
             }
         }
 
-        return canPut;
+        return true;
     }
 }

@@ -11,15 +11,17 @@ using JetBrains.Annotations;
 
 public class MainObject : BaseObject
 {
-    [Header("Очки перемещения, очки действия, очки пива")]
+    [Header("Очки перемещения")]
     //Очки перемещения
     public int movePoint;
     public int maxMovePoint;
 
+    [Header("Очки действия")]
     //Очки действий
     public int actionPoints;
     public int maxActionPoint;
 
+    [Header("Очки пива")]
     //Очки пива
     public int beerPoint;
     public int maxBeerPoint;
@@ -75,7 +77,7 @@ public class MainObject : BaseObject
     [Header("Броня")]
     //Броня
     public int armor;
-    public int maxArmor = 0;
+    public int maxArmor;
 
     [Header("Монетки")]
     //Монетки
@@ -227,37 +229,6 @@ public class MainObject : BaseObject
 
 
 
-    [Header("Пути")]
-    //Путь молота
-    public int hammerWay = 0;
-    [HideInInspector] private int hammerWayCharac = 0;
-    [HideInInspector] private const int maxHammerWayCharac = 20;
-    [HideInInspector] public int hammerWayBonus = 0;
-
-    //Путь шестеренки
-    public int gearWay = 0;
-    [HideInInspector] private int gearWayCharac = 0;
-    [HideInInspector] private const int maxGearWayCharac = 20;
-    [HideInInspector] public int gearWayBonus = 0;
-
-    //Путь наковальни
-    public int anvilWay = 0;
-    [HideInInspector] private int anvilWayCharac = 0;
-    [HideInInspector] private const int maxAnvilWayCharac = 20;
-    [HideInInspector] public int anvilWayBonus = 0;
-
-    //Путь пива
-    public int beerWay = 0;
-    [HideInInspector] private int beerWayCharac = 0;
-    [HideInInspector] private const int maxBeerWayCharac = 20;
-    [HideInInspector] public int beerWayBonus = 0;
-
-    //Путь рун
-    public int runeWay = 0;
-    [HideInInspector] private int runeWayCharac = 0;
-    [HideInInspector] private const int maxRuneWayCharac = 20;
-    [HideInInspector] public int runeWayBonus = 0;
-
     public void CheckCharac()
     {
         //Хепешки
@@ -266,7 +237,7 @@ public class MainObject : BaseObject
             HP = maxHP;
         }
 
-        if (armor >= maxArmor)
+        if (armor > maxArmor)
         {
             armor = maxArmor;
         }
@@ -471,12 +442,6 @@ public class MainObject : BaseObject
 
 
 
-        //Пути
-        hammerWay = hammerWayCharac * 1 + hammerWayBonus;
-        gearWay = gearWayCharac * 1 + gearWayBonus;
-        anvilWay = anvilWay * 1 + anvilWayBonus;
-        beerWay = beerWayCharac * 1 + beerWayCharac;
-        runeWay = runeWayCharac * 1 + runeWayBonus;
     }//Обновляет характеристики исходя из других переменных и бонусов к ним
 
 

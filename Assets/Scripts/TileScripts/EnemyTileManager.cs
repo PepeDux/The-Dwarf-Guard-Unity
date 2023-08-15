@@ -13,7 +13,7 @@ using static UnityEngine.ParticleSystem;
 
 public class EnemyTileManager : MonoBehaviour
 {
-    private List<Vector3Int> pathToTarget = new List<Vector3Int>(); //Путь к цели
+    public List<Vector3Int> pathToTarget = new List<Vector3Int>(); //Путь к цели
     private List<Node> checkedNodes = new List<Node>(); //Проверенные ноды
     private List<Node> freeNodes = new List<Node>(); //Свободные ноды
     private List<Node> waitingNodes = new List<Node>(); //Ожидающие ноды
@@ -28,70 +28,15 @@ public class EnemyTileManager : MonoBehaviour
         target = GetComponent<Enemy>().player;
     }
 
-    public void EnemyMove()
-    {
-        if (GetComponent<Enemy>().movePoint >= GetComponent<Enemy>().moveCost)
-        {
-            pathToTarget.Clear();
-            pathToTarget = GetPath(target.GetComponent<Player>().coordinate);
-
-            if (pathToTarget.Count > 1)
-            {
-                pathToTarget.RemoveAt(0);
-                GetComponent<Enemy>().coordinate = pathToTarget[pathToTarget.Count - 1];
-                GetComponent<Enemy>().UpdateCoordinate();
-                GetComponent<Enemy>().movePoint -= 1;
-            }
-        }
-
-
-
-        finishTurn = true;
-    }
-
-
-
-    public void Turn()
-    {
-        while(GetComponent<Enemy>().movePoint >= GetComponent<Enemy>().moveCost)
-        {
-            int startPoints = GetComponent<Enemy>().movePoint;
-
-            EnemyMove();
-
-            if(startPoints == GetComponent<Enemy>().movePoint)
-            {
-                break;
-            }
-        }
-
-
-
-
-
-
-
-        while (GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().meleeAttackCost || GetComponent<Enemy>().actionPoints >= GetComponent<Enemy>().rangeAttackCost)
-        {
-            int startPoints = GetComponent<Enemy>().actionPoints;
-
-            GetComponent<AttackScript>().CalculationAttack(target.GetComponent<MainObject>());
-
-            if (startPoints == GetComponent<Enemy>().actionPoints)
-            {
-                break;
-            }
-        }
-
-    }
+    
     public List<Vector3Int> GetPath(Vector3Int target)
     {
         checkedNodes.Clear(); //Проверенные ноды
         freeNodes.Clear(); //Свободные ноды
         waitingNodes.Clear(); //Ожидающие ноды
 
-        Vector3Int startPosition = GetComponent<Enemy>().coordinate;
-        Vector3Int targetPosition = target;
+        Vector3Int startPosition = GetComponent<Enemy>().coordinate; //Стартовая координата врага
+        Vector3Int targetPosition = target; //Координата цели(Игрока)
 
         if (startPosition == targetPosition)
         {
@@ -168,6 +113,7 @@ public class EnemyTileManager : MonoBehaviour
         var Neighbours = new List<Node>();
         Neighbours.Clear();
 
+        //Линейное перевдвижение
         if(GetComponent<Enemy>().lineMove == true)
         {
             Neighbours.Add(new Node(node.G + 1, new Vector3Int(
@@ -191,6 +137,7 @@ public class EnemyTileManager : MonoBehaviour
                  node));
         }
 
+        //Диагональе передвижение
         if(GetComponent<Enemy>().diagonalMove == true)
         {
             Neighbours.Add(new Node(node.G + 1.4f, new Vector3Int(

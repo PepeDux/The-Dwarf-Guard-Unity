@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemySpawner : Spawner
 {
+    [Header("Спавнящиеся объекты")]
     public GameObject[] melee;
     public GameObject[] range;
     public GameObject[] captain;
@@ -13,22 +14,22 @@ public class EnemySpawner : Spawner
    
     public void SpawnEnemy()
     {
-        for (int i = 0; i < LevelInfo.melee; i++) 
+        for (int i = 0; i < levelInfo.melee; i++) 
         {
             Spawn(melee);
         }
 
-        for (int i = 0; i < LevelInfo.range; i++)
+        for (int i = 0; i < levelInfo.range; i++)
         {
             Spawn(range);
         }
 
-        for (int i = 0; i < LevelInfo.captain; i++)
+        for (int i = 0; i < levelInfo.captain; i++)
         {
             Spawn(captain);
         }
 
-        for (int i = 0; i < LevelInfo.wizard; i++)
+        for (int i = 0; i < levelInfo.wizard; i++)
         {
             Spawn(wizard);
         }

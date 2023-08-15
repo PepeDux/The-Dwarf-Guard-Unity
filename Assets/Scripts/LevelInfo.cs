@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class LevelInfo : MonoBehaviour
 {
+    [Header("Юниты на уровне")]
     //Колличество юнитов которые нужно заспавнить при старте уровня
-    public static int melee = 1; //Ближники 
-    public static int range = 1; //Дальники
-    public static int captain = 1; //Капитаны
-    public static int wizard = 0; //Колдуны
+    public int melee = 1; //Ближники 
+    public int range = 1; //Дальники
+    public int captain = 1; //Капитаны
+    public int wizard = 0; //Колдуны
 
+    [Header("Статичные объекты")]
     //Колличество статичных объектов которые нужно заспавнить при старте уровня
-    public static int wall = 5; //Стены
-    public static int trap = 2; //Ловушки
-    public static int pit = 30; //Ямы
+    public int wall = 5; //Стены
+    public int pit = 3; //Ямы
 
-    //Колличество поднимаемых объектов которые нужно заспавнить при старте уровня
-    public static int food = 3; //Еда
-    public static int money = 0; //Монеты
-    public static int crystal = 0; //Кристаллы
+    [Header("Функциональные объекты")]
+    public int trap = 2; //Ловушки
+    public int food = 3; //Еда
+    public int money = 0; //Монеты
+    public int crystal = 0; //Кристаллы
 }

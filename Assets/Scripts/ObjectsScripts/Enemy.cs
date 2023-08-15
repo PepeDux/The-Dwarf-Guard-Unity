@@ -12,7 +12,20 @@ public class Enemy : MainObject
     [Header("Игрок")]
     public GameObject player;
 
+    public GameObject tileManager;
 
+
+
+
+    private void OnEnable()
+    {
+        PlayerTurnManager.playerTurnFinished += Turn;
+    }
+
+    private void OnDisable()
+    {
+        PlayerTurnManager.playerTurnFinished -= Turn;
+    }
 
     public void FixedUpdate() 
     {
@@ -24,6 +37,7 @@ public class Enemy : MainObject
     {
         Starter();
         player = GameObject.Find("Dwarf Guard");
+        tileManager = GameObject.Find("TileManager");
     }
 
     void MoveOrientation()
@@ -50,5 +64,55 @@ public class Enemy : MainObject
         theScale.x *= -1;
         //задаем новый размер персонажа, равный старому, но зеркально отраженный
         transform.localScale = theScale;
+    }
+
+
+
+    public void EnemyMove()
+    {
+        List<Vector3Int> pathToTarget = GetComponent<EnemyTileManager>().pathToTarget;
+
+        if (movePoint >= moveCost)
+        {
+            pathToTarget.Clear();
+            pathToTarget = GetComponent<EnemyTileManager>().GetPath(player.GetComponent<Player>().coordinate);
+
+            if (pathToTarget.Count > 1)
+            {
+                pathToTarget.RemoveAt(0);
+                coordinate = pathToTarget[pathToTarget.Count - 1];
+                UpdateCoordinate();
+                movePoint -= moveCost;
+            }
+        }
+    }
+
+    public void Turn()
+    {
+        while(movePoint >= moveCost)
+        {
+            tileManager.GetComponent<TileManager>().TileGameObjectUpdatePosition();
+
+            int startPoints = movePoint;
+
+            EnemyMove();
+
+            if(startPoints == movePoint)
+            {
+                break;
+            }
+        }
+
+        while (actionPoints >= meleeAttackCost || actionPoints >= rangeAttackCost)
+        {
+            int startPoints = actionPoints;
+
+            GetComponent<AttackScript>().CalculationAttack(player.GetComponent<MainObject>());
+
+            if (startPoints == actionPoints)
+            {
+                break;
+            }
+        }
     }
 }

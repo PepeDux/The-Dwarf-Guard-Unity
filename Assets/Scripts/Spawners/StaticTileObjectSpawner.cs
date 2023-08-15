@@ -5,25 +5,20 @@ using UnityEngine.Tilemaps;
 
 public class StaticTileObjectSpawner : Spawner
 {
+    [Header("Спавнящиеся объекты")]
     public GameObject[] wall; //Стена
-    public GameObject[] trap; //Ловушка
     public GameObject[] pit; //Яма
 
 
 
     public void SpawnStaticTileObject()
     {
-        for (int i = 0; i < LevelInfo.wall; i++)
+        for (int i = 0; i < levelInfo.wall; i++)
         {
             Spawn(wall);
         }
 
-        for (int i = 0; i < LevelInfo.trap; i++)
-        {
-            Spawn(trap);
-        }
-
-        for (int i = 0; i < LevelInfo.pit; i++)
+        for (int i = 0; i < levelInfo.pit; i++)
         {
             Spawn(pit);
         }
