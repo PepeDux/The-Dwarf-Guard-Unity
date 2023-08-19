@@ -22,7 +22,7 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(Vector3Int attackCell, MainObject target, int attackCost)
     { 
-        if (canAttack == true && attackCell == target.coordinate && GetComponent<MainObject>().actionPoints > 0)
+        if (canAttack == true && attackCell == target.coordinate && target != null && GetComponent<MainObject>().actionPoints > 0)
         {
             canAttack = false;
 
@@ -73,9 +73,10 @@ public class AttackScript : MonoBehaviour
     {
         Vector3Int attackCell = new Vector3Int();
 
-        //Напрво от атакующего
+        
         if(GetComponent<MainObject>().lineAttack == true) 
         {
+            //Напрво от атакующего
             for (int i = 0; i <= distanceAttack; i++)
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y, 0);

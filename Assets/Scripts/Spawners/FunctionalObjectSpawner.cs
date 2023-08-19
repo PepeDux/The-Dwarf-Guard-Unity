@@ -14,22 +14,22 @@ public class FunctionalObjectSpawner : Spawner
 
     public void SpawnFunctionalObject()
     {
-        for (int i = 0; i < levelInfo.trap; i++)
+        for (int i = 0; i < generateLevelInfo.trap; i++)
         {
             Spawn(trap);
         }
 
-        for (int i = 0; i < levelInfo.food; i++)
+        for (int i = 0; i < generateLevelInfo.food; i++)
         {
             Spawn(food);
         }
 
-        for (int i = 0; i < levelInfo.money; i++)
+        for (int i = 0; i < generateLevelInfo.money; i++)
         {
             Spawn(money);
         }
 
-        for (int i = 0; i < levelInfo.crystal; i++)
+        for (int i = 0; i < generateLevelInfo.crystal; i++)
         {
             Spawn(crystal);
         }

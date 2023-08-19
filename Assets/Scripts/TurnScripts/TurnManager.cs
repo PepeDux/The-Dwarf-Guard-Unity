@@ -40,9 +40,12 @@ public class TurnManager : MonoBehaviour
             obj.GetComponent<Enemy>().beerPoint = obj.GetComponent<Enemy>().maxBeerPoint;
         }
 
-        player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
-        player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
-        player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
+        if(player != null)
+        {
+            player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
+            player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
+            player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
+        }
     }
 
     private void EndPlayerTurn()

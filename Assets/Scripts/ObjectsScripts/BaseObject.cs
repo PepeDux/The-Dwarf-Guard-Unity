@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,20 @@ public class BaseObject : MonoBehaviour
     [Header("Тайлмап и прочее")]
     public Vector3Int coordinate;
     public Tilemap tileMap;
+
+
+    private void OnEnable()
+    {
+        //Подписываемся на событие конца хода игрока 
+        LevelManager.LevelEnded += Destroy;
+    }
+
+    private void OnDisable()
+    {
+        //Отписываемся на событие конца хода игрока 
+        LevelManager.LevelEnded -= Destroy;
+    }
+
 
     public void UpdateCoordinate()
     {
@@ -40,6 +55,11 @@ public class BaseObject : MonoBehaviour
         }
         //-----------------------------------------
 
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 
     public virtual void Updater()

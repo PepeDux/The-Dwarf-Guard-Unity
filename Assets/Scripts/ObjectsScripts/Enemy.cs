@@ -15,15 +15,17 @@ public class Enemy : MainObject
     public GameObject tileManager;
 
 
-
-
     private void OnEnable()
     {
+        //Подписываемся на событие конца хода игрока 
+        LevelManager.LevelEnded += Destroy;
         PlayerTurnManager.playerTurnFinished += Turn;
     }
 
     private void OnDisable()
     {
+        //Отписываемся на событие конца хода игрока 
+        LevelManager.LevelEnded -= Destroy;
         PlayerTurnManager.playerTurnFinished -= Turn;
     }
 
@@ -72,7 +74,7 @@ public class Enemy : MainObject
     {
         List<Vector3Int> pathToTarget = GetComponent<EnemyTileManager>().pathToTarget;
 
-        if (movePoint >= moveCost)
+        if (movePoint >= moveCost && player != null)
         {
             pathToTarget.Clear();
             pathToTarget = GetComponent<EnemyTileManager>().GetPath(player.GetComponent<Player>().coordinate);
@@ -103,7 +105,7 @@ public class Enemy : MainObject
             }
         }
 
-        while (actionPoints >= meleeAttackCost || actionPoints >= rangeAttackCost)
+        while (actionPoints >= meleeAttackCost || actionPoints >= rangeAttackCost && player != null)
         {
             int startPoints = actionPoints;
 

@@ -634,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
   tileManager: {fileID: 64866467}
-  levelInfo: {fileID: 722099550}
+  generateLevelInfo: {fileID: 722099550}
   melee:
   - {fileID: 7199952085752115597, guid: 9b8d74e73262000478d455fc2a3f6828, type: 3}
   range: []
@@ -936,7 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
   tileManager: {fileID: 64866467}
-  levelInfo: {fileID: 722099550}
+  generateLevelInfo: {fileID: 722099550}
   trap:
   - {fileID: 1225577269385733052, guid: 66adccd758dfb9646a0f541790f8cabf, type: 3}
   food:
@@ -1809,7 +1809,7 @@ GameObject:
   - component: {fileID: 722099551}
   - component: {fileID: 722099550}
   m_Layer: 0
-  m_Name: LevelInfo
+  m_Name: GenerateLevelInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1526609390}
   tileManager: {fileID: 64866467}
-  levelInfo: {fileID: 722099550}
+  generateLevelInfo: {fileID: 722099550}
   wall: []
   pit:
   - {fileID: 8945418741133922298, guid: a1012a8abdbd8344fb9b53131cb495c9, type: 3}
@@ -4482,6 +4482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958f63ea77801414893b25d94e14558b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1642026052}
 --- !u!4 &2062304245
 Transform:
   m_ObjectHideFlags: 0

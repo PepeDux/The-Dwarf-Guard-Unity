@@ -13,12 +13,12 @@ public class StaticTileObjectSpawner : Spawner
 
     public void SpawnStaticTileObject()
     {
-        for (int i = 0; i < levelInfo.wall; i++)
+        for (int i = 0; i < generateLevelInfo.wall; i++)
         {
             Spawn(wall);
         }
 
-        for (int i = 0; i < levelInfo.pit; i++)
+        for (int i = 0; i < generateLevelInfo.pit; i++)
         {
             Spawn(pit);
         }

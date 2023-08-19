@@ -1542,6 +1542,7 @@ ParticleSystem:
     - sprite: {fileID: 4090799819692156374, guid: ac0d99df832e15a4ca4dfe6fa6638c06, type: 3}
     - sprite: {fileID: 4658627485858765526, guid: ac0d99df832e15a4ca4dfe6fa6638c06, type: 3}
     - sprite: {fileID: -7125811559464083784, guid: ac0d99df832e15a4ca4dfe6fa6638c06, type: 3}
+    - sprite: {fileID: 0}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -3679,7 +3680,8 @@ ParticleSystem:
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 0}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0

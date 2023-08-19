@@ -14,22 +14,22 @@ public class EnemySpawner : Spawner
    
     public void SpawnEnemy()
     {
-        for (int i = 0; i < levelInfo.melee; i++) 
+        for (int i = 0; i < generateLevelInfo.melee; i++) 
         {
             Spawn(melee);
         }
 
-        for (int i = 0; i < levelInfo.range; i++)
+        for (int i = 0; i < generateLevelInfo.range; i++)
         {
             Spawn(range);
         }
 
-        for (int i = 0; i < levelInfo.captain; i++)
+        for (int i = 0; i < generateLevelInfo.captain; i++)
         {
             Spawn(captain);
         }
 
-        for (int i = 0; i < levelInfo.wizard; i++)
+        for (int i = 0; i < generateLevelInfo.wizard; i++)
         {
             Spawn(wizard);
         }

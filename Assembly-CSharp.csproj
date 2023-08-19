@@ -62,7 +62,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\TileScripts\EnemyTileManager.cs" />
-    <Compile Include="Assets\Scripts\LevelInfo.cs" />
+    <Compile Include="Assets\Scripts\GenerateLevelInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\AttackScripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\TileScripts\PlayerTileManager.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\PereodicDamageScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\ObjectsScripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\CurrentLevelInfo.cs" />
     <Compile Include="Assets\Resources\EquipmentData.cs" />
     <Compile Include="Assets\Scripts\Trash\XPScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

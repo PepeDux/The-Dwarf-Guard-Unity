@@ -16,13 +16,17 @@ public class FunctionalObject : BaseObject
     {
         //Подписываемся на событие конца хода игрока 
         PlayerTurnManager.playerTurnFinished += Check;
+        LevelManager.LevelEnded += Destroy;
     }
 
     private void OnDisable()
     {
         //Отписываемся на событие конца хода игрока 
         PlayerTurnManager.playerTurnFinished -= Check;
+        LevelManager.LevelEnded -= Destroy;
     }
+
+
 
 
 
