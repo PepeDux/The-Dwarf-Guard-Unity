@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 2318.4907
     height: 1222.6415
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 8}
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 753
     width: 1638
     height: 420
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 25}
   m_Panes:
   - {fileID: 22}
@@ -151,10 +151,10 @@ MonoBehaviour:
     y: 30
     width: 2318
     height: 1173
-  m_MinSize: {x: 580, y: 342}
-  m_MaxSize: {x: 12005, y: 8042}
+  m_MinSize: {x: 578, y: 342}
+  m_MaxSize: {x: 12003, y: 8042}
   vertical: 0
-  controlID: 71
+  controlID: 136
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,8 +174,8 @@ MonoBehaviour:
     y: 0
     width: 680
     height: 1173
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -183,7 +183,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 15}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 3
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,7 +206,7 @@ MonoBehaviour:
     y: 0
     width: 2318
     height: 1223
-  m_MinSize: {x: 875, y: 392}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -1209,9 +1209,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.559334, y: 3.0316832, z: -4.2749863}
+    m_Target: {x: 1.871535, y: 2.5895743, z: -7.140015}
     speed: 2
-    m_Value: {x: 2.583294, y: 2.9448893, z: -4.2595634}
+    m_Value: {x: 1.871535, y: 2.5895743, z: -7.140015}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1262,9 +1262,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.0913095
+    m_Target: 4.543241
     speed: 2
-    m_Value: 4.284094
+    m_Value: 4.543241
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 18176
+  m_LastSelectedObjectID: 18172
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1790,22 +1790,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Effects
+    - Assets/Tilemap/Markers
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 72
   m_LastFolders:
-  - Assets/Effects
+  - Assets/Tilemap/Markers
   m_LastFoldersGridSize: 72
   m_LastProjectPath: C:\Users\roman\Unity\The Dwarf Guard\The-Dwarf-Guard
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 5}
-    m_SelectedIDs: 56500000
-    m_LastClickedID: 20566
-    m_ExpandedIDs: 000000004050000042500000445000004650000000ca9a3b
+    scrollPos: {x: 0, y: 201}
+    m_SelectedIDs: 5c680000
+    m_LastClickedID: 26716
+    m_ExpandedIDs: 000000003c5000003e50000040500000425000007e50000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1833,7 +1833,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000040500000425000004450000046500000
+    m_ExpandedIDs: 000000003c5000003e5000004050000042500000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1858,9 +1858,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 28480000
-    m_LastClickedInstanceID: 18472
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000dc430000e4430000d2500000de560000e4560000e442000018430000044300009255000026430000184e0000fe430000be4300008a5a0000ea580000304e000076520000c65500003643000080600000ec4500002246000030460000264600000e4a0000064a00006646000068600000065c0000000000009e43000014f6ffffaa4300004a480000aa47000080470000084b0000384b00009866000092660000ec600000be460000b84600000e4c0000204700007a4e00004c4c00000e47000034470000d04e00003c500000f04e0000be620000764e00001a4a0000606200004a4900006e4900005e48000084510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1877,7 +1877,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
+      m_ClientGUIView: {fileID: 4}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1956,21 +1956,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 30fbffff1c47000036470000
+      m_ExpandedIDs: 30fbffff3247000032480000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: MainTileMap_10(Clone)
+        m_OriginalName: MainTileMap_10(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -12962
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 2}
       m_SearchString: 

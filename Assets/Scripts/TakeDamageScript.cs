@@ -62,8 +62,15 @@ public class TakeDamageScript : MonoBehaviour
         //Спавнит случайны лут из списка с вероятностью 50%
         if(Random.Range(0, 100) > 50 && lootAfterDeath != null)
         {
-            GameObject loot = Instantiate(lootAfterDeath[Random.Range(0, lootAfterDeath.Length)]);
-            loot.GetComponent<BaseObject>().coordinate = GetComponent<BaseObject>().tileMap.WorldToCell(transform.position);
+            try
+            {
+                GameObject loot = Instantiate(lootAfterDeath[Random.Range(0, lootAfterDeath.Length)]);
+                loot.GetComponent<BaseObject>().coordinate = GetComponent<BaseObject>().tileMap.WorldToCell(transform.position);
+            }
+            catch 
+            { 
+
+            }
         }
 
 

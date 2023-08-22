@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     public TileManager tileManager;
 
     [Header("Информация о уровне")]
-    public GenerateLevelInfo generateLevelInfo;
+    public LevelInfo generateLevelInfo;
 
     private Vector3Int coordinate;
     private bool canPut;

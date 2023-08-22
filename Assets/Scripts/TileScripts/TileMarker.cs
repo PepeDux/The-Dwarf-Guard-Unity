@@ -10,13 +10,13 @@ public class TileMarker : MonoBehaviour
     private Vector3Int CellPosition; //Тайловая координата курсора
     private Vector3Int playerPosition; //Тайловая координата игрока
 
-    [SerializeField] private TileBase basicPointer; //Указатель возможного хода
+    [SerializeField] private TileBase movePointer; //Указатель возможного хода
     [SerializeField] private TileBase enemyPointer; //Указатель возможного хода
 
     private GameObject player;
 
     private bool canMove = true;
-    private bool canSelect = true;
+    private bool canSelectMoveMarker = true;
     private bool canSelectEnemyMarker = true;
 
 
@@ -39,36 +39,58 @@ public class TileMarker : MonoBehaviour
         {
             if (player.GetComponent<Player>().lineMove == true)
             {
-                Select(new Vector3Int(0, 1, 0));  //Вверх
-                Select(new Vector3Int(0, -1, 0)); //Вниз
-                Select(new Vector3Int(-1, 0, 0)); //Влево
-                Select(new Vector3Int(1, 0, 0));  //Вправо
+                SelectMoveCell(new Vector3Int(0, 1, 0));  //Вверх
+                SelectMoveCell(new Vector3Int(0, -1, 0)); //Вниз
+                SelectMoveCell(new Vector3Int(-1, 0, 0)); //Влево
+                SelectMoveCell(new Vector3Int(1, 0, 0));  //Вправо
             }
 
             if (player.GetComponent<Player>().diagonalMove == true)
             {
-                Select(new Vector3Int(1, 1, 0));   //Вправо вверх
-                Select(new Vector3Int(1, -1, 0));  //Вправо вниз
-                Select(new Vector3Int(-1, -1, 0)); //Влево вниз
-                Select(new Vector3Int(-1, 1, 0));  //Влево вверх
+                SelectMoveCell(new Vector3Int(1, 1, 0));   //Вправо вверх
+                SelectMoveCell(new Vector3Int(1, -1, 0));  //Вправо вниз
+                SelectMoveCell(new Vector3Int(-1, -1, 0)); //Влево вниз
+                SelectMoveCell(new Vector3Int(-1, 1, 0));  //Влево вверх
+            }
+
+
+
+            if (player.GetComponent<Player>().lineAttack == true)
+            {
+                SelectEnemyCell(new Vector3Int(0, 1, 0));  //Вверх
+                SelectEnemyCell(new Vector3Int(0, -1, 0)); //Вниз
+                SelectEnemyCell(new Vector3Int(-1, 0, 0)); //Влево
+                SelectEnemyCell(new Vector3Int(1, 0, 0));  //Вправо
+            }
+
+            if (player.GetComponent<Player>().diagonalAttack == true)
+            {
+                SelectEnemyCell(new Vector3Int(1, 1, 0));   //Вправо вверх
+                SelectEnemyCell(new Vector3Int(1, -1, 0));  //Вправо вниз
+                SelectEnemyCell(new Vector3Int(-1, -1, 0)); //Влево вниз
+                SelectEnemyCell(new Vector3Int(-1, 1, 0));  //Влево вверх
             }
         }
     }
 
-    private void Select(Vector3Int select)
+    private void SelectMoveCell(Vector3Int select)
     {
-        if (CellPosition == playerPosition + select && canSelect == true)
+        if (CellPosition == playerPosition + select && canSelectMoveMarker == true)
         {
-            markerTileMap.SetTile(CellPosition, basicPointer); //Ставим маркер возможного хода                      
+            markerTileMap.SetTile(CellPosition, movePointer); //Ставим маркер возможного хода                                                
         }
-        else if (CellPosition == playerPosition + select && canSelectEnemyMarker == true && canSelect == false)
+    }
+
+    private void SelectEnemyCell(Vector3Int select)
+    {
+        if (CellPosition == playerPosition + select && canSelectEnemyMarker == true)
         {
             markerTileMap.SetTile(CellPosition, enemyPointer); //Ставим маркер врага
         }
     }
     private void CheckCells()
     {
-        canSelect = true;
+        canSelectMoveMarker = true;
         canMove = true;
         canSelectEnemyMarker = false;
 
@@ -77,15 +99,15 @@ public class TileMarker : MonoBehaviour
             if (CellPosition == cell)
             {
                 canMove = false;
-                canSelect = false;
+                canSelectMoveMarker = false;
             }
         }
 
-        foreach (var enemyMarker in TileManager.enemyCells)
+        foreach (var cell in TileManager.enemyCells)
         {
-            if (CellPosition == enemyMarker)
+            if (CellPosition == cell)
             {
-                canSelect = false;
+                canSelectMoveMarker = false;
                 canSelectEnemyMarker = true;
             }
         }
