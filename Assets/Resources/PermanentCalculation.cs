@@ -29,7 +29,5 @@ public class PermanentCalculation : MonoBehaviour
         GetComponent<MainObject>().fireResistBonus += functionalObject.fireResist;
         GetComponent<MainObject>().frostResistBonus += functionalObject.frostResist;
         GetComponent<MainObject>().drunkennessResistBonus += functionalObject.drunkennessResist;
-
-
     }
 }

@@ -109,7 +109,7 @@ public class PereodicDamageScript : MonoBehaviour
 
                 poisonStatus = true;
 
-                GetComponent<StatusCalculation>().statusAdd = poisonEffect.name;
+                //GetComponent<StatusCalculation>().statusAdd = poisonEffect.name;
 
                 StartCoroutine("Poison");
             }
@@ -139,7 +139,7 @@ public class PereodicDamageScript : MonoBehaviour
 
                 fireStatus = true;
 
-                GetComponent<StatusCalculation>().statusAdd = fireEffect.name;
+                //GetComponent<StatusCalculation>().statusAdd = fireEffect.name;
 
                 StartCoroutine("Fire");
             }
@@ -169,7 +169,7 @@ public class PereodicDamageScript : MonoBehaviour
 
                 frostStatus = true;
 
-                GetComponent<StatusCalculation>().statusAdd = frostEffect.name;
+                //GetComponent<StatusCalculation>().statusAdd = frostEffect.name;
 
                 StartCoroutine("Frost");
             }
@@ -200,7 +200,7 @@ public class PereodicDamageScript : MonoBehaviour
 
                 drunkennessStatus = true;
 
-                GetComponent<StatusCalculation>().statusAdd = drunkennessEffect.name;
+                //GetComponent<StatusCalculation>().statusAdd = drunkennessEffect.name;
 
                 StartCoroutine("Drunkenness");
             }
@@ -220,7 +220,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(poisonDamage: pereodicPoisonDamage);
         }
 
-        GetComponent<StatusCalculation>().statusRemove = poisonEffect.name;
+        //GetComponent<StatusCalculation>().statusRemove = poisonEffect.name;
         poisonStatus = false;
         Debug.Log("Я закончил");
     }
@@ -236,7 +236,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(fireDamage: pereodicFireDamage);
         }
 
-        GetComponent<StatusCalculation>().statusRemove = fireEffect.name;
+        //GetComponent<StatusCalculation>().statusRemove = fireEffect.name;
         fireStatus = false;
         Debug.Log("Я закончил");
     }
@@ -252,7 +252,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(frostDamage: pereodicFrostDamage);
         }
 
-        GetComponent<StatusCalculation>().statusRemove = frostEffect.name;
+        //GetComponent<StatusCalculation>().statusRemove = frostEffect.name;
         frostStatus = false;
         Debug.Log("Я закончил");
     }
@@ -268,7 +268,7 @@ public class PereodicDamageScript : MonoBehaviour
             GetComponent<TakeDamageScript>().TakeDamage(drunkennessDamage: pereodicDrunkennessDamage);
         }
 
-        GetComponent<StatusCalculation>().statusRemove = drunkennessEffect.name;
+        //GetComponent<StatusCalculation>().statusRemove = drunkennessEffect.name;
         drunkennessStatus = false;
         Debug.Log("Я закончил");
     }

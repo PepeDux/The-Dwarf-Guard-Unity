@@ -5,19 +5,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Tilemaps;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Test : MonoBehaviour
 {
-    public static Action action;
+    [SerializeField] public List<GameObject> enemies;
+    [SerializeField] public List<StatusData> statuses;
+
     
 
-
-
-    void Update()
+    public void Start()
     {
-        if(Input.GetKeyUp(KeyCode.V))
+        UpdateStatuses();
+    }
+
+    public void UpdateStatuses()
+    {
+        foreach(GameObject enemy in enemies)
         {
-            action?.Invoke();
+            enemy.GetComponent<StatusCalculation>().activeStatuses = statuses;
         }
     }
 }

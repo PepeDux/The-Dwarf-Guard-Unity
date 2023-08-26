@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114fe513a9d865f4a8d7080986eaefce, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  type: Pereodic
-  prefab: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}
+  HP: 0
+  physicalDamage: 0
+  movePoint: 0
+  actionPoint: 0
+  beerPoint: 0
   strength: -3
   agility: -3
   intel: 0
@@ -21,13 +24,13 @@ MonoBehaviour:
   wisdom: 0
   dodge: 0
   carryingCapacity: 0
-  speed: -0.5
+  speed: 0
   attackSpeed: 0
   criticalDamage: 0
   criticalDamageChance: 0
   precision: 0
   drunkenness: 0
-  prickResist: 0
+  prickResist: -10
   slashResist: 0
   crushResist: 0
   poisonResist: 0
@@ -36,3 +39,4 @@ MonoBehaviour:
   curseResist: 0
   electricalResist: 0
   drunkennessResist: 0
+  prefab: {fileID: 7229946362222945239, guid: 2c390ef782b9f7c4585a19dc3bd3f9f3, type: 3}

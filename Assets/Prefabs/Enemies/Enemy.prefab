@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7199952085752115595}
   - component: {fileID: 7199952085752115594}
   - component: {fileID: 7199952085752115591}
+  - component: {fileID: -5605104282279118220}
   - component: {fileID: -9023103296649158117}
   - component: {fileID: 7199952085752115584}
-  - component: {fileID: 7199952085752115587}
   - component: {fileID: 2078013242607108643}
   - component: {fileID: 7199952085752115586}
   m_Layer: 3
@@ -182,8 +182,8 @@ MonoBehaviour:
   range: 0
   rangeAttackDistance: 0
   anim: {fileID: 7199952085752115592}
-  HP: 0
-  maxHP: 10
+  HP: 20
+  maxHP: 20
   armor: 0
   maxArmor: 0
   money: 0
@@ -233,6 +233,19 @@ MonoBehaviour:
   drunkennessResistBonus: 0
   player: {fileID: 0}
   tileManager: {fileID: 0}
+--- !u!114 &-5605104282279118220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199952085752115597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b345336b20e9e47a09b62bc834f41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeStatuses: []
 --- !u!114 &-9023103296649158117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,24 +272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpse: {fileID: 0}
   lootAfterDeath: []
---- !u!114 &7199952085752115587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7199952085752115597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32665b7c836929d4380ed8b3bd74c7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statuses: []
-  poisonStatus: 0
-  fireStatus: 0
-  curseStatus: 0
-  frostStatus: 0
-  drunkennessStatus: 0
 --- !u!114 &2078013242607108643
 MonoBehaviour:
   m_ObjectHideFlags: 0
