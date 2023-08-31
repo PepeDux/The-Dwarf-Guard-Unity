@@ -10,7 +10,10 @@ public class PlayerTileManager : MonoBehaviour
     private Vector3Int CellPosition; //Тайловая координата курсора
     private Vector3Int playerPosition; //Тайловая координата игрока
 
-
+    private void Start()
+    {
+        tileMap = GameObject.Find("Ground").GetComponent<Tilemap>();
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && GetComponent<Player>().movePoint > 0)

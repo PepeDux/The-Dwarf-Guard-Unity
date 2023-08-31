@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
 public class CardMaker : MonoBehaviour
 {
+    public static Action endSelectCard;
+
     [Header("Карты")]
     //Позитивная и негативная карта
     public CardData cardPositive;
@@ -32,11 +35,13 @@ public class CardMaker : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.LevelEnded += MakeCard;
+        //CardHolder.cardsShowed += MakeCard;
+        endSelectCard += EndSelectCard;
     }
     private void OnDisable()
     {
-        LevelManager.LevelEnded -= MakeCard;
+        //CardHolder.cardsShowed -= MakeCard;
+        endSelectCard -= EndSelectCard;
     }
 
 
@@ -44,9 +49,11 @@ public class CardMaker : MonoBehaviour
     private void Start()
     {
         cards = Resources.LoadAll<CardData>("Cards");
+
+        MakeCard();
     }
 
-    public void MakeCard()
+    private void MakeCard()
     {
         while (true)
         {
@@ -59,15 +66,21 @@ public class CardMaker : MonoBehaviour
             }
         }
 
-        
-        //cardNamePositive.text = cardPositive.name;
-        //cardDescriptionPositive.text = cardPositive.CardDescription;
+        try
+        {
+            cardNamePositive.text = cardPositive.name;
+            cardDescriptionPositive.text = cardPositive.CardDescription;
 
-        //cardNameNegative.text = cardNegative.name;
-        //cardDescriptionNegative.text = cardNegative.CardDescription;
+            cardNameNegative.text = cardNegative.name;
+            cardDescriptionNegative.text = cardNegative.CardDescription;
+        }     
+        catch
+        {
+          
+        }
     }
 
-    public void OnClick()
+    private void OnClick()
     {
         //Враги
         if (cardPositive.modifier is StatusData && cardPositive.accessory == CardData.Accessory.enemy)
@@ -88,5 +101,14 @@ public class CardMaker : MonoBehaviour
         {
             levelModifier.GetComponent<LevelModifier>().playerStatuses.Add(cardNegative.modifier as StatusData);
         }
+
+
+
+        endSelectCard?.Invoke();   
+    }
+
+    private void EndSelectCard()
+    {
+        this.gameObject.SetActive(false);
     }
 }

@@ -13,16 +13,26 @@ public class TileMarker : MonoBehaviour
     [SerializeField] private TileBase movePointer; //Указатель возможного хода
     [SerializeField] private TileBase enemyPointer; //Указатель возможного хода
 
-    private GameObject player;
+    private Player player;
 
     private bool canMove = true;
     private bool canSelectMoveMarker = true;
     private bool canSelectEnemyMarker = true;
 
 
+
+    private void OnEnable()
+    {
+        Player.playerSpawned += AddPlayer;
+    }
+    private void OnDisable()
+    {
+        Player.playerSpawned -= AddPlayer;
+    }
+
     private void Start()
     {
-        player = GameObject.Find("Dwarf Guard");
+       
     }
 
     void Update()
@@ -37,7 +47,7 @@ public class TileMarker : MonoBehaviour
 
         if(player != null)
         {
-            if (player.GetComponent<Player>().lineMove == true)
+            if (player.lineMove == true)
             {
                 SelectMoveCell(new Vector3Int(0, 1, 0));  //Вверх
                 SelectMoveCell(new Vector3Int(0, -1, 0)); //Вниз
@@ -45,7 +55,7 @@ public class TileMarker : MonoBehaviour
                 SelectMoveCell(new Vector3Int(1, 0, 0));  //Вправо
             }
 
-            if (player.GetComponent<Player>().diagonalMove == true)
+            if (player.diagonalMove == true)
             {
                 SelectMoveCell(new Vector3Int(1, 1, 0));   //Вправо вверх
                 SelectMoveCell(new Vector3Int(1, -1, 0));  //Вправо вниз
@@ -55,7 +65,7 @@ public class TileMarker : MonoBehaviour
 
 
 
-            if (player.GetComponent<Player>().lineAttack == true)
+            if (player.lineAttack == true)
             {
                 SelectEnemyCell(new Vector3Int(0, 1, 0));  //Вверх
                 SelectEnemyCell(new Vector3Int(0, -1, 0)); //Вниз
@@ -63,7 +73,7 @@ public class TileMarker : MonoBehaviour
                 SelectEnemyCell(new Vector3Int(1, 0, 0));  //Вправо
             }
 
-            if (player.GetComponent<Player>().diagonalAttack == true)
+            if (player.diagonalAttack == true)
             {
                 SelectEnemyCell(new Vector3Int(1, 1, 0));   //Вправо вверх
                 SelectEnemyCell(new Vector3Int(1, -1, 0));  //Вправо вниз
@@ -111,5 +121,9 @@ public class TileMarker : MonoBehaviour
                 canSelectEnemyMarker = true;
             }
         }
+    }
+    private void AddPlayer(Player player)
+    {
+        this.player = player;
     }
 }

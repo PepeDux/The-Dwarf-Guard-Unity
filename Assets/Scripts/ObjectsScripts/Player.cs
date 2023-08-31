@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,12 +8,15 @@ using UnityEngine.AI;
 using UnityEngine.SocialPlatforms;
 
 public class Player : MainObject
-{    
+{
+    public static Action<Player> playerSpawned;
+
     private bool isFacingRight = true;
 
 
     private void Start()
     {
+        playerSpawned?.Invoke(this);
         Starter();
     }
     private void Update()

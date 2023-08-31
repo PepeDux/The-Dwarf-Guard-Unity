@@ -1,22 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+
     private GameObject enemies;
     private GameObject staticTileObjects;
     private GameObject pickUpObjects;
     private GameObject functionalObjects;
-
-    [SerializeField] private GameObject player;
 
     public static int currentLevel = 1;
 
     private bool b = true;
 
     public static Action LevelEnded;
+
+    private void OnEnable()
+    {
+        CardMaker.endSelectCard += LevelGenerate;
+    }
+    private void OnDisable()
+    {
+        CardMaker.endSelectCard -= LevelGenerate;
+    }
     private void Start()
     {
         enemies = GameObject.Find("Enemies");
@@ -30,20 +40,20 @@ public class LevelManager : MonoBehaviour
         CheckLevel();
     }
 
-
     public void LevelGenerate()
     {
         enemies.GetComponent<EnemySpawner>().SpawnEnemy();
         staticTileObjects.GetComponent<StaticTileObjectSpawner>().SpawnStaticTileObject();
         functionalObjects.GetComponent<FunctionalObjectSpawner>().SpawnFunctionalObject();
+        player.GetComponent<PlayerSpawner>().SpawnPlayer();
     }
 
     private void CheckLevel()
     {
         ///Добавить условие очистки поля
-        if((player == null || TurnManager.turnCount == 20) && b == true)
+        if(TurnManager.turnCount == 20)
         {
-            b = false;
+            TurnManager.turnCount = 1;
             LevelEnded?.Invoke();
             
             //LevelGenerate();

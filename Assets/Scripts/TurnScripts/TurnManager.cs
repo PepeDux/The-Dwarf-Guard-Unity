@@ -12,7 +12,7 @@ public class TurnManager : MonoBehaviour
 {
     public static int turnCount = 1; //Счеткич ходов
 
-    public GameObject player;
+    public Player player;
     public GameObject tileManager;
 
 
@@ -21,12 +21,14 @@ public class TurnManager : MonoBehaviour
     {
         //Подписываемся на событие конца хода игрока 
         PlayerTurnManager.playerTurnFinished += EndPlayerTurn;
+        Player.playerSpawned += AddPlayer;
     }
 
     private void OnDisable()
     {
         //Отписываемся на событие конца хода игрока 
         PlayerTurnManager.playerTurnFinished -= EndPlayerTurn;
+        Player.playerSpawned -= AddPlayer;
     }
 
 
@@ -42,14 +44,19 @@ public class TurnManager : MonoBehaviour
 
         if(player != null)
         {
-            player.GetComponent<Player>().movePoint = player.GetComponent<Player>().maxMovePoint;
-            player.GetComponent<Player>().actionPoints = player.GetComponent<Player>().maxActionPoint;
-            player.GetComponent<Player>().beerPoint = player.GetComponent<Player>().maxBeerPoint;
+            player.movePoint = player.maxMovePoint;
+            player.actionPoints = player.maxActionPoint;
+            player.beerPoint = player.maxBeerPoint;
         }
     }
 
     private void EndPlayerTurn()
     {        
         UpdatePoints();
+    }
+
+    private void AddPlayer(Player player)
+    {
+        this.player = player;
     }
 }

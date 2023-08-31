@@ -9,7 +9,7 @@ public class TileManager : MonoBehaviour
     public Transform parentStaticObject; //Родительский объект статичных объектов
     public Transform parentFunctionalObject; //Родительский объект функциональных объектов
 
-    [SerializeField] public Player player; //Игрок
+    [SerializeField] private Player player; //Игрок
 
     [SerializeField] private Tilemap tileMap; //Тайлмап
     private Camera mainCamera; //Камера
@@ -40,7 +40,14 @@ public class TileManager : MonoBehaviour
     public static int maxRight = xField;
 
 
-
+    private void OnEnable()
+    {
+        Player.playerSpawned += AddPlayer;
+    }
+    private void OnDisable()
+    {
+        Player.playerSpawned -= AddPlayer;
+    }
 
     void Start()
     {
@@ -142,5 +149,10 @@ public class TileManager : MonoBehaviour
             WorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //Берем координаты мировые на сцене
             CellPosition = tileMap.WorldToCell(WorldPosition); //Переводим мировые координаты в координаты на тайлмапе
         }
+    }
+
+    private void AddPlayer(Player player)
+    {
+        this.player = player;
     }
 }

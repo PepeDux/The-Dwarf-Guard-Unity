@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
             tileManager.TileGameObjectUpdatePosition();
 
             //n-ое попыток на спавн объекта
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (СheckCoordinate() == true)
                 {

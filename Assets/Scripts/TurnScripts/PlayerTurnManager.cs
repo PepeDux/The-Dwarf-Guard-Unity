@@ -6,15 +6,35 @@ using UnityEngine;
 public class PlayerTurnManager : MonoBehaviour
 {
     public static Action playerTurnFinished;
+
+    private Player player;
+
+
+
+    private void OnEnable()
+    {
+        Player.playerSpawned += AddPlayer;
+    }
+    private void OnDisable()
+    {
+        Player.playerSpawned -= AddPlayer;
+    }
+
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && player != null)
         {
             playerTurnFinished?.Invoke();
 
-            TurnManager.turnCount += 1;
+            Debug.Log("End Turn: " + TurnManager.turnCount);
 
-            Debug.Log("End Turn");
+            TurnManager.turnCount += 1;  
         }
+    }
+
+    private void AddPlayer(Player player)
+    {
+        this.player = player;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainUIUpdate : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private Player player;
 
 
 
@@ -25,38 +25,36 @@ public class MainUIUpdate : MonoBehaviour
     //private TMP_Text HPText;
     //private TMP_Text HPText;
 
-    void Start()
+
+    private void OnEnable()
     {
-        
+        Player.playerSpawned += AddPlayer;
+    }
+    private void OnDisable()
+    {
+        Player.playerSpawned += AddPlayer;
     }
 
     private void FixedUpdate()
     {
-        if(player != null)
+        turn.text = "TURN: " + TurnManager.turnCount.ToString();
+
+        if (player != null)
         {
-            turn.text = "TURN: " + TurnManager.turnCount.ToString();
+            HPText.text = "HP: " + player.HP.ToString();
+            ArmorText.text = "ARMOR: " + player.armor.ToString();
 
-            HPText.text = "HP: " + player.GetComponent<Player>().HP.ToString();
-            ArmorText.text = "ARMOR: " + player.GetComponent<Player>().armor.ToString();
+            MovePointText.text = "MOVE: " + player.movePoint.ToString();
+            ActionPointText.text = "ACT: " + player.actionPoints.ToString();
 
-            MovePointText.text = "MOVE: " + player.GetComponent<Player>().movePoint.ToString();
-            ActionPointText.text = "ACT: " + player.GetComponent<Player>().actionPoints.ToString();
-
-            PhysicalDamageText.text = "DMG: " + player.GetComponent<Player>().physicalDamage.ToString();
+            PhysicalDamageText.text = "DMG: " + player.physicalDamage.ToString();
         }
-        else if (player == null)
-        {
-            HPText.enabled = false;
-            ArmorText.enabled = false;
-
-            MovePointText.enabled = false;
-            ActionPointText.enabled = false;
-
-            PhysicalDamageText.enabled = false;
-        }
+       
 
     }
 
-
-
+    private void AddPlayer(Player player)
+    {
+        this.player = player;
+    }
 }
