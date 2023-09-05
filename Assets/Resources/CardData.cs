@@ -26,5 +26,5 @@ public class CardData : ScriptableObject
     [Header("Предзначен для")]
     //Тип карты
     public Accessory accessory;
-    public enum Accessory { player, enemy, global };
+    public enum Accessory { player, enemy, spawn };
 }

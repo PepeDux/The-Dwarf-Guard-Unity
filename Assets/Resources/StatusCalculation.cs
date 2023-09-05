@@ -41,7 +41,6 @@ public class StatusCalculation : MonoBehaviour
                 Ñalculation(status, -1);
                 activeStatuses.Remove(status);
             }
-
         }
     }
 

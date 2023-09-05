@@ -38,7 +38,7 @@ public class Enemy : MainObject
     private void Start()
     {
         Starter();
-        player = GameObject.Find("Dwarf Guard");
+        player = GameObject.Find("Dwarf Guard(Clone)");
         tileManager = GameObject.Find("TileManager");
     }
 

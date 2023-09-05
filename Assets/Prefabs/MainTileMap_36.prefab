@@ -98,9 +98,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coordinate: {x: 0, y: 0, z: 0}
   tileMap: {fileID: 0}
+  canUse: 1
   destroyAfterUse: 0
-  useEveryTurn: 1
+  timer: 1
   functional: {fileID: 11400000, guid: 41250ba942d816548af2ea6122e337f0, type: 2}
+  turnsToActivate: 0
+  turnTimer: 5
+  waitingSprite: {fileID: 0}
+  activatedSprite: {fileID: -4839137499495055101, guid: 54e36146d52be6d4db87ae46f314925b, type: 3}
 --- !u!61 &9185236195514261165
 BoxCollider2D:
   m_ObjectHideFlags: 0

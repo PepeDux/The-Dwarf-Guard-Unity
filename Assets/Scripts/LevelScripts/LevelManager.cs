@@ -10,12 +10,9 @@ public class LevelManager : MonoBehaviour
 
     private GameObject enemies;
     private GameObject staticTileObjects;
-    private GameObject pickUpObjects;
     private GameObject functionalObjects;
 
     public static int currentLevel = 1;
-
-    private bool b = true;
 
     public static Action LevelEnded;
 
