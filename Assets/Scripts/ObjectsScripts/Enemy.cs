@@ -1,12 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MainObject
 {
+    [Header("Тип противника")]
+    public TypeEnemy typeEnemy;
+    public enum TypeEnemy {captain, melee, range, wizard};
+
     private bool isFacingRight = true;
 
     [Header("Игрок")]
@@ -18,14 +23,14 @@ public class Enemy : MainObject
     private void OnEnable()
     {
         //Подписываемся на событие конца хода игрока 
-        LevelManager.LevelEnded += Destroy;
+        LevelManager.levelEnded += Destroy;
         PlayerTurnManager.playerTurnFinished += Turn;
     }
 
     private void OnDisable()
     {
         //Отписываемся на событие конца хода игрока 
-        LevelManager.LevelEnded -= Destroy;
+        LevelManager.levelEnded -= Destroy;
         PlayerTurnManager.playerTurnFinished -= Turn;
     }
 

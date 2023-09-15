@@ -14,13 +14,13 @@ public class BaseObject : MonoBehaviour
     private void OnEnable()
     {
         //Подписываемся на событие конца хода игрока 
-        LevelManager.LevelEnded += Destroy;
+        LevelManager.levelEnded += Destroy;
     }
 
     private void OnDisable()
     {
         //Отписываемся на событие конца хода игрока 
-        LevelManager.LevelEnded -= Destroy;
+        LevelManager.levelEnded -= Destroy;
     }
 
 

@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: -7935869098395166970, guid: 3cd67e1ff0d69a3418d827fb60bbfb15, type: 3}
+  m_Sprite: {fileID: 2079668371170606871, guid: 2a948804529e4764fb290b6060a55166, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ Animator:
   m_GameObject: {fileID: 7057714213520777173}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4eec9f1c5a09ac24d98d73ea06b21a84, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4ca000cef504c7b468c706de603d3ec5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -127,24 +127,25 @@ MonoBehaviour:
   coordinate: {x: 0, y: 0, z: 0}
   tileMap: {fileID: 0}
   movePoint: 0
-  maxMovePoint: 2
+  maxMovePoint: 1
   actionPoints: 0
-  maxActionPoint: 6
+  maxActionPoint: 1
   beerPoint: 0
-  maxBeerPoint: 2
+  maxBeerPoint: 1
   moveCost: 1
   meleeAttackCost: 1
   rangeAttackCost: 2
   lineMove: 1
-  diagonalMove: 1
+  diagonalMove: 0
   lineAttack: 1
   diagonalAttack: 0
   melee: 1
   range: 0
   rangeAttackDistance: 0
   anim: {fileID: 7057714213520777177}
-  HP: 100
-  maxHP: 100
+  HP: 0
+  basicMaxHP: 10
+  maxHP: 0
   armor: 0
   maxArmor: 2
   money: 0
@@ -245,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  NextAnimator: {fileID: 0}
 --- !u!114 &7057714213520777175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +414,6 @@ SpriteRenderer:
   m_Size: {x: 16.53125, y: 7.09375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

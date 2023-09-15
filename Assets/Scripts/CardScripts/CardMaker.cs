@@ -121,6 +121,7 @@ public class CardMaker : MonoBehaviour
 
     private void EndSelectCard()
     {
+        MakeCard();
         this.gameObject.SetActive(false);
     }
 }

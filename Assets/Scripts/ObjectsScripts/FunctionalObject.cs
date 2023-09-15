@@ -27,7 +27,7 @@ public class FunctionalObject : BaseObject
         //Подписываемся на событие конца хода игрока
         PlayerTurnManager.playerTurnFinished += Timer;
         PlayerTurnManager.playerTurnFinished += Check;
-        LevelManager.LevelEnded += Destroy;
+        LevelManager.levelEnded += Destroy;
     }
 
     private void OnDisable()
@@ -35,7 +35,7 @@ public class FunctionalObject : BaseObject
         //Отписываемся на событие конца хода игрока
         PlayerTurnManager.playerTurnFinished -= Timer;
         PlayerTurnManager.playerTurnFinished -= Check;
-        LevelManager.LevelEnded -= Destroy;
+        LevelManager.levelEnded -= Destroy;
     }
 
 

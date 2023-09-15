@@ -10,11 +10,11 @@ public class CardHolder : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.LevelEnded += ShowCard;
+        LevelManager.levelEnded += ShowCard;
     }
     private void OnDisable()
     {
-        LevelManager.LevelEnded -= ShowCard;
+        LevelManager.levelEnded -= ShowCard;
     }
 
 

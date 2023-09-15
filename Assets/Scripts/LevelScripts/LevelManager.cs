@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     public static int currentLevel = 1;
 
-    public static Action LevelEnded;
+    public static Action levelEnded;
 
     private void OnEnable()
     {
@@ -32,29 +32,11 @@ public class LevelManager : MonoBehaviour
         LevelGenerate();
     }
 
-    private void Update()
-    {
-        CheckLevel();
-    }
-
     public void LevelGenerate()
     {
         enemies.GetComponent<EnemySpawner>().SpawnEnemy();
         staticTileObjects.GetComponent<StaticTileObjectSpawner>().SpawnStaticTileObject();
         functionalObjects.GetComponent<FunctionalObjectSpawner>().SpawnFunctionalObject();
         player.GetComponent<PlayerSpawner>().SpawnPlayer();
-    }
-
-    private void CheckLevel()
-    {
-        ///Добавить условие очистки поля
-        if(TurnManager.turnCount == 20)
-        {
-            TurnManager.turnCount = 1;
-            LevelEnded?.Invoke();
-            
-            //LevelGenerate();
-            //TurnManager.turnCount = 1;
-        }
     }
 }

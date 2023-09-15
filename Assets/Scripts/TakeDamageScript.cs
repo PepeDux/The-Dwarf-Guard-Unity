@@ -1,10 +1,14 @@
 using EZCameraShake;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TakeDamageScript : MonoBehaviour
 {
+    public static Action playerDead;
+
     public GameObject corpse; //Труп или объект после смерти(не путать с лутом)
     public GameObject[] lootAfterDeath; //Вещи выпадающие из обхекта после смерти
 
@@ -14,6 +18,7 @@ public class TakeDamageScript : MonoBehaviour
     //
     //
     //К скрипту можно обратиться так - TakeDamage(Damage:15, Damage:43); минуя не нужные типы урона
+
 
 
     public void TakeDamage
@@ -60,15 +65,15 @@ public class TakeDamageScript : MonoBehaviour
         Debug.Log($"Я {this.name} умер");
 
         //Спавнит случайны лут из списка с вероятностью 50%
-        if(Random.Range(0, 100) > 50 && lootAfterDeath != null)
+        if (Random.Range(0, 100) > 50 && lootAfterDeath != null)
         {
             try
             {
                 GameObject loot = Instantiate(lootAfterDeath[Random.Range(0, lootAfterDeath.Length)]);
                 loot.GetComponent<BaseObject>().coordinate = GetComponent<BaseObject>().tileMap.WorldToCell(transform.position);
             }
-            catch 
-            { 
+            catch
+            {
 
             }
         }
@@ -78,6 +83,21 @@ public class TakeDamageScript : MonoBehaviour
         //Instantiate(corpse, transform.position, transform.rotation);
 
         GetComponent<MainObject>().anim.SetTrigger("Die");
+
+        //Если умер игрок
+        if (GetComponent<MainObject>() as Player)
+        {
+            playerDead?.Invoke();
+        }
+
+        //Если умер игрок
+        if (GetComponent<MainObject>() as Enemy)
+        {
+            if (GetComponent<Enemy>().typeEnemy == Enemy.TypeEnemy.captain)
+            {               
+                LevelManager.levelEnded?.Invoke();
+            }
+        }
 
         Destroy(this.gameObject);
     }

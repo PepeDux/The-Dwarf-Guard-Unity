@@ -71,8 +71,9 @@ public class MainObject : BaseObject
 
     [Header("Здоровье")]
     //Здоровье
-    public float HP;
-    public float maxHP = 10;
+    public int HP;
+    public int basicMaxHP = 10;
+    public int maxHP;
 
     [Header("Броня")]
     //Броня
@@ -116,7 +117,7 @@ public class MainObject : BaseObject
     [Header("Уровень и опыт")]
     //Опыт
     public int XP = 0;
-    [HideInInspector] public int maxXP = 100;
+    [HideInInspector] public int maxXP;
 
     //Уровень
     public int level = 0;
@@ -132,32 +133,32 @@ public class MainObject : BaseObject
 
     //Сила
     public int strength = 0;
-    [HideInInspector] private int strengthCharac = 7;
-    [HideInInspector] private const int maxStrengthCharac = 100;
+    [HideInInspector] private int strengthCharac = 8;
+    [HideInInspector] private const int maxStrengthCharac = 20;
     [HideInInspector] public int strengthBonus = 0;
 
     //Ловкость
     public int dexterity = 0;
-    [HideInInspector] private int dexterityCharac = 1;
-    [HideInInspector] private const int maxDexterityCharac = 100;
+    [HideInInspector] private int dexterityCharac = 8;
+    [HideInInspector] private const int maxDexterityCharac = 20;
     [HideInInspector] public int dexterityBonus = 0;
 
     //Интеллект
     public int inteligence = 0;
-    [HideInInspector] private int inteligenceCharac = 1;
-    [HideInInspector] private const int maxInteligenceCharac = 100;
+    [HideInInspector] private int inteligenceCharac = 8;
+    [HideInInspector] private const int maxInteligenceCharac = 20;
     [HideInInspector] public int inteligenceBonus = 0;
 
     //Телосложение
     public int constitution = 0;
-    [HideInInspector] private int constitutionCharac = 1;
-    [HideInInspector] private const int maxConstitutionCharac = 100;
+    [HideInInspector] private int constitutionCharac = 8;
+    [HideInInspector] private const int maxConstitutionCharac = 20;
     [HideInInspector] public int constitutionBonus = 0;
 
     //Мудрость
     public int wisdom = 0;
-    [HideInInspector] private int wisdomCharac = 1;
-    [HideInInspector] private const int maxWisdomCharac = 100;
+    [HideInInspector] private int wisdomCharac = 8;
+    [HideInInspector] private const int maxWisdomCharac = 20;
     [HideInInspector] public int wisdomBonus = 0;
 
 
@@ -400,6 +401,9 @@ public class MainObject : BaseObject
 
     public void UpdateCharac()
     {
+        maxHP = constitution * 5 + basicMaxHP;
+
+
         //Первичные характеристики
         strength = strengthCharac * 1 + strengthBonus;
         dexterity = dexterityCharac * 1 + dexterityBonus;
@@ -412,26 +416,26 @@ public class MainObject : BaseObject
         physicalDamage = strength * 5 + physicalDamageBonus;
 
         //Ядовитый урон
-        poisonDamage = wisdom * 3 + poisonDamageBonus;
+        poisonDamage = poisonDamageBonus;
 
         //Огненный урон
-        fireDamage = wisdom * 3 + fireDamageBonus;
+        fireDamage = fireDamageBonus;
 
         //Морозный урон
-        frostDamage = wisdom * 3 + frostDamageBonus;
+        frostDamage = frostDamageBonus;
 
         //Алкогольный урон
-        drunkennessDamage = wisdom * 3 + drunkennessBonus;
+        drunkennessDamage = drunkennessBonus;
 
 
 
 
         //Сопротивляшки
-        physicalResist = (constitution * 2) + (dexterity * 2) + physicalResistBonus;
+        physicalResist = (constitution * 1) + physicalResistBonus;
 
-        poisonResist = (wisdom * 2) + poisonResistBonus;
-        fireResist = (wisdom * 2) + fireResistBonus;
-        frostResist = (wisdom * 2) + frostResistBonus;
+        poisonResist = (wisdom * 1) + poisonResistBonus;
+        fireResist = (wisdom * 1) + fireResistBonus;
+        frostResist = (wisdom * 1) + frostResistBonus;
 
 
 

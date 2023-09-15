@@ -1,5 +1,6 @@
 using EZCameraShake;
 using Newtonsoft.Json.Bson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -10,9 +11,12 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class AttackScript : MonoBehaviour
 {
     public Animator anim;
-    public Animator NextAnimator;
 
     private bool canAttack = true;
+
+    private Vector3Int attackCell;
+    private MainObject target;
+    private int attackCost;
 
     private void Start()
     {
@@ -20,44 +24,10 @@ public class AttackScript : MonoBehaviour
     }
 
 
-    public void Attack(Vector3Int attackCell, MainObject target, int attackCost)
-    { 
-        if (canAttack == true && attackCell == target.coordinate && target != null && GetComponent<MainObject>().actionPoints > 0)
-        {
-            canAttack = false;
-
-            anim.SetTrigger("Attack");
-            //Enemy.speed = 0;
-            //NextAnimator.SetTrigger("OnAnimationEnded");
-
-            if (Random.Range(0, 100) <= target.GetComponent<MainObject>().dodge)
-            {
-                Debug.Log($"Я {target.name} уклонился");
-            }
-            else
-            {
-                target.GetComponent<TakeDamageScript>().TakeDamage(
-                physicalDamage: GetComponent<MainObject>().physicalDamage,
-                poisonDamage: GetComponent<MainObject>().poisonDamage,
-                fireDamage: GetComponent<MainObject>().fireDamage,
-                frostDamage: GetComponent<MainObject>().frostDamage,
-                drunkennessDamage: GetComponent<MainObject>().drunkennessDamage
-                );
-            }
-
-            GetComponent<MainObject>().actionPoints -= attackCost;
-
-            Invoke("AttackReload", 1);
-        }
-    }
-
-    void AttackReload()
-    {
-        canAttack = true;
-    }
-
     public void CalculationAttack(MainObject target)
     {
+        this.target = target;
+
         if (GetComponent<MainObject>().melee == true)
         {
             FindTarget(MainObject.meleeAttackDistance, target, GetComponent<MainObject>().meleeAttackCost);
@@ -73,15 +43,16 @@ public class AttackScript : MonoBehaviour
     {
         Vector3Int attackCell = new Vector3Int();
 
-        
-        if(GetComponent<MainObject>().lineAttack == true) 
+        this.attackCost = attackCost;
+
+        if (GetComponent<MainObject>().lineAttack == true)
         {
             //Напрво от атакующего
             for (int i = 0; i <= distanceAttack; i++)
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y, 0);
 
-                Attack(attackCell, target, attackCost);
+                Attack(attackCell, target, attackCost, "HorizontalAttack");
             }
 
             //Налево от атакующего
@@ -89,7 +60,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y, 0);
 
-                Attack(attackCell, target, attackCost);
+                Attack(attackCell, target, attackCost, "HorizontalAttack");
             }
 
             //Вверх от атакующего
@@ -97,7 +68,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target, attackCost);
+                Attack(attackCell, target, attackCost, "UpAttack");
             }
 
             //Вниз от атакующего
@@ -105,18 +76,18 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target, attackCost);
+                Attack(attackCell, target, attackCost, "DownAttack");
             }
         }
 
-        if(GetComponent<MainObject>().diagonalAttack == true)
+        if (GetComponent<MainObject>().diagonalAttack == true)
         {
             //Вверх-налево
             for (int i = 0; i <= distanceAttack; i++)
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target, attackCost);
+                //Attack(attackCell, target, attackCost);
             }
 
             //Вверх-направо
@@ -124,7 +95,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y + i, 0);
 
-                Attack(attackCell, target, attackCost);
+                //Attack(attackCell, target, attackCost);
             }
 
             //Вниз-налево
@@ -132,7 +103,7 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x - i, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target, attackCost);
+                //Attack(attackCell, target, attackCost);
             }
 
             //Вниз-направо
@@ -140,9 +111,61 @@ public class AttackScript : MonoBehaviour
             {
                 attackCell = new Vector3Int(GetComponent<MainObject>().coordinate.x + i, GetComponent<MainObject>().coordinate.y - i, 0);
 
-                Attack(attackCell, target, attackCost);
+                //Attack(attackCell, target, attackCost);
             }
         }
+    }
+
+    public void Attack(Vector3Int attackCell, MainObject target, int attackCost, string sideAttack)
+    { 
+        if (canAttack == true && attackCell == target.coordinate && target != null && GetComponent<MainObject>().actionPoints > 0)
+        {
+            canAttack = false;
+
+
+
+            if(sideAttack == "HorizontalAttack")
+            {
+                anim.SetTrigger("HorizontalAttack");
+            }
+            else if(sideAttack == "UpAttack")
+            {
+                anim.SetTrigger("UpAttack");
+            }
+            else if (sideAttack == "DownAttack")
+            {
+                anim.SetTrigger("DownAttack");
+            }
+
+            Invoke("AttackReload", 1);
+        }
+    }
+
+
+    private void AttackReload()
+    {
+        canAttack = true;
+    }
+
+    private void GiveAttack()
+    {
+
+        if (UnityEngine.Random.Range(0, 100) <= this.target.GetComponent<MainObject>().dodge)
+        {
+            Debug.Log($"Я {this.target.name} уклонился");
+        }
+        else
+        {
+            this.target.GetComponent<TakeDamageScript>().TakeDamage(
+            physicalDamage: GetComponent<MainObject>().physicalDamage,
+            poisonDamage: GetComponent<MainObject>().poisonDamage,
+            fireDamage: GetComponent<MainObject>().fireDamage,
+            frostDamage: GetComponent<MainObject>().frostDamage,
+            drunkennessDamage: GetComponent<MainObject>().drunkennessDamage
+            );
+        }
+
+        GetComponent<MainObject>().actionPoints -= this.attackCost;
     }
 }
 
